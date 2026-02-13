@@ -1,0 +1,172 @@
+\section{Cadre théorique et principe de non-arbitrage}
+\subsection{Espace probabilisé filtré}
+On considère le triplet $(\Omega,\mathcal{F},\mathbb{P})$ formant un univers probabilisé avec :
+\begin{itemize}
+    \item[$\bullet$] l'univers $\Omega$ représentant les états possibles d'un marché financier
+    \item[$\bullet$] une tribu $\mathcal{F}$ sur l'univers $\Omega$
+    \item[$\bullet$] une mesure de probabilité $\mathbb{P}$ sur la tribu $\mathcal{F}$
+\end{itemize}
+~\\
+Soit l'ensemble des temps discret $I = \{0,1,...,T\}, \: T < \infty$ où $T$ est la date de maturité de l'option. \\
+On introduit la notion de $\textbf{filtration}$ de $\mathcal{F}$ qui est une famille croissante $\mathbb{F} \coloneq  (\mathcal{F}_t)_{t\in I} \subseteq \mathcal{F}$ de tribus, ainsi :
+\begin{align*}
+    \forall (t_\alpha,t_\beta) \in I \times I, \qquad t_\alpha \le t_\beta \implies \mathcal{F}_{t_\alpha} \subseteq \mathcal{F}_{t_\beta} \subseteq \mathcal{F}
+\end{align*}
+On définit alors l'\textbf{espace probabilisé filtré} $(\Omega, \mathcal{F}, \mathbb{F}, \mathbb{P})$ \\ \\
+\remarque Se placer dans cet espace permet de modéliser les évolutions d'un marché financier. En effet, chaque tribu de la filtration permet de représenter les informations connues à l'instant $t$. Ainsi un observateur se trouvant à l'instant $t_{\alpha}$ a accès à toutes les informations issues d'un temps précédent $t_\beta$ tant que $t_\beta \leq t_{\alpha}$. Les variables aléatoires devront être $\mathcal{F}_t$-mesurables afin de pouvoir être observées sans anticipation. \\ \\
+On peut maintenant définir les variables aléatoires servant à modéliser les processus financiers du modèle.
+Considérons les variables aléatoires suivantes :
+\begin{align*}
+    \text{la quantité d'actifs : } \quad \Delta_t& : \Omega \to \mathbb{R} \\
+    \text{l'actif risqué : } \quad S_t& : \Omega \to \mathbb{R}^+ \\
+    \text{l'actif sans risque : } \quad B_t& : \Omega \to \mathbb{R}^+, t \mapsto (1+r)^t
+\end{align*}
+avec $r>-1$ le taux sans risque. \\
+On suppose que les variables aléatoires $\Delta_t$,$S_t$ et $B_t$ sont $\mathcal{F}_t$-mesurables pour tout
+$t\in I$. \\
+\remarque Pour chaque $t \in I$, la variable aléatoire $B_t$ est constante sur $\Omega$ ($\forall \omega \in \Omega, B_t(\omega)=(1+r)^t$. C'est donc une variable aléatoire déterministe. \\
+$S_t$ représente l'incertitude du marché financier, $\Delta_t$ est un stratégie adaptée à la filtration (donc adaptée aux informations connues à l'instant $t$) et $B_t$ représente l'évolution déterministe d'un placement sans risque. 
+
+\subsection{Portefeuille d'autofinancement}
+On introduit la notion de \textbf{stratégie d'investissement} à l'aide du couple $(\Delta_t, B_t)$, représentant respectivement la quantité d'actifs et la valeur courante du compte sans risque détenu au temps $t$.
+
+On définit un \textbf{portefeuille discret $\Pi_t$} au temps $t$ par la valeur :
+\begin{align*}
+    \Pi_t = \Delta_tS_t+B_t
+\end{align*}
+Ainsi, $\Pi_t$ se décompose en deux parties : $\Delta_tS_t$ qui représente la partie risquée du portefeuille et $B_t$ qui représente la valeur du compte au taux sans risque. \\
+
+\notation 
+Bien que le modèle évolue en temps discret, nous distinguerons par la suite, au temps $t+1$, deux états infinitésimaux: l'instant $t+1^-$ correspondant à l'observation du nouveau prix de l'actif avec l'ancienne stratégie, et l'instant $t+1^+$ correspondant à la mise en place de la nouvelle. \\
+
+\remarque Soit $r$ le taux sans risque et un instant $t$.\\
+A l'instant $t+1^-$, $\Pi^-_{t+1} = \Delta_tS_{t+1}+(1+r)B_t$ car la valeur de l'actif risqué $S_t$ est mise à jour et l'actif sans risque $B_t$ a produit des intérêts. La quantité d'actifs $\Delta$ ne varie pas. \\
+A l'instant $t+1^+$, $\Pi^+_{t+1} = \Delta_{t+1}S_{t+1}+B_{t+1}$ car on met à jour les quantités $\Delta_t$ et $B_t$ en achetant/vendant.\\
+Afin de pouvoir utiliser ce portefeuille, nous imposerons que $\Pi^+_{t+1} = \Pi^-_{t+1}$ afin d'assurer une continuité du modèle (propriété d'autofinancement). \\ \\
+
+\begin{definitionbox}[frametitle = {Propriété d'autofinancement}]
+    Un portefeuille discret est dit d'\textbf{autofinancement} si
+    \begin{align*}
+        \forall t \in \mathbb{N},  \quad \Pi_{t+1} = \Delta_t S_{t+1} + (1+r)B_t = \Delta_{t+1}S_{t+1} + B_{t+1}
+    \end{align*}
+    où $r > -1$ est le taux sans risque.
+\end{definitionbox}
+
+La propriété d'autofinancement permet donc d'assurer que l'évolution de $\Pi_t$ est entièrement déterminée par la stratégie $(\Delta_t,B_t)$ et la dynamique de $S_t$ sans modifications externes. On considérera par la suite que tous les portefeuilles sont autofinancés.
+\\
+
+\begin{definitionbox}[frametitle = {Absence d'opportunité d'arbitrage (A.O.A.)}]
+    L’absence d’arbitrage signifie qu’il n’existe pas de portefeuille auto-finançant 
+    de valeur initiale nulle et de valeur finale positive presque sûrement : \\
+    \begin{center}
+         $\nexists \Pi, \Pi_0=0, \; \mathbb{P}(\Pi_T\geq0)=1, \; \mathbb{P}(\Pi_T > 0) > 0$
+    \end{center}
+\end{definitionbox}
+
+\remarque La propriété d'A.O.A empêche donc l'existence théorique d'actif sans risque et sans investissement initial. Ainsi tout gain potentiel nécessite un mise de départ ou comporte un risque. Sans cette condition, chaque acheteur exploiterait les opportunités d'arbitrage entraînant la chute des marchés.
+Cette propriété est une condition nécessaire à la cohérence des marchés. \\
+En pratique, il existe de petites opportunités d'arbitrage créées lors des fluctuations des marchés qui sont corrigées par des arbitragistes.
+
+
+\subsection{Stratégie de réplication}
+~\
+\begin{definitionbox}[frametitle = {Réplication}]
+    Un payoff $H$ est dit \textbf{réplicable} si : $\exists \Pi, \; \Pi_T=H \quad \mathbb{P}$-p.s. \\
+    On appelle $\Pi$ le \textbf{portefeuille de réplication de H}.
+\end{definitionbox}
+~\
+\begin{definitionbox}[frametitle = {Complétude de marché}]
+    Un marché est dit \textbf{complet} si tout payoff est réplicable.
+\end{definitionbox}
+\remarque On déduit naturellement que la complétude d'un marché implique qu'il existe un portefeuille de réplication pour chaque payoff. On peut cependant aller plus loin et montrer l'unicité du portefeuille pour chaque payoff. \\
+
+Considérons un marché complet, alors pour tout payoff H, il existe un \textbf{unique} portefeuille de réplication pour H.
+
+\proofname{}.\\
+Soit $\Pi^1$ et $\Pi^2$ deux portefeuilles autofinancés de réplication pour un certain payoff $H$. \\
+à $t = T, \; \Pi^1_T=\Pi^2_T=H$ \; (maturité de l'option) \\
+à $t = 0, \; \Pi^1_0=\Pi^2_0$ \; (A.O.A.) \\
+$\forall t \in \{1,..,T-1\}, \; \Pi^1_t=\Pi^2_t$ (propriété d'autofinancement) \\
+Ainsi $\forall t \in \{0,..,T\}, \; \Pi^1_t=\Pi^2_t \implies \Pi^1=\Pi^2$. 
+\\
+
+\subsection{Mesure de probabilité risque-neutre}
+~\
+\begin{definitionbox}[frametitle = {Théorèmes Fondamentaux de l’évaluation d’actifs}]
+    \textbf{Premier Théorème : } Un marché financier sur un espace probabilisé discret $(\Omega,\mathcal{F},\mathbb{P})$ est sans opportunité d'arbitrage si est seulement si il existe au moins une mesure de probabilité \textbf{risque-neutre} qui est équivalente à la mesure de probabilité originale $\mathbb{P}$.
+
+    \textbf{Second Théorème : } Un marché sans arbitrage est complet si et seulement s'il existe une mesure risque-neutre unique, équivalente à $\mathbb{P}$ dont le \textbf{numéraire} (actif de référence pour exprimer les prix) est l'actif sans risque
+\end{definitionbox}
+
+\textbf{Remarques :}
+On a précédemment imposé que les marchés respectent l'A.O.A. Ainsi, on considérera l'existence de la mesure risque-neutre. De plus, si le marché est complet, la mesure risque-neutre est \textbf{unique}, ce qui permet d'évaluer tous les actifs de manière cohérente. Ce théorème est la base des modèles d’évaluation d’options et de produits dérivés.
+
+~\
+
+\begin{definitionbox}[frametitle = {Martingale}]
+    $M \coloneq (M_t)_{t \in I}$ est une $\mathbb{F}$-martingale si : 
+    \begin{itemize}
+        \item $\forall t \in I, M_t$ est $\mathcal{F}_t$-mesurable
+        \item $\forall t \in I, M_t$ est intégrable
+        \item $\forall t_\alpha \le t_\beta$, $M_{t_\alpha} = \mathbb{E}(M_{t_\beta} | \mathcal{F}_{t_\alpha})$ p.s.
+    \end{itemize}
+\end{definitionbox}
+Ainsi le concept de martingale est très utile pour représenter un marché financier. Intuitivement, l'espérance future d'une martingale en prenant compte le passé est égale à la valeur actuelle $(\mathbb{E}(M_{n+1}|\mathcal{F}_t) = M_n)$.
+
+
+Soit un marché discret avec un actif risqué $S_t$ et un actif sans risque $B_t$.  
+On définit le \textbf{prix actualisé} de l'actif risqué par : 
+\[
+\tilde{S}_t \coloneq \frac{S_t}{B_t}.
+\]
+
+\remarque On voit bien ici que le prix est exprimé en fonction de $B_t$ qui devient ainsi le numéraire. \\
+D'après le premier théorème fondamental de l'évaluation des actifs, si le marché est \textbf{sans arbitrage}, il existe au moins une mesure $\mathbb{Q}$ équivalente à $\mathbb{P}$ telle que :
+\begin{align*}
+    \tilde{S}_t = \mathbb{E}^{\mathbb{Q}}\big(\tilde{S}_{t+1} \mid \mathcal{F}_t)
+\end{align*}
+Autrement dit, sous $\mathbb{Q}$, le prix actualisé devient une $\mathbb{F}$-martingale.
+
+Afin de mieux comprendre ce concept regardons un exemple : \\
+Considérons un marché avec :
+\[
+S_0 = 100, \quad S_1 = 
+\begin{cases}
+100 \; \text{avec probabilité $p$} \\
+50 \; \text{avec probabilité $1-p$} \end{cases} \quad \text{avec } r = 5\%
+\]
+
+On cherche $p$ tel que le prix actualisé soit une martingale sous $\mathbb{Q}$ :
+\[
+\tilde{S}_0 = \frac{S_0}{1+r} = \frac{100p}{1+r} + \frac{50(1-p)}{1+r} = \frac{100p + 50(1-p)}{1+r}
+\]
+
+La solution $p$ correspond à la \textbf{probabilité risque-neutre} de hausse de l'actif.
+Sous cette probabilité, le prix actualisé $\tilde{S}_t$ est une martingale et sert à valoriser tous les produits dérivés.
+
+Soit $\Pi_T$ le \textbf{payoff} d’un actif à maturité $T$.  
+Si le marché est \textbf{sans arbitrage}, le premier théorème fondamental garantit l’existence d’une mesure risque-neutre $\mathbb{Q}$.  
+
+On définit le prix initial $\Pi_0$ de l'actif comme l’espérance actualisée de son payoff sous $\mathbb{Q}$ :
+\[
+\Pi_0 = \mathbb{E}^{\mathbb{Q}}\Big[\frac{\Pi_T}{B_T}\Big] = \frac{\mathbb{E}^{\mathbb{Q}}[\Pi_T]}{B_T} = \frac{\mathbb{E}^{\mathbb{Q}}[\Pi_T]}{(1+r)^T}
+\]  
+
+Exemple :
+On considère une option européenne d’achat (call) avec strike $K = 100$, maturité $T = 1$ période, et actif sous-jacent $S_T$ tel que :
+\[
+S_T = 
+\begin{cases}
+120 \; \text{avec probabilité } p \\
+50 \; \text{avec probabilité } 1-p
+\end{cases} \quad  \text{avec } r = 5\%.
+\]
+
+L'option étant un call, son payoff est : $\Pi_T = \max(S_T - K, 0)$.  
+
+Le prix initial est :
+\[
+\Pi_0 = \frac{\mathbb{E}^{\mathbb{Q}}[\Pi_T]}{1+r} = \frac{1}{1+r} \big(20p + (1-p) \cdot0 \big) = \frac{20p}{1+r}
+\]
+$p$ est ici la probabilité risque-neutre de hausse de l’actif.  
+Sous cette probabilité, le prix actualisé de l’option est cohérent avec le marché sans arbitrage.

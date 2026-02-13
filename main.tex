@@ -1,0 +1,100 @@
+\documentclass{article}
+
+\usepackage{parskip}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{tikz} %tracer graphes
+\usepackage{xcolor} %couleurs
+\usepackage{mathrsfs} % symboles stylés
+\usepackage{amsmath} %vecteurs (entre autres)
+\usepackage{stmaryrd} % intervalle d'entiers
+\usepackage{amssymb} % Nécessaire pour \mathbb, les symboles des ensembles
+\usepackage{ulem} %barrer texte 
+\usepackage{cancel} %barrer texte
+\usepackage{amsthm,amsmath} %carré stylé à la fin démo
+\usepackage{mdframed} % Pour les encadrements
+\usepackage{hyperref} % hyperliens pour référencer les sections
+\usepackage{pgfplots} % Package pour tracer des graphiques
+\usepackage{float} % Pour placer les graphes
+\usepackage{mathtools}
+\pgfplotsset{compat=1.18} % Version compatible
+\usepgfplotslibrary{polar} % coordonnées polaires
+\usepackage[french]{babel} % pour les guillemets
+\usepackage{stmaryrd}
+
+\renewcommand{\proofname}{Démonstration} % Changer "Proof" en "Démonstration"
+
+\setcounter{tocdepth}{2} % N'affiche que les section et subsection
+\renewcommand{\contentsname}{Table des matières} % Titre personnalisé
+
+% Style de l'encadré pour les définitions
+\newmdenv[
+    linewidth=1pt,
+    roundcorner=5pt,
+    linecolor=black,
+    frametitle={Définition}
+]{definitionbox}
+
+% Style de l'encadré pour les théorèmes
+\newmdenv[
+    linewidth=1pt,
+    roundcorner=5pt,
+    linecolor=black,
+    frametitle={Théorème}
+]{theorembox}
+
+% Style de l'encadré pour les propriétés
+\newmdenv[
+    linewidth=1pt,
+    roundcorner=5pt,
+    linecolor=black,
+    frametitle={Propriété}
+]{propertybox}
+
+% Commande pour la remarque
+\newcommand{\remarque}[1]{%
+    \textbf{\textcolor{black}{Remarque.}} #1%
+}
+
+% Commande pour la notation
+\newcommand{\notation}[1]{%
+    \textbf{\textcolor{black}{Notation.}} #1%
+}
+
+% Commande pour les corollaires
+\newcommand{\corollaire}[1]{%
+    \textbf{\textcolor{black}{Corollaire.}} #1%
+}
+
+% Commande pour la norme
+\newcommand{\norm}[1]{\left\|#1\right\|}
+
+% Commande pour le produit scalaire
+\newcommand{\dotproduct}[2]{\langle #1, #2 \rangle}
+
+\title{Étude mathématique et implémentation du modèle binomial de Cox–Ross–Rubinstein appliqué à la valorisation des options}
+\author{Thomas Saurel}
+%date
+
+\begin{document}
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\input{partie1}
+\newpage
+\input{partie2}
+\newpage
+\input{partie3}
+\newpage
+\input{partie4}
+\newpage
+\input{partie5}
+\newpage
+\input{partie6}
+\newpage
+\input{partie7}
+\newpage
+\input{partie8}
+\end{document}
+
