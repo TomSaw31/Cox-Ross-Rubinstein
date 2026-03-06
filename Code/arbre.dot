@@ -1,0 +1,32 @@
+digraph G {
+  node [shape=circle];
+  "0x5a82f814feb0" -> "0x5a82f814fed0" [label="Up"];
+  "0x5a82f814fed0" -> "0x5a82f814fef0" [label="Up"];
+  "0x5a82f814fef0" -> "0x5a82f814ff10" [label="Up"];
+  "0x5a82f814ff10" [label="Niveau 3"];
+  "0x5a82f814fef0" -> "0x5a82f814ff30" [label="Down"];
+  "0x5a82f814ff30" [label="Niveau 3"];
+  "0x5a82f814fef0" [label="Niveau 2"];
+  "0x5a82f814fed0" -> "0x5a82f814ff50" [label="Down"];
+  "0x5a82f814ff50" -> "0x5a82f814ff70" [label="Up"];
+  "0x5a82f814ff70" [label="Niveau 3"];
+  "0x5a82f814ff50" -> "0x5a82f814ff90" [label="Down"];
+  "0x5a82f814ff90" [label="Niveau 3"];
+  "0x5a82f814ff50" [label="Niveau 2"];
+  "0x5a82f814fed0" [label="Niveau 1"];
+  "0x5a82f814feb0" -> "0x5a82f814ffb0" [label="Down"];
+  "0x5a82f814ffb0" -> "0x5a82f814ffd0" [label="Up"];
+  "0x5a82f814ffd0" -> "0x5a82f814fff0" [label="Up"];
+  "0x5a82f814fff0" [label="Niveau 3"];
+  "0x5a82f814ffd0" -> "0x5a82f8150010" [label="Down"];
+  "0x5a82f8150010" [label="Niveau 3"];
+  "0x5a82f814ffd0" [label="Niveau 2"];
+  "0x5a82f814ffb0" -> "0x5a82f8150030" [label="Down"];
+  "0x5a82f8150030" -> "0x5a82f8150050" [label="Up"];
+  "0x5a82f8150050" [label="Niveau 3"];
+  "0x5a82f8150030" -> "0x5a82f8150070" [label="Down"];
+  "0x5a82f8150070" [label="Niveau 3"];
+  "0x5a82f8150030" [label="Niveau 2"];
+  "0x5a82f814ffb0" [label="Niveau 1"];
+  "0x5a82f814feb0" [label="Niveau 0"];
+}
