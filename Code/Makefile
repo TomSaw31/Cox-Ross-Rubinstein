@@ -1,11 +1,6 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wextra -Wall -pedantic 
+CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic 
 LDFLAGS = -lm
-
-ECHO = @
-ifeq ($(VERBOSE),1)
-    ECHO=
-endif
 
 ifeq ($(DEBUG),yes)
     CXXFLAGS += -g
@@ -14,30 +9,31 @@ else
 endif
 
 EXEC = crr
-SRC = $(wildcard *.cpp)
+SRC = node.cpp crr.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
-all: 
-ifeq ($(DEBUG),yes)
-	@echo "Generating in debug mode"
-else
-	@echo "Generating in release mode"
-endif
-	@$(MAKE) $(EXEC)
+all: $(EXEC)
 
 $(EXEC): $(OBJ)
-	$(ECHO)$(CXX) -o $@ $^ $(LDFLAGS)
+	$(CXX) -o $@ $^ $(LDFLAGS)
 
 %.o: %.cpp
-	$(ECHO)$(CXX) -o $@ -c $< $(CXXFLAGS)
-
-.PHONY: clean mrproper
-
-clean:
-	$(ECHO)rm -rf *.o
-
-mrproper: clean
-	$(ECHO)rm -rf $(EXEC) documentation/html
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 doc:
-	$(ECHO)doxygen documentation
+	@mkdir -p documentation
+	@if [ ! -f Doxyfile ]; then doxygen -g Doxyfile; fi
+	@sed -i 's|^OUTPUT_DIRECTORY.*|OUTPUT_DIRECTORY = documentation|' Doxyfile
+	@sed -i 's|^EXTRACT_ALL.*|EXTRACT_ALL = YES|' Doxyfile
+	@sed -i 's|^RECURSIVE.*|RECURSIVE = YES|' Doxyfile
+	@sed -i 's|^PROJECT_NAME.*|PROJECT_NAME = "Modèle Binomial CRR"|' Doxyfile
+	@doxygen Doxyfile
+
+clean:
+	@rm -f *.o $(EXEC)
+
+distclean: clean
+	@find . -type f ! -name "*.cpp" ! -name "*.hpp" ! -name "Makefile" ! -name "Doxyfile" -delete
+	@rm -rf documentation/
+
+.PHONY: all clean distclean doc
