@@ -32,6 +32,8 @@ public:
      * @param depth profondeur de l'arbre
      */
     static double calculateUpFactor(double volatility, float time_period, int depth);
+
+    static void evaluateLeafNodes(Node * t_price, Node * t_premium, Node::OptionType type, double strike);
 };
 
 #endif

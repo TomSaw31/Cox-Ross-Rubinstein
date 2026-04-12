@@ -1,0 +1,46 @@
+\begin{center}
+    \rule{\textwidth}{1pt} \\[0.5cm]
+    {\Huge \bfseries ANNEXES} \\[0.4cm]
+    \rule{\textwidth}{1pt}
+\end{center}
+
+
+\section*{Code R pour simuler un mouvement brownien 2D}
+\begin{verbatim}
+    library(ggplot2)
+    
+    n <- 2500
+    dt <- 0.01
+
+    df <- data.frame(
+        x = cumsum(c(0, rnorm(n, 0, sqrt(dt)))),
+        y = cumsum(c(0, rnorm(n, 0, sqrt(dt)))),
+        t = 0:n
+    )
+
+    ggplot(df, aes(x, y, color = t)) + geom_path() +
+    scale_color_gradientn(colors = c("orange", "red", "purple", "navy")) +
+    coord_fixed() + labs(title = "Mouvement Brownien 2D", subtitle = paste(n, "pas"))
+\end{verbatim}
+
+\section*{Code R pour simuler un mouvement brownien 1D}
+\begin{verbatim}
+    library(ggplot2)
+    
+    n <- 1000 
+    dt <- 0.0001 
+    
+    df <- data.frame(
+        x = cumsum(c(100, rnorm(n, 0, 0.5))),
+        t = 0:n
+    )
+    
+    ggplot(df, aes(t, x, color = x)) + geom_line(linewidth = 1) + 
+        scale_color_gradientn(colors = c("orange", "red", "purple", "navy")) + 
+        coord_cartesian(xlim = c(0, n)) + theme_minimal() +
+        theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank()) +
+        labs(title = "Mouvement Brownien 1D", subtitle = paste(n, "pas"))
+\end{verbatim}
+
+
+  

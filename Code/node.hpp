@@ -22,7 +22,7 @@ private:
 
 public:
     Node (int id, int level) : id_(id), level_(level), down_(nullptr), up_(nullptr) {}
-    
+    enum OptionType {Call, Put};    
 
     // --- Getters --- //
 
@@ -41,20 +41,33 @@ public:
     void setUp(Node * node) { up_ = node; }
 
     /**
-     * @brief Calcul et crée récursivement l'arbre binomial
+     * @brief Crée récursivement l'arbre binomial avec des noeuds initialisés à 0
      * @param tree_depth Profondeur totale de l'arbre créé
-     * @param init_value Prix de l'actif à l'initialisation (t=0)
-     * @param d_value Coefficient de baisse
-     * @param u_value Coefficient de hausse
      * @return Pointeur vers la racine de l'arbre créé
      */
-    static Node * createTree(int depth, double s0, double d, double u);
+    static Node * createTree(int depth);
 
     /**
      * @brief Supprime l'arbre dans sa totalité
      * @param t racine de l'arbre à supprimer
      */
-    void static deleteTree(Node * t);
+    static void deleteTree(Node * t);
+
+    /**
+     * @brief Définit avec la formule du Call la valeur du noeud n_premium en fonction du noeud n_price et de la valeur du strike
+     * @param n_price noeud dont la valeur doit être utilisée pour le calcul de la prime
+     * @param n_premium noeud dont la valeur va être la valeur de la prime apres execution de la fonction
+     * @param strike valeur du strike
+     */
+    void updateCallPrice(Node * n_price, Node * n_premium, double strike);
+
+    /**
+     * @brief Définit avec la formule du Put la valeur du noeud n_premium en fonction du noeud n_price et de la valeur du strike
+     * @param n_price noeud dont la valeur doit être utilisée pour le calcul de la prime
+     * @param n_premium noeud dont la valeur va être la valeur de la prime apres execution de la fonction
+     * @param strike valeur du strike
+     */
+    void updatePutPrice(Node * n_price, Node * n_premium, double strike);
 };
 
 #endif

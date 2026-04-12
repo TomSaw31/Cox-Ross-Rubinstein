@@ -16,11 +16,19 @@
 \usepackage{pgfplots} % Package pour tracer des graphiques
 \usepackage{float} % Pour placer les graphes
 \usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{needspace}
+\usepackage[french]{babel}
+\usepackage[margin=3.5cm]{geometry}
 \pgfplotsset{compat=1.18} % Version compatible
 \usepgfplotslibrary{polar} % coordonnées polaires
 \usepackage[french]{babel} % pour les guillemets
 \usepackage{stmaryrd}
-
+\usepackage[utf8]{inputenc}  % Permet de taper les accents directement
+\usepackage[T1]{fontenc}      % Encode les polices pour que le copier-coller fonctionne
+\usepackage{lmodern}          % Utilise une police vectorielle de qualité
+\frenchbsetup{StandardItemLabels=true}
 \renewcommand{\proofname}{Démonstration} % Changer "Proof" en "Démonstration"
 
 \setcounter{tocdepth}{2} % N'affiche que les section et subsection
@@ -71,13 +79,31 @@
 % Commande pour le produit scalaire
 \newcommand{\dotproduct}[2]{\langle #1, #2 \rangle}
 
-\title{Étude mathématique et implémentation du modèle binomial de Cox–Ross–Rubinstein appliqué à la valorisation des options}
-\author{Thomas Saurel}
-%date
+\title{}
 
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+    \centering
+    \vspace*{4cm}
+    
+    {\Large \textsc{Thomas Saurel} \par}
+    
+    \vspace{2.5cm}
+
+    \rule{0.6\textwidth}{0.4pt} \\ [0.5cm]
+    {\Huge \bfseries Étude du modèle de Cox-Ross-Rubinstein pour la valorisation des options \par}
+    \vspace{0.3cm}
+    \rule{0.6\textwidth}{0.4pt}
+    
+    \vfill
+    
+    {\large Commencé en Janvier 2026 \par}
+    {\small Dernière mise à jour : \today
+    \par}
+    
+\end{titlepage}
+
 \newpage
 \tableofcontents
 \newpage
@@ -96,5 +122,9 @@
 \input{partie7}
 \newpage
 \input{partie8}
+\newpage
+\input{references}
+\newpage
+\input{annexe}
 \end{document}
 

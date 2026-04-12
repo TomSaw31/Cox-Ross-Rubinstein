@@ -1,11 +1,143 @@
 \section{Introduction}
-\subsection{Contexte et motivations}
-% essor des produits dérivés, attrait du modèle binomial, lien actuariat
-\subsection{Terminologie}
-% actif financiers, produits dérivés, valorisation, taux sans risque
-\subsection{Arbitrage}
-% Absence d'Opportunité d'Arbitrage (AOA)
-\subsection{Enoncé du problème}
-% complexité du temps continu, problème de la discrétisation
+\begin{center}
+    \textit{"A good portfolio is more than a long list of \\
+    good stocks and bonds. It is a balanced whole."}\\
+    -- \textbf{H. Markowitz} --
+\end{center}
+    
+\subsection{Motivation}
+Ce document a pour but de servir d'introduction à la finance quantitative à travers le développement d'algorithmes d'analyse de risques de marché. Il se concentre sur l'étude du modèle binomial, dit de Cox-Ross-Rubinstein. \\
+
+Nous aborderons dans un premier temps les fondements théoriques de ce modèle de prédiction avant d’en souligner les différences avec les modèles de Black-Scholes et de Monte-Carlo. Enfin, nous mettrons en œuvre et analyserons les calculs d’estimateurs de variations des marchés, appelés lettres grecques. \\
+
+Je réalise ce travail en autodidacte pendant mon temps libre pour mon apprentissage personnel ; il est ainsi susceptible de contenir des erreurs ou des imprécisions. \\
+
+\subsection{Histoire de la valorisation des options}
+
+La théorie moderne du portefeuille en finance commence en 1952 grâce aux travaux publiés par Harry Markowitz. Cette théorie expose comment les investisseurs peuvent optimiser leurs portefeuilles et analyser le prix d'un actif en fonction de l'état du marché (volatilité, risque, etc.). Il établit ainsi les fondements de la finance quantitative en définissant le portefeuille comme une collection d'actifs financiers. \\
+
+C'est sur ces travaux que trois économistes : \textit{Fischer Black}, \textit{Myron Scholes} et \textit{Robert Merton}, publient en 1973 un article présentant une formule capable de calculer le prix théorique d'une option européenne. Leur travail révolutionnaire a été de montrer que sous les hypothèses de temps continu et de volatilité constante, il est possible de créer un portefeuille qui élimine tout risque. On ne fixe plus le prix selon la peur du risque, mais selon le coût nécessaire pour copier le comportement de l'option. \\
+
+Avec le développement des ordinateurs et la croissance exponentielle de la puissance de calcul, un nouveau modèle apparaît en 1977 : l'approche Monte-Carlo. Ce modèle consiste à simuler aléatoirement des milliers de trajectoires d'évolution de prix possibles. Le prix de l'option est alors la moyenne des gains obtenus sur ces trajectoires. C'est la principale méthode pour les options exotiques (ex : options asiatiques) dont le gain dépend de l'ensemble de la trajectoire. \\
+
+Deux ans plus tard, un nouveau trio d'économistes : \textit{John Cox}, \textit{Stephen Ross} et \textit{Mark Rubinstein} proposent une alternative novatrice : le modèle binomial ou modèle de Cox-Ross-Rubinstein. Le temps est alors discrétisé et la trajectoire d'un prix d'actif peut alors être représentée comme un arbre. Les estimations sont alors simplifiées par rapport au modèle de Black-Scholes. On passe d'un problème complexe de dérivées partielles, à de simples calculs d'espérance. De plus, le modèle permet également d'évaluer des options américaines, exerçables à tout moment.
+
+D'autres modèles plus exotiques sont ensuite apparus (ex : arbre trinomial). Nous nous contenterons par la suite du modèle binomial et de ses comparaisons aux modèles de Black-Scholes et de Monte-Carlo pour avoir respectivement un modèle d'approximation, un modèle analytique et un modèle basé sur des simulations. Le modèle de Cox-Ross-Rubinstein est plus intuitif et simple à implémenter algorithmiquement que celui de Black-Scholes. \\
+
 \subsection{Objectifs}
-%analyse théorique, développement informatique, validation et extension, analyse comparative
+
+L'objectif principal de ce travail est de présenter les fondements théoriques du modèle binomial, de l'implémenter et de le comparer aux autres modèles de valorisation d'options. \\
+
+Nous commencerons par poser le vocabulaire de base et présenter les premiers résultats théoriques des mathématiques financières. Une fois l'implémentation algorithmique du modèle achevée, nous explorerons la puissance du modèle à travers la valorisation d'options complexes. Nous analyserons comment la structure discrète de ce modèle permet d'évaluer des produits que le modèle de Black-Scholes ne permettrait pas de traiter de manière analytique, tels que les options américaines (exerçables par anticipation). Cette étude sera complétée par le calcul des indicateurs de sensibilité (grecques) qui sont des outils indispensables à la gestion des risques pour mesurer la sensibilité du portefeuille aux fluctuations du marché. \\
+
+Enfin, nous confronterons les résultats obtenus à ceux des modèles de Black-Scholes et de Monte-Carlo. Cette analyse comparative nous permettra de mettre en évidence la vitesse de convergence du modèle binomial et d'identifier ses limites face aux données réelles, ouvrant ainsi la voie à des extensions possibles vers des structures d'arbres plus sophistiquées. \\
+
+\subsection{Vocabulaire}
+Avant de continuer dans l'étude de la finance quantitative et les algorithmes derrière le modèle de Cox-Ross-Rubinstein, il est essentiel d'établir un vocabulaire de base qui sera nécessaire à la bonne compréhension de la suite du document.\\
+
+\underline{\textbf{Produit dérivé :}} Un produit dérivé est un type de contrat financier dont la valeur dépend d'un actif, appelé \textbf{actif sous-jacent}, et dont le prix évolue selon les variations du taux ou du prix du sous-jacent. \\
+On distingue trois grandes familles de produits dérivés : les \textbf{produits à terme ferme}, les \textbf{swaps} et les \textbf{produits conditionnels ou options}.
+
+\underline{\textbf{Produit à terme ferme :}} Cette famille de produits dérivés comprend généralement les \textbf{forwards} et les \textbf{futures}. Un contrat \textbf{forward} est un accord financier entre deux entités, s'accordant sur un prix défini de vente et d'achat à une échéance fixée. Les deux entités doivent honorer leurs parts du contrat même si la situation à  échéance leur est défavorable. \\
+Il y a quelques différences entre les \textbf{forwards} et les  \textbf{futures} : les contrats forwards sont négociés de gré à gré ("Over the counter" ou OTC), non standardisés et peu négociables alors que les contrats futures sont négociés sur une place boursière, sont standardisés et négociables. 
+
+\underline{\textbf{Swap :}} échange de flux financiers entre deux entités (ex : intérêts à taux variable contre intérêts à taux fixe).
+
+\underline{\textbf{Option :}} établit un droit entre un acheteur et un vendeur d'acheter (\textbf{Call}) ou vendre (\textbf{Put}) un actif sous-jacent à un prix fixé à l'avance (\textbf{Strike}), à une échéance fixée. Ce produit dérivé est un droit et non une obligation. La symétrie \textbf{Call/Put} permet de choisir d'anticiper soit une évolution favorable des prix du sous-jacent (Call) soit une évolution défavorable (Put). On distingue de nombreux types d'options, notamment les options \textbf{européennes} exerçables seulement à l'échéance ou les options \textbf{américaines} exerçables à tout moment avant échéance qui sont les formes les plus simples, appelées options \textbf{vanilles}.
+Le \textbf{Payoff} désigne le résultat à l'échéance. \\
+On dira qu'une option est :
+\begin{itemize}
+    \item \textbf{Dans la monnaie / In the money / ITM} lorsque son prix d'exercice est inférieur au prix de son actif sous-jacent pour un call ou supérieur au prix de son actif sous-jacent pour un put;
+    \item \textbf{Hors de la monnaie / Out of the money / OTM} lorsque son prix d'exercice est supérieur au prix de son actif sous-jacent pour un call ou inférieur au prix de son actif sous-jacent pour un put;
+    \item \textbf{À la monnaie / At the money / ATM} lorsque le prix d'exercice est égal au cours actuel de l'actif sous-jacent de l'option;
+\end{itemize} ~\
+
+On utilisera les notations suivantes : \\
+\begin{itemize}
+    \item K : Strike (prix d'exercice)
+    \item S : prix du sous-jacent
+    \item p : prime de l'option
+    \item R : profit à l'échéance
+    \item P : Payoff
+\end{itemize}
+~\\
+\begin{definitionbox}[frametitle = {Formules du Payoff}]
+\begin{center}
+    $P_{Call} = max(S-K,0)$ \\
+    $P_{Put} = max(K-S,0)$
+\end{center}
+
+\end{definitionbox}
+\newpage
+On peut représenter les profits à l'échéance : \vspace{0.025\textheight}\\
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    xlabel = {$S$},
+    ylabel = {$R = \begin{cases} R_{\text{\textcolor{red}{Call Acheteur}}} = \max(S-K, 0) - p \\ R_{\text{\textcolor{blue}{Call Vendeur}}} = -\max(S-K, 0) + p \end{cases}$}, 
+    ylabel style={at={(axis description cs:0,1)}},
+    ymin = -3.5, ymax = 3.5,
+    xmin = 0, xmax = 4.5,
+    xtick = {2, 2.8},
+    xticklabels = {$K$},
+    ytick = {-0.8,0.8},
+    yticklabels = {$-p$,$p$},
+    grid = none
+]
+\addplot [domain=0:2, samples=2, color=red, thick] {-0.8};
+\addplot [domain=2:5.5, samples=2, color=red, thick] {x - 2.8}; 
+\addplot [domain=0:2, samples=2, color=blue, thick] {0.8};
+\addplot [domain=2:5.5, samples=2, color=blue, thick] {2.8 - x}; 
+\node[above, font=\small, black, yshift=1pt] at (axis cs:2.8, -0.8) {$K + p$};
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    xlabel = {$S$},
+    ylabel = {$R = \begin{cases} R_{\text{\textcolor{red}{Put Acheteur}}} = \max(K-S, 0) - p \\ R_{\text{\textcolor{blue}{Put Vendeur}}} = -\max(K-S, 0) + p \end{cases}$}, 
+    ylabel style={at={(axis description cs:0,1)}},
+    ymin = -3.5, ymax = 3.5,
+    xmin = 0, xmax = 4.5,
+    xtick = {2, 2.8},
+    xticklabels = {$K - p$},
+    ytick = {0.8,-0.8},
+    yticklabels = {$p$,$-p$},
+    grid = none
+]
+\addplot [domain=0:2.8, samples=2, color=red, thick] {2-x};
+\addplot [domain=2.8:5.5, samples=2, color=red, thick] {-0.8}; 
+\addplot [domain=0:2.8, samples=2, color=blue, thick] {-2+x};
+\addplot [domain=2.8:5.5, samples=2, color=blue, thick] {0.8}; 
+\node[above, font=\small, black, yshift=1pt] at (axis cs:2.8, -0.8) {$K$};
+\end{axis}
+\end{tikzpicture}
+\vspace{0.025\textheight}
+\\
+La notion d'option est centrale à la compréhension de la finance quantitative. Il est nécessaire de développer un exemple chiffré expliquant son fonctionnement :\vspace{0.025\textheight} \\
+Considérons un acheteur industriel de blé B, qui au 1er janvier sait qu'il devra acheter $n = 1000$ tonnes de blé le 30 juin.\\
+Le 1er janvier, la tonne de blé vaut 200\$. B pense que le prix du blé va augmenter. À partir de 250\$, B commence à perdre de l'argent et décide donc d'acheter $1000$ calls de prix d'exercice 250\$, de prime $p=10$\$ par tonne et avec pour échéance le 30 juin. Il y a alors plusieurs scénarios pour le 30 juin :
+\begin{itemize}
+    \item \textbf{Cas n°1} : le blé s'échange à 150\$ la tonne. Le call est \textbf{OTM}. \\ La prédiction de B ne s'est pas réalisée. Le call n'a plus aucune valeur ce qui entraîne l'abandon de l'option par B qui perd ainsi $n \cdot p = 1000 \cdot10 = 10000$\$. B achète donc son blé sur le marché à 150\$ la tonne, il aura alors dépensé $150+p=160$\$ par tonne. \\
+    \item \textbf{Cas n°2} : le blé s'échange à 225\$ la tonne. Le call est \textbf{OTM}.\\ La prédiction de B s'est en partie réalisée. Le call n'a cependant plus aucune valeur ce qui entraîne l'abandon de l'option par B qui perd ainsi $n \cdot p = 1000 \cdot10 = 10000$\$. B achète donc son blé sur le marché à 225\$ la tonne, il aura alors dépensé $225+p=235$\$ par tonne. \\
+    \item \textbf{Cas n°3} : le blé s'échange à 255\$ la tonne. Le call est \textbf{ITM}. \\ La prédiction de B s'est réalisée. B exerce son call et achète $250$\$ la tonne de blé. À cause de la prime du call, B aura dépensé $250+p=260$\$ au lieu de $265$\$ par tonne avec le prix du marché. Il économise ainsi $5\cdot n=5000$\$.
+    \item \textbf{Cas n°4} : le blé s'échange à 300\$ la tonne. Le call est \textbf{ITM}.\\ La prédiction de B s'est réalisée. B exerce son call et achète $250$\$ la tonne de blé. Ainsi, B aura dépensé $250+p=260$\$ par tonne au lieu de $300$\$. Il économise ainsi $(300-(250+p))\cdot n = 40 \cdot 1000 = 40000$\$.
+\end{itemize}
+Ainsi, l'objectif de la finance quantitative est d'optimiser les stratégies afin de générer le profit le plus important possible en tenant compte du risque. Il est ainsi utile de développer des outils mathématiques permettant de modéliser l'évolution d'un marché.
+
+\underline{\textbf{Position :}} Il existe deux positions lors de l'achat/vente d'options. \\
+\begin{itemize}
+    \item \textbf{Position Longue (Long)}
+    \begin{description}
+        \item[Action] Achat de l'actif en espérant une augmentation de son prix
+        \item[Profit] Gain d'argent en cas de revente plus chère que son prix d'achat
+        \item[Action] Risque limité à la somme investie
+    \end{description}
+    \item \textbf{Position Courte (Short)}
+    \begin{description}
+        \item[Action] Emprunt d'un actif à quelqu'un, vente immédiate, attente de baisse du prix, rachat de l'actif au prix bas pour le rendre ensuite
+        \item[Profit] Gain de la différence
+        \item[Action] Risque théoriquement infini si le prix de l'action monte sans limite
+    \end{description}
+\end{itemize}

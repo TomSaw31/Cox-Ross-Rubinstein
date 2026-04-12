@@ -19,14 +19,24 @@ int main(int argc, char * argv[]) {
 
     double d = CRR::calculateDownFactor(vol_value, time_value, depth);
     double u = CRR::calculateUpFactor(vol_value, time_value, depth);
-    Node * root = Node::createTree(depth, init_value, d, u);
 
-    std::ofstream file("arbre.dot");
-    if (file) {
-        CRR::generateDotFile(root, file);
-        file.close();
+    Node * tree_price = Node::createTree(depth);
+    Node * tree_premium = Node::createTree(depth);
+
+    CRR::evaluateLeafNodes(tree_price, tree_premium, Node::Call, init_value);
+
+    std::ofstream file_price("arbre_price.dot");
+    if (file_price) {
+        CRR::generateDotFile(tree_price, file_price);
+        file_price.close();
     }
-    
-    Node::deleteTree(root);
+    std::ofstream file_premium("arbre_premium.dot");
+    if (file_premium) {
+        CRR::generateDotFile(tree_premium, file_premium);
+        file_premium.close();
+    }
+
+    Node::deleteTree(tree_price);
+    Node::deleteTree(tree_premium);
     return 0;
 }
