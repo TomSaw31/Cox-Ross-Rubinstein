@@ -23,6 +23,7 @@ int main(int argc, char * argv[]) {
     Node * tree_price = Node::createTree(depth);
     Node * tree_premium = Node::createTree(depth);
 
+    CRR::fillPrices(tree_price,init_value,d,u);
     CRR::evaluateLeafNodes(tree_price, tree_premium, Node::Call, init_value);
 
     std::ofstream file_price("arbre_price.dot");
@@ -38,5 +39,7 @@ int main(int argc, char * argv[]) {
 
     Node::deleteTree(tree_price);
     Node::deleteTree(tree_premium);
+
+    CRR::generatePDFs();
     return 0;
 }

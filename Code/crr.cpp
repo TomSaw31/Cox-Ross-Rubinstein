@@ -25,6 +25,15 @@ void exportDot(const Node * t, std::ostream& out, std::set<const Node*>& visited
     }
 }
 
+void CRR::fillPrices(Node * node, double currentPrice, double u, double d) {
+    if (node == nullptr) {
+        return;
+    }
+    node->setValue(currentPrice);
+    fillPrices(node->up(), currentPrice * u, u, d);
+    fillPrices(node->down(), currentPrice * d, u, d);
+}
+
 
 void CRR::generateDotFile(const Node * root, std::ostream& file) {
     file << "digraph G {\n";
@@ -37,31 +46,31 @@ void CRR::generateDotFile(const Node * root, std::ostream& file) {
     file << "}\n";
 }
 
-void evaluateLeafNodesRecursive_(Node * t_price, Node * t_premium, Node::OptionType type, double strike, std::set<Node*>& visited) {
-    if (!t_price || !t_premium || visited.count(t_price)) {
-        return; 
+void CRR::evaluateLeafNodes(Node * t_price, Node * t_premium, Node::OptionType type, double strike) {
+    Node * iter = t_price;
+    Node * iter2 = t_premium;
+
+    while(iter->down() != nullptr) {
+        iter = iter->down();
+        iter2 = iter2->down();
     }
-    visited.insert(t_price);
-    if(t_price->up() == nullptr) {
+
+    while(iter != nullptr) {
         switch (type) {
             case Node::OptionType::Call:
-                t_premium->updateCallPrice(t_price, t_premium, strike); 
-                printf("Call : %d\n",t_price->id());
+                iter2->updateCallPrice(iter, strike);
                 break;
             case Node::OptionType::Put:
-                t_premium->updatePutPrice(t_price, t_premium, strike);
-                printf("Put : %d\n",t_price->id());
+                iter2->updatePutPrice(iter, strike);
                 break;
         }
-    } else {
-        evaluateLeafNodesRecursive_(t_price->up(), t_premium->up(), type, strike, visited);
-        evaluateLeafNodesRecursive_(t_price->down(), t_premium->down(), type, strike, visited);
+        if (iter->prevUp() != nullptr) {
+            iter = iter->prevUp()->up();
+            iter2 = iter2->prevUp()->up();
+        } else {
+            break;
+        }
     }
-}
-
-void CRR::evaluateLeafNodes(Node * t_price, Node * t_premium, Node::OptionType type, double strike) {
-    std::set<Node *> visited_set;
-    evaluateLeafNodesRecursive_(t_price, t_premium, type, strike, visited_set);
 }
 
 double CRR::calculateDownFactor(double volatility, float time_period, int depth) {
@@ -70,4 +79,12 @@ double CRR::calculateDownFactor(double volatility, float time_period, int depth)
 
 double CRR::calculateUpFactor(double volatility, float time_period, int depth) {
     return exp(volatility * sqrt(time_period / (depth - 1)));
+}
+
+void CRR::generatePDFs() {
+    int status1 = std::system("dot -Tpdf arbre_price.dot -o arbre_price.pdf");
+    int status2 = std::system("dot -Tpdf arbre_premium.dot -o arbre_premium.pdf");
+    if (status1 != 0 || status2 != 0) {
+        std::cerr << "Erreur lors de l'exécution de Graphviz. Vérifie que 'dot' est installé et dans ton PATH." << std::endl;
+    }
 }

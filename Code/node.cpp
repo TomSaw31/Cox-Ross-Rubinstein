@@ -19,12 +19,12 @@ void Node::deleteTreeRecursive_(Node * t, std::set<Node *>& visited) {
     delete t;
 }
 
-void Node::updateCallPrice(Node * n_price, Node * n_premium, double strike) {
-    n_premium->setValue(std::max(n_price->value() - strike,10.));
+void Node::updateCallPrice(Node * n_price, double strike) {
+    setValue(std::max(n_price->value() - strike,0.));
 }
 
-void Node::updatePutPrice(Node * n_price, Node * n_premium, double strike) {
-    n_premium->setValue(std::max(strike - n_price->value(),0.));
+void Node::updatePutPrice(Node * n_price, double strike) {
+    setValue(std::max(strike - n_price->value(),0.));
 }
 
 Node * Node::createTree(int tree_depth) {
@@ -51,11 +51,16 @@ Node * Node::createTree(int tree_depth) {
             Node * parent = previous_level_queue.front();
             previous_level_queue.pop();
 
-            parent->setDown(temp_children.front());
+            Node * downChild = temp_children.front();
+            parent->setDown(downChild);
+            downChild->setPrevUp(parent);
+
             temp_children.pop();
             parent->down()->setValue(0);
 
-            parent->setUp(temp_children.front());
+            Node * upChild = temp_children.front();
+            parent->setUp(upChild);
+            upChild->setPrevDown(parent);
         }
         previous_level_queue = current_level_queue;
     }

@@ -17,11 +17,13 @@ private:
     double value_;
     Node * down_;
     Node * up_;
+    Node * prev_down_;
+    Node * prev_up_;
 
     static void deleteTreeRecursive_(Node * t, std::set<Node*>& visited);
 
 public:
-    Node (int id, int level) : id_(id), level_(level), down_(nullptr), up_(nullptr) {}
+    Node (int id, int level) : id_(id), level_(level), down_(nullptr), up_(nullptr), prev_down_(nullptr), prev_up_(nullptr) {}
     enum OptionType {Call, Put};    
 
     // --- Getters --- //
@@ -31,6 +33,8 @@ public:
     double value() const { return value_; }
     Node * down() const { return down_; }
     Node * up() const { return up_; }
+    Node * prevDown() const { return prev_down_; }
+    Node * prevUp() const { return prev_up_; }
 
 
     // --- Setters --- //
@@ -39,6 +43,8 @@ public:
     void setValue(double val) { value_ = val; }
     void setDown(Node * node) { down_ = node; }
     void setUp(Node * node) { up_ = node; }
+    void setPrevDown(Node * node) { prev_down_ = node; }
+    void setPrevUp(Node * node) { prev_up_ = node; }
 
     /**
      * @brief Crée récursivement l'arbre binomial avec des noeuds initialisés à 0
@@ -54,20 +60,18 @@ public:
     static void deleteTree(Node * t);
 
     /**
-     * @brief Définit avec la formule du Call la valeur du noeud n_premium en fonction du noeud n_price et de la valeur du strike
+     * @brief Définit avec la formule du Call la valeur du noeud en fonction du noeud n_price et de la valeur du strike
      * @param n_price noeud dont la valeur doit être utilisée pour le calcul de la prime
-     * @param n_premium noeud dont la valeur va être la valeur de la prime apres execution de la fonction
      * @param strike valeur du strike
      */
-    void updateCallPrice(Node * n_price, Node * n_premium, double strike);
+    void updateCallPrice(Node * n_price, double strike);
 
     /**
-     * @brief Définit avec la formule du Put la valeur du noeud n_premium en fonction du noeud n_price et de la valeur du strike
+     * @brief Définit avec la formule du Put la valeur du noeud en fonction du noeud n_price et de la valeur du strike
      * @param n_price noeud dont la valeur doit être utilisée pour le calcul de la prime
-     * @param n_premium noeud dont la valeur va être la valeur de la prime apres execution de la fonction
      * @param strike valeur du strike
      */
-    void updatePutPrice(Node * n_price, Node * n_premium, double strike);
+    void updatePutPrice(Node * n_price, double strike);
 };
 
 #endif

@@ -33,7 +33,20 @@ public:
      */
     static double calculateUpFactor(double volatility, float time_period, int depth);
 
+    /**
+     * TODO
+     */
     static void evaluateLeafNodes(Node * t_price, Node * t_premium, Node::OptionType type, double strike);
+
+    /**
+     * TODO
+     */
+    static void fillPrices(Node * node, double currentPrice, double u, double d);
+
+    /**
+     * @brief Génère les différents fichiers pdf (TESTS)
+     */
+    static void generatePDFs();
 };
 
 #endif
