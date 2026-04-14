@@ -23,7 +23,7 @@ public:
      * @param time_period maturité de l'option à valoriser
      * @param depth profondeur de l'arbre
      */
-    static double calculateDownFactor(double volatility, float time_period, int depth);
+    static double calculateDownFactor(double volatility, double time_period, int depth);
 
     /**
      * @brief Renvoie la valeur du facteur de hausse en fonction des paramètres indiqués
@@ -31,7 +31,7 @@ public:
      * @param time_period maturité de l'option à valoriser
      * @param depth profondeur de l'arbre
      */
-    static double calculateUpFactor(double volatility, float time_period, int depth);
+    static double calculateUpFactor(double volatility, double time_period, int depth);
 
     /**
      * TODO
@@ -41,12 +41,17 @@ public:
     /**
      * TODO
      */
-    static void fillPrices(Node * node, double currentPrice, double u, double d);
+    static void fillPrices(Node * node, double current_price, double u, double d);
 
     /**
      * @brief Génère les différents fichiers pdf (TESTS)
      */
     static void generatePDFs();
+
+    /**
+     * TODO
+     */
+    static void backwardInduction(Node * node, double u, double d, double r, double time_value, int depth);
 };
 
 #endif
