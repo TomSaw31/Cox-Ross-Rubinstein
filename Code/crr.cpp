@@ -44,7 +44,7 @@ void CRR::evaluateLeafNodes(Node * t_price, Node * t_premium, Node::OptionType t
 
 double getNodeMeanValue(Node * node, double R, double p, double q) {
     if (!node || !node->down() || !node->up()) {
-        fprintf(stderr, "Invalid Node to get mean value\n");
+        std::cerr << "Invalid Node to get mean value\n";
         return -1.;
     }
     return (p * node->up()->value() + q * node->down()->value()) / R;

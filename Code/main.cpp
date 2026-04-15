@@ -8,7 +8,7 @@
 #include "crr.hpp"
 
 int main(int argc, char * argv[]) {
-    if (argc != 7) {
+    if (argc < 7 || argc > 8) {
         std::cerr << "USAGE : " << argv[0] << " DEPTH INIT STRIKE VOL TIME RISK_FREE_RATE\n";
         return -1;
     }
@@ -21,6 +21,17 @@ int main(int argc, char * argv[]) {
 
     double d = CRR::calculateDownFactor(vol_value, time_value, depth);
     double u = CRR::calculateUpFactor(vol_value, time_value, depth);
+
+    // TEST MODE
+    if (argc == 8 && std::stoi(argv[7]) == 1) {
+        Node * tree_price = Node::createTree(depth);
+        Node * tree_premium = Node::createTree(depth);
+        CRR::fillPrices(tree_price,init_value,u,d);
+        CRR::evaluateLeafNodes(tree_price, tree_premium, Node::Call, strike);
+        CRR::backwardInduction(tree_premium, u, d, risk_free_rate, time_value, depth);
+        printf("%f",tree_premium->value());
+        return 1;
+    }
 
     printf("Creating Trees\n");
     Node * tree_price = Node::createTree(depth);
@@ -46,10 +57,14 @@ int main(int argc, char * argv[]) {
         CRR::generateDotFile(tree_premium, file_premium);
         file_premium.close();
     }
+    CRR::generatePDFs();
+    
+    printf("------------------------\n");
+    printf("Option Price : %f\n",tree_premium->value());
+    printf("------------------------\n");
 
     Node::deleteTree(tree_price);
     Node::deleteTree(tree_premium);
 
-    CRR::generatePDFs();
     return 0;
 }

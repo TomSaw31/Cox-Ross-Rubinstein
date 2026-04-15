@@ -9,12 +9,20 @@ else
 endif
 
 EXEC = crr
+TEST_EXEC = test
+
 SRC = node.cpp crr.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
+
+TEST_SRC = test.cpp
+TEST_OBJ = $(TEST_SRC:.cpp=.o)
 
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
+	$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(TEST_EXEC): $(TEST_OBJ)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 %.o: %.cpp
@@ -30,10 +38,10 @@ doc:
 	@doxygen Doxyfile
 
 clean:
-	@rm -f *.o $(EXEC)
+	@rm -f *.o $(EXEC) $(TEST_EXEC)
 
 distclean: clean
-	@find . -type f ! -name "*.cpp" ! -name "*.hpp" ! -name "Makefile" ! -name "Doxyfile" -delete
+	@find . -type f ! -name "*.cpp" ! -name "*.hpp" ! -name "makefile" ! -name "Doxyfile" -delete
 	@rm -rf documentation/
 
 .PHONY: all clean distclean doc
