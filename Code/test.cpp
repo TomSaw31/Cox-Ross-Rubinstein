@@ -12,13 +12,24 @@ struct Test {
     double vol;
     double time;
     double rate;
+    int type;
     double expected;
 };
+
+struct Dataset {
+    std::string name;
+    std::vector<Test> tests;
+};
+
+
+double threshold(const Test& t) {
+    return 1e-4 * std::max(1.0, t.expected);
+}
 
 double run_crr(const Test& t) {
     std::stringstream cmd;
 
-    cmd << "./crr " << t.depth << " " << t.init << " " << t.strike << " " << t.vol << " " << t.time << " " << t.rate << " " << 1;
+    cmd << "./crr " << t.depth << " " << t.init << " " << t.strike << " " << t.vol << " " << t.time << " " << t.rate << " " << t.type << " " << 1;
 
     FILE * pipe = popen(cmd.str().c_str(), "r");
     if (!pipe) {
@@ -27,71 +38,77 @@ double run_crr(const Test& t) {
     }
 
     char buffer[128];
-
     std::string result;
 
     while (fgets(buffer, sizeof(buffer), pipe) != nullptr)
-        result += buffer;
-
+        result = buffer;
     pclose(pipe);
+
+    if (result.empty()) {
+        std::cerr << "Empty CRR output\n";
+        return -1;
+    }
     return std::stod(result);
 }
 
 int main()
 {
-    const double THRESHOLD = 0.5;
-
-    std::vector<Test> tests = {
-    {2,100,100,0.2,1,0.05,9.5405},
-    {3,100,100,0.2,1,0.05,11.0439},
-    {5,100,100,0.2,1,0.05,10.8059},
-    {10,100,100,0.2,1,0.05,10.2534},
-    {20,100,100,0.2,1,0.05,10.3513},
-    {30,100,100,0.2,1,0.05,10.3842},
-
-    {20,100,110,0.2,1,0.05,5.96623},
-    {20,100,90,0.2,1,0.05,16.7006},
-    {20,120,100,0.2,1,0.05,26.1184},
-    {20,80,100,0.2,1,0.05,1.87966},
-
-    {20,100,100,0.1,1,0.05,6.75169},
-    {20,100,100,0.3,1,0.05,14.0849},
-    {20,100,100,0.5,1,0.05,21.5525},
-
-    {20,100,100,0.2,0.25,0.05,4.56541},
-    {20,100,100,0.2,0.5,0.05,6.81855},
-    {20,100,100,0.2,2,0.05,15.9865},
-
-    {20,100,100,0.2,1,0.01,8.33478},
-    {20,100,100,0.2,1,0.03,9.3149},
-    {20,100,100,0.2,1,0.1,13.166},
-    {20,100,100,0.2,1,-0.01,7.41353},
-
-    {30,100,50,0.2,1,0.05,52.4387},
-    {30,100,150,0.2,1,0.05,0.34696},
-
-    {30,100,100,0.8,1,0.05,32.5694},
-
-    {30,100,100,0.2,5,0.05,28.9938}
+    std::vector<Test> tests_call = {
+        {2, 100, 100, 0.2, 1, 0.05, 0, 9.5405},
+        {6, 100, 100, 0.2, 1, 0.05, 0, 10.1256},
+        {15, 100, 100, 0.2, 1, 0.05, 0, 10.5682},
+        {24, 100, 100, 0.2, 1, 0.05, 0, 10.3677},
+        {10, 110, 100, 0.2, 0.5, 0.03, 0, 13.2444},
+        {20, 120, 100, 0.25, 1, 0.05, 0, 27.4759},
+        {5, 105, 100, 0.1, 0.25, 0.02, 0, 5.9129},
+        {12, 90, 100, 0.2, 1, 0.05, 0, 5.0047},
+        {18, 80, 100, 0.3, 0.5, 0.02, 0, 1.5467},
+        {22, 95, 100, 0.15, 0.5, 0.03, 0, 2.5628},
     };
 
-    int passed = 0;
+    std::vector<Test> tests_put = {
+        {2, 100, 100, 0.2, 1, 0.05, 1, 4.6634},
+        {6, 100, 100, 0.2, 1, 0.05, 1, 5.2485},
+        {15, 100, 100, 0.2, 1, 0.05, 1, 5.6911},
+        {24, 100, 100, 0.2, 1, 0.05, 1, 5.4907},
+        {10, 110, 100, 0.2, 0.5, 0.03, 1, 1.7556},
+        {20, 120, 100, 0.25, 1, 0.05, 1, 2.5988},
+        {5, 105, 100, 0.1, 0.25, 0.02, 1, 0.4142},
+        {12, 90, 100, 0.2, 1, 0.05, 1, 10.1276},
+        {18, 80, 100, 0.3, 0.5, 0.02, 1, 20.5517},
+        {22, 95, 100, 0.15, 0.5, 0.03, 1, 6.0740},
+    };
 
-    for (size_t i = 0; i < tests.size(); i++)
-    {
-        
-        std::cout << "Test " << i+1 << " : ";
-        double price = run_crr(tests[i]);
-        double diff = std::abs(price - tests[i].expected);
+    std::vector<Dataset> datasets = {
+        {"CALL", tests_call},
+        {"PUT", tests_put}
+    };
 
-        if (diff < THRESHOLD) {
-            std::cout << "PASS ";
-            passed++;
-        } else {
-            std::cout << "FAIL ";
+    for (const auto& data : datasets) {
+        std::cout << std::endl << data.name << " TESTS" << std::endl;;
+
+        int passed = 0;
+        double total_error = 0.0;
+        for (size_t i = 0; i < data.tests.size(); i++) {
+            std::cout << "Test " << i+1 << " : ";
+
+            double price = run_crr(data.tests[i]);
+            double diff = std::abs(price - data.tests[i].expected);
+
+            total_error += diff * diff;
+            
+            if (diff < threshold(data.tests[i])) {
+                std::cout << "PASS ";
+                passed++;
+            } else {
+                std::cout << "FAIL ";
+            }
+
+            std::cout << "(expected=" << data.tests[i].expected << ", got=" << price << ", diff=" << diff << ")" << std::endl;
         }
-        std::cout << "(expected=" << tests[i].expected << ", got=" << price << ", diff=" << diff << ")\n";
-    }
 
-    std::cout << "\nResult : " << passed << "/" << tests.size() << " tests passed\n";
+        std::cout << std::endl << "Result : " << passed << "/" << data.tests.size() << " " << data.name << " tests passed" << std::endl;
+        std::cout << "RMSE = " << std::sqrt(total_error / data.tests.size()) << std::endl;
+    }
+    
 }

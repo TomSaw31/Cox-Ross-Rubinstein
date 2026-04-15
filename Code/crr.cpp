@@ -7,7 +7,7 @@
 
 
 void CRR::fillPrices(Node * node, double currentPrice, double u, double d) {
-    if (node == nullptr) {
+    if (!node) {
         return;
     }
     node->setValue(currentPrice);
@@ -15,7 +15,7 @@ void CRR::fillPrices(Node * node, double currentPrice, double u, double d) {
     fillPrices(node->down(), currentPrice * d, u, d);
 }
 
-void CRR::evaluateLeafNodes(Node * t_price, Node * t_premium, Node::OptionType type, double strike) {
+void CRR::evaluateLeafNodes(Node * t_price, Node * t_premium, int type, double strike) {
     Node * iter = t_price;
     Node * iter2 = t_premium;
 
@@ -25,14 +25,11 @@ void CRR::evaluateLeafNodes(Node * t_price, Node * t_premium, Node::OptionType t
     }
 
     while(iter != nullptr) {
-        switch (type) {
-            case Node::OptionType::Call:
-                iter2->updateCallPrice(iter, strike);
-                break;
-            case Node::OptionType::Put:
-                iter2->updatePutPrice(iter, strike);
-                break;
-        }
+        if (type == 0)
+            iter2->updateCallPrice(iter, strike);
+        else
+            iter2->updatePutPrice(iter, strike);
+
         if (iter->prevUp() != nullptr) {
             iter = iter->prevUp()->up();
             iter2 = iter2->prevUp()->up();
@@ -42,7 +39,7 @@ void CRR::evaluateLeafNodes(Node * t_price, Node * t_premium, Node::OptionType t
     }
 }
 
-double getNodeMeanValue(Node * node, double R, double p, double q) {
+double CRR::getNodeMeanValue(Node * node, double R, double p, double q) {
     if (!node || !node->down() || !node->up()) {
         std::cerr << "Invalid Node to get mean value\n";
         return -1.;
@@ -51,33 +48,37 @@ double getNodeMeanValue(Node * node, double R, double p, double q) {
 }
 
 void CRR::backwardInduction(Node * node, double u, double d, double r, double time_value, int depth) {
-    double dt = time_value / (depth - 1);
+    double dt = time_value / depth;
     double R = exp(r * dt);
     double p = (R - d)/(u - d);
-    double q = (u - R)/(u - d);
+    double q = 1. - p;
     Node * iter = node;
-    while(iter->down() != nullptr) {
+
+    while(iter->down()) {
         iter = iter->down();
     }
+
+    if(!iter->prevUp()) return;
     iter = iter->prevUp();
-    while(iter->prevUp() != nullptr) {
+
+    while(iter->prevUp()) {
         Node * parent = iter->prevUp();
-        while(iter->up()->prevUp() != nullptr) {
-            iter->setValue(getNodeMeanValue(iter, R, p, q));
+        while(iter->up() && iter->up()->prevUp()) {
+            iter->setValue(CRR::getNodeMeanValue(iter, R, p, q));
             iter = iter->up()->prevUp();
         }
-        iter->setValue(getNodeMeanValue(iter, R, p, q));
+        iter->setValue(CRR::getNodeMeanValue(iter, R, p, q));
         iter = parent;
     }
-    iter->setValue(getNodeMeanValue(iter, R, p, q));
+    iter->setValue(CRR::getNodeMeanValue(iter, R, p, q));
 }
 
 double CRR::calculateDownFactor(double volatility, double time_period, int depth) {
-    return exp(-volatility * sqrt(time_period / (depth - 1)));
+    return exp(-volatility * sqrt(time_period / depth));
 }
 
 double CRR::calculateUpFactor(double volatility, double time_period, int depth) {
-    return exp(volatility * sqrt(time_period / (depth - 1)));
+    return exp(volatility * sqrt(time_period / depth));
 }
 
 void exportDot(const Node * t, std::ostream& out, std::set<const Node*>& visited) {
@@ -100,6 +101,7 @@ void CRR::generateDotFile(const Node * root, std::ostream& file) {
     file << "splines = line;\n";
     file << "rankdir = LR;\n";
     file << "nodesep = 0.25;\n";
+    file << "graph [dpi=300];\n";
     file << "node [shape=circle, width = 0.8, fontsize = 10, fixedsize = true];\n";
     std::set<const Node * > visited;
     exportDot(root, file, visited);

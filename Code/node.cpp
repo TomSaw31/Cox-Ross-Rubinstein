@@ -1,15 +1,15 @@
 #include <queue>
-#include <set>
+#include <unordered_set>
 #include "node.hpp"
 
 
 void Node::deleteTree(Node * t) {
-    std::set<Node *> delete_set;
+    std::unordered_set<Node *> delete_set;
     deleteTreeRecursive_(t,delete_set);
 }
 
 
-void Node::deleteTreeRecursive_(Node * t, std::set<Node *>& visited) {
+void Node::deleteTreeRecursive_(Node * t, std::unordered_set<Node *>& visited) {
     if (!t || visited.count(t)) {
         return; 
     }
@@ -56,7 +56,6 @@ Node * Node::createTree(int tree_depth) {
             downChild->setPrevUp(parent);
 
             temp_children.pop();
-            parent->down()->setValue(0);
 
             Node * upChild = temp_children.front();
             parent->setUp(upChild);

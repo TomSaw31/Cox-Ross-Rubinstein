@@ -1,3 +1,29 @@
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    breaklines=true,
+    frame=single
+}
+
+\lstdefinestyle{Rstyle}{
+    language=R,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray}\itshape,
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=2
+}
+
 \begin{center}
     \rule{\textwidth}{1pt} \\[0.5cm]
     {\Huge \bfseries ANNEXES} \\[0.4cm]
@@ -5,8 +31,123 @@
 \end{center}
 
 
-\section*{Code R pour simuler un mouvement brownien 2D}
-\begin{verbatim}
+\section*{Code du Modèle CRR (C\texttt{++})}
+
+\subsection*{Construction de l'arbre binomial}
+\begin{lstlisting}
+    Node * Node::createTree(int tree_depth) {
+        if (tree_depth <= 0) {
+            return nullptr;
+        }
+        std::queue<Node *> previous_level_queue;
+    
+        Node * root = new Node(0,0);
+        previous_level_queue.push(root);
+    
+        for(int i = 1; i < tree_depth; i++) {
+            std::queue<Node *> current_level_queue;
+    
+            for (int j = 0; j <= i; j++) {
+                Node * node = new Node(i * (i + 1) / 2 + j, i);
+                node->setValue(0);
+                current_level_queue.push(node);
+            }
+    
+            std::queue<Node *> temp_children = current_level_queue;
+    
+            while (!previous_level_queue.empty()) {
+                Node * parent = previous_level_queue.front();
+                previous_level_queue.pop();
+    
+                Node * downChild = temp_children.front();
+                parent->setDown(downChild);
+                downChild->setPrevUp(parent);
+    
+                temp_children.pop();
+    
+                Node * upChild = temp_children.front();
+                parent->setUp(upChild);
+                upChild->setPrevDown(parent);
+            }
+            previous_level_queue = current_level_queue;
+        }
+        return root;
+    }
+\end{lstlisting}
+
+
+\pagebreak
+\subsection*{Propagation des prix de l'actif}
+\begin{lstlisting}
+    void CRR::fillPrices(Node * node, double currentPrice, double u, double d) {
+        if (!node) {
+            return;
+        }
+        node->setValue(currentPrice);
+        fillPrices(node->up(), currentPrice * u, u, d);
+        fillPrices(node->down(), currentPrice * d, u, d);
+    }
+\end{lstlisting}
+
+\subsection*{Évaluation des payoffs}
+\begin{lstlisting}
+    void CRR::evaluateLeafNodes(Node * t_price, Node * t_premium, int type, double strike) {
+        Node * iter = t_price;
+        Node * iter2 = t_premium;
+    
+        while(iter->down() != nullptr) {
+            iter = iter->down();
+            iter2 = iter2->down();
+        }
+    
+        while(iter != nullptr) {
+            if (type == 0)
+                iter2->updateCallPrice(iter, strike);
+            else
+                iter2->updatePutPrice(iter, strike);
+    
+            if (iter->prevUp() != nullptr) {
+                iter = iter->prevUp()->up();
+                iter2 = iter2->prevUp()->up();
+            } else {
+                break;
+            }
+        }
+    }
+\end{lstlisting}
+\pagebreak
+\subsection*{Backward induction}
+\begin{lstlisting}
+    void CRR::backwardInduction(Node * node, double u, double d, double r, double time_value, int depth) {
+        double dt = time_value / depth;
+        double R = exp(r * dt);
+        double p = (R - d)/(u - d);
+        double q = 1. - p;
+        Node * iter = node;
+    
+        while(iter->down()) {
+            iter = iter->down();
+        }
+    
+        if(!iter->prevUp()) return;
+        iter = iter->prevUp();
+    
+        while(iter->prevUp()) {
+            Node * parent = iter->prevUp();
+            while(iter->up() && iter->up()->prevUp()) {
+                iter->setValue(CRR::getNodeMeanValue(iter, R, p, q));
+                iter = iter->up()->prevUp();
+            }
+            iter->setValue(CRR::getNodeMeanValue(iter, R, p, q));
+            iter = parent;
+        }
+        iter->setValue(CRR::getNodeMeanValue(iter, R, p, q));
+    }
+\end{lstlisting}
+
+\section*{Simulations (R)}
+\subsection*{Simulation d'un mouvement brownien 2D}
+\begin{lstlisting}
     library(ggplot2)
     
     n <- 2500
@@ -18,13 +159,11 @@
         t = 0:n
     )
 
-    ggplot(df, aes(x, y, color = t)) + geom_path() +
-    scale_color_gradientn(colors = c("orange", "red", "purple", "navy")) +
-    coord_fixed() + labs(title = "Mouvement Brownien 2D", subtitle = paste(n, "pas"))
-\end{verbatim}
-
-\section*{Code R pour simuler un mouvement brownien 1D}
-\begin{verbatim}
+    ggplot(df, aes(x, y, color = t)) + geom_path() + scale_color_gradientn(colors = c("orange", "red", "purple", "navy")) + coord_fixed() + labs(title = "Mouvement Brownien 2D", subtitle = paste(n, "pas"))
+\end{lstlisting}
+\pagebreak
+\subsection*{Simulation d'un mouvement brownien 1D}
+\begin{lstlisting}
     library(ggplot2)
     
     n <- 1000 
@@ -36,11 +175,8 @@
     )
     
     ggplot(df, aes(t, x, color = x)) + geom_line(linewidth = 1) + 
-        scale_color_gradientn(colors = c("orange", "red", "purple", "navy")) + 
-        coord_cartesian(xlim = c(0, n)) + theme_minimal() +
-        theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank()) +
-        labs(title = "Mouvement Brownien 1D", subtitle = paste(n, "pas"))
-\end{verbatim}
+        scale_color_gradientn(colors = c("orange", "red", "purple", "navy")) + coord_cartesian(xlim = c(0, n)) + theme_minimal() + theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank()) + labs(title = "Mouvement Brownien 1D", subtitle = paste(n, "pas"))
+\end{lstlisting}
 
 
   
