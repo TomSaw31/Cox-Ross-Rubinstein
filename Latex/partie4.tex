@@ -1,5 +1,64 @@
 \section{Conception et implémentation algorithmique}
+
+Dans cette partie, nous nous intéresserons à l'implémentation numérique du modèle binomial. Nous commencerons par voir une implémentation peu optimisée et peu efficace mais permettant de comprendre facilement la logique derrière le modèle, puis nous verrons une approche optimisée et efficace utilisable dans le milieu de la finance quantitative. Les parties principales du code sont présentes en annexes. Le code est présent dans sa totalité sur le lien github suivant : \hyperlink{https://github.com/TomSaw31/Cox-Ross-Rubinstein}{https://github.com/TomSaw31/Cox-Ross-Rubinstein}. \\
+Les deux implémentations seront faites en C\verb|++| afin de privilégier l'efficacité, notamment sur la seconde implémentation.
+
 \subsection{Implémentation à l'aide d'arbres recombinants}
+Dans cette première implémentation, nous nous intéresserons davantage de la logique du modèle et non de son optimisation. Cette première approche sera assez peu efficace en temps et mémoire mais sera plus simple à comprendre intuitivement. Elle n'aura pas vocation à être utilisée en situation réelle. Cette implémentation construira deux arbres : un pour accueillir l'évolution des prix et un autre contenant les valeurs de primes en fonction des prix calculé dans l'autre arbre. \\
+Cette première implémentation utilise une structure d'arbre recombinant. 
+\vspace{0.01\textheight}\\
+Commençons par définir un noeud de l'arbre : 
+\vspace{0.01\textheight}\\
+Node :
+\begin{itemize}
+    \item int id $\; \rightarrow$ identifiant du noeud
+    \item int level $\; \rightarrow$ niveau du noeud dans l'arbre
+    \item double value $\; \rightarrow$ valeur du noeud
+    \item Node * down $\; \rightarrow$ pointeur vers le noeud suivant inférieur
+    \item Node * up $\; \rightarrow$ pointeur vers le noeud suivant supérieur
+    \item Node * prevDown $\; \rightarrow$ pointeur vers le noeud précédant inférieur
+    \item Node * prevUp $\; \rightarrow$ pointeur vers le noeud précédant supérieur
+\end{itemize}
+\vspace{0.01\textheight}
+Nous aurons besoin de chaîner les noeuds dans les deux sens afin de remonter facilement dans l'arbre lors de la remontée. \\
+Nous pouvons alors créer un arbre vide. Afin de pouvoir relier les noeuds entre eux lors de la construction, il faut créer une \textbf{file} $q$. Au niveau \textbf{$n$}, on crée les \textbf{$n$} noeuds et on les ajoute à la file \textbf{$q$}, puis on défile chacun des \textbf{$n-1$} noeuds du niveau précédent \textbf{$n-1$} et on les relie à leur enfants du niveau \textbf{$n$} (voir code complet en annexe).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{Images/tree_creation.png}
+    \caption{Création des premiers niveaux de l'arbre}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{Images/tree_prices.png}
+    \caption{Propagation des prix de l'actif}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{Images/tree_evaluated_leaves.png}
+    \caption{Evaluation des Payoffs}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Implémentation optimisée}
 
