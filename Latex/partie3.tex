@@ -31,7 +31,7 @@ L'algorithme se décompose donc en deux phases distinctes :
 \end{itemize}
 \pagebreak
 \subsection{Parcours Descendant}
-Représentons l'évolution du prix d'un sous-jacent ayant pour cours initial $S_0$, qui a une probabilité $p$ d'augmenter de $u$ et qui a une probabilité $1-p$ de baisser de $d$ à chaque période : 
+Représentons l'évolution du prix d'un sous-jacent ayant pour cours initial $S_0$, qui a une probabilité risque-neutre $p$ d'augmenter de $u$ et qui a une probabilité $1-p$ de baisser de $d$ à chaque période : 
 
 \def\mallevel{2}
 \def\ratiox{3.5} 
@@ -164,7 +164,8 @@ On peut réécrire la formule en utilisant la probabilité risque-neutre. \\
 \subsection{Raisonnement Rétrograde}
 On peut maintenant appliquer le principe dit de \textbf{Raisonnement Rétrograde} ou de \textbf{Backward Induction}. Ce principe consiste à partir de la fin de l'arbre puis remonter sur le noeud précédent pour calculer sa valeur égale à l'espérance des noeuds suivants et répétant itérativement jusqu'à l'origine. Du fait de la nature non linéaire des formules d'évaluations des calls et puts (max), on ne peut savoir la valeur des noeuds terminaux qu'à la fin de la construction de l'arbre. On a alors besoin de construire l'arbre une première fois avant de le remonter. Ce principe est également très utile pour gérer les \textbf{options américaines} ainsi que pour le \textbf{delta hedging}. \\
 ~\\
-On considère le morceaux d'arbre suivant :
+Notons $C_{i,t}$ les noeuds dans un arbre binomial, où $i$ est l'indice du noeud représentant le nombre de montées et $t$ la couche de l'arbre représentant le temps. \\
+Considérons alors le morceau d'arbre suivant :
 \tikzset{
    malnode/.style={draw=black, fill=white, minimum width=3.5em, circle, font=\small},
    prob/.style={midway, sloped, font=\large},
@@ -208,7 +209,7 @@ On considère le morceaux d'arbre suivant :
 En utilisant le raisonnement rétrograde, on peut exprimer la valeur du noeud $C_{0,1}$ à partir de celles de $C_{0,2}$ et $C_{1,2}$. On obtient alors : 
 $$C_{0,1} = \frac{1}{R}(pC_{0,2}+(1-p)C_{1,2})$$
 Ainsi, on peut remonter l'arbre en partant des feuilles pour évaluer l'ensemble des noeuds précédents: 
-$$C_{i,t}=\frac{1}{R}(pC_{i,t+i}+(1-p)C_{i,t})$$
+$$C_{i,t}=\frac{1}{R}(pC_{i,t+i}+(1-p)C_{i+1,t+1})$$
 avec $i$ la position du noeud parmi les noeuds de profondeur $t$.
 Les valeurs des feuilles sont données par la formule du call (resp. put) si on modélise un call (resp. put). Ici, on aura : $C_{i} = max(S-K,0)$ avec $S$ le prix du sous-jacent et $K$ le strike. 
 \vspace{0.02\textheight}\\

@@ -76,19 +76,6 @@
 \end{lstlisting}
 
 
-\pagebreak
-\subsection*{Propagation des prix de l'actif}
-\begin{lstlisting}
-    void CRR::fillPrices(Node * node, double currentPrice, double u, double d) {
-        if (!node) {
-            return;
-        }
-        node->setValue(currentPrice);
-        fillPrices(node->up(), currentPrice * u, u, d);
-        fillPrices(node->down(), currentPrice * d, u, d);
-    }
-\end{lstlisting}
-
 \subsection*{Évaluation des payoffs}
 \begin{lstlisting}
     void CRR::evaluateLeafNodes(Node * t_price, Node * t_premium, int type, double strike) {

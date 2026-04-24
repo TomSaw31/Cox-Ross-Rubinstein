@@ -36,7 +36,7 @@ On peut également montrer que $W_t$ est un cas particulier de processus stochas
     \forall A \subset I, \ \forall (a_t)_{t\in A} \subset \mathbb{R}, \ \ \sum_{s \in A} a_s W_s \sim \mathcal{N}(\mu, \sigma^2) 
 \end{align*}
 
-Considérons une option sur un marché. A chaque instant $t$ son prix augmente ou baisse. On peut ainsi considérer l'évolution du prix d'une option comme une marche aléatoire. \\
+Considérons une option sur un marché. A chaque instant $t$ son prix augmente ou baisse. On peut ainsi modéliser l'évolution du prix d'une option par une marche aléatoire. \\
 D'après le \textbf{théorème de Donsker}, cette marche aléatoire converge en loi vers un mouvement brownien standard $W = (W_t, t \geq 0)$. Ainsi, étudier le caractère aléatoire et chaotique de l'évolution du prix d'une option revient à étudier un mouvement brownien.\\
 
 \begin{figure}[H]
@@ -123,6 +123,6 @@ Les hypothèses de ce modèle sont donc :
     \item Les transactions n'occasionnent aucun frais
 \end{itemize}
 \vspace{0.025\textheight}
-La formule de Black-Scholes permet de calculer le prix d'un \textbf{put ou call européen}.
+La formule de Black-Scholes permet de calculer le prix d'un \textbf{call ou put européen} mais ne permet pas de calculer des calls/puts américains contrairement au modèle de Cox-Ross-Rubinstein.
 
 \subsection{Convergence}

@@ -1,3 +1,14 @@
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    breaklines=true,
+    frame=single
+}
 \section{Conception et implémentation algorithmique}
 
 Dans cette partie, nous nous intéresserons à l'implémentation numérique du modèle binomial. Nous commencerons par voir une implémentation peu optimisée et peu efficace mais permettant de comprendre facilement la logique derrière le modèle, puis nous verrons une approche optimisée et efficace utilisable dans le milieu de la finance quantitative. Les parties principales du code sont présentes en annexes. Le code est présent dans sa totalité sur le lien github suivant : \hyperlink{https://github.com/TomSaw31/Cox-Ross-Rubinstein}{https://github.com/TomSaw31/Cox-Ross-Rubinstein}. \\
@@ -7,61 +18,71 @@ Les deux implémentations seront faites en C\verb|++| afin de privilégier l'eff
 Dans cette première implémentation, nous nous intéresserons davantage de la logique du modèle et non de son optimisation. Cette première approche sera assez peu efficace en temps et mémoire mais sera plus simple à comprendre intuitivement. Elle n'aura pas vocation à être utilisée en situation réelle. Cette implémentation construira deux arbres : un pour accueillir l'évolution des prix et un autre contenant les valeurs de primes en fonction des prix calculé dans l'autre arbre. \\
 Cette première implémentation utilise une structure d'arbre recombinant. 
 \vspace{0.01\textheight}\\
-Commençons par définir un noeud de l'arbre : 
+Commençons par définir un nœud de l'arbre : 
 \vspace{0.01\textheight}\\
 Node :
 \begin{itemize}
-    \item int id $\; \rightarrow$ identifiant du noeud
-    \item int level $\; \rightarrow$ niveau du noeud dans l'arbre
-    \item double value $\; \rightarrow$ valeur du noeud
-    \item Node * down $\; \rightarrow$ pointeur vers le noeud suivant inférieur
-    \item Node * up $\; \rightarrow$ pointeur vers le noeud suivant supérieur
-    \item Node * prevDown $\; \rightarrow$ pointeur vers le noeud précédant inférieur
-    \item Node * prevUp $\; \rightarrow$ pointeur vers le noeud précédant supérieur
+    \item int id $\; \rightarrow$ identifiant du nœud
+    \item int level $\; \rightarrow$ niveau du nœud dans l'arbre
+    \item double value $\; \rightarrow$ valeur du nœud
+    \item Node * down $\; \rightarrow$ pointeur vers le nœud suivant inférieur
+    \item Node * up $\; \rightarrow$ pointeur vers le nœud suivant supérieur
+    \item Node * prevDown $\; \rightarrow$ pointeur vers le nœud précédent inférieur
+    \item Node * prevUp $\; \rightarrow$ pointeur vers le nœud précédent supérieur
 \end{itemize}
 \vspace{0.01\textheight}
-Nous aurons besoin de chaîner les noeuds dans les deux sens afin de remonter facilement dans l'arbre lors de la remontée. \\
-Nous pouvons alors créer un arbre vide. Afin de pouvoir relier les noeuds entre eux lors de la construction, il faut créer une \textbf{file} $q$. Au niveau \textbf{$n$}, on crée les \textbf{$n$} noeuds et on les ajoute à la file \textbf{$q$}, puis on défile chacun des \textbf{$n-1$} noeuds du niveau précédent \textbf{$n-1$} et on les relie à leur enfants du niveau \textbf{$n$} (voir code complet en annexe).
+Nous aurons besoin de chaîner les nœuds dans les deux sens afin de remonter facilement dans l'arbre lors de la remontée. \\
+Nous pouvons alors créer un arbre vide. Afin de pouvoir relier les nœuds entre eux lors de la construction, il faut créer une \textbf{file} $q$. Au niveau \textbf{$n$}, on crée les \textbf{$n$} nœuds et on les ajoute à la file \textbf{$q$}, puis on défile chacun des \textbf{$n-1$} nœuds du niveau précédent \textbf{$n-1$} et on les relie à leur enfants du niveau \textbf{$n$} (voir code complet en annexe).
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.1\textwidth]{Images/tree_creation.png}
+    \includegraphics[width=1\textwidth]{Images/tree_creation.png}
     \caption{Création des premiers niveaux de l'arbre}
 \end{figure}
+Une fois l'arbre créé, on parcours récursivement chaque nœud en appliquant les facteurs de hausse $u$ et de baisse $d$ à partir du nœud parent en effectuant un parcours préfixe. Cette fonction est récursive non terminale ce qui entraîne une forte utilisation de la pile de mémoire, pouvant rapidement entrainer un Stack Overflow.
+\subsection*{Propagation des prix de l'actif}
+
+\begin{lstlisting}
+    void CRR::fillPrices(Node * node, double currentPrice, double u, double d) {
+        if (!node) {
+            return;
+        }
+        node->setValue(currentPrice);
+        fillPrices(node->up(), currentPrice * u, u, d);
+        fillPrices(node->down(), currentPrice * d, u, d);
+    }
+\end{lstlisting}
+On obtient l'arbre suivant après évaluation: 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.1\textwidth]{Images/tree_prices.png}
+    \includegraphics[width=0.8\textwidth]{Images/tree_prices.png}
     \caption{Propagation des prix de l'actif}
 \end{figure}
+Les flèches vertes représentent des hausses de prix alors que celles en rouges représentent des baisses de prix du sous-jacent. \\
+\pagebreak \\
+Un fois l'arbre des prix créé, nous pouvons créer un second arbre contenant les valeurs des primes. Nous allons ainsi remonter les deux arbres parallèlement. Cet algorithme nécessite de créer deux arbres ce qui n'est pas optimal en terme d'utilisation de mémoire. Nous verrons avec la deuxième implémentation des optimisations permettant d'éviter ce problème. \\
+On peut commencer par reporter les valeurs des calls (resp. puts) dans le nouveau arbre en utilisant la formule $C=\max(S-K,0)$ (resp. $P=\max(K-S,0)$). \\
+La remontée de l'arbre se fait en parcourant parallèlement les deux arbres qui ont la même structure. Nous progressons sur les noeuds les plus bas de l'arbre en parcourant un par un les fils pointés par $down$ jusqu'à s'arrêter sur l'avant-dernière couche, c'est-à-dire lorsque le noeud n'a plus de fils $down$ (chemin représenté en vert sur le schéma). Une fois arriver sur le nœud le plus bas de l'avant-dernière couche, nous pouvons évaluer la valeur des primes en utilisant la \textbf{formule d'évaluation risque-neutre} en effectuant un parcours niveau par niveau en se déplaçant sur le fils $up$ puis sur le noeud père $prevUp$ de sorte à parcourir chaque noeud adjacent sur toute la couche. Il suffit alors d'évaluer chaque couche pour trouver la valeur de la prime finale.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.1\textwidth]{Images/tree_evaluated_leaves.png}
+    \includegraphics[width=0.9\textwidth]{Images/tree_evaluated_leaves.png}
     \caption{Evaluation des Payoffs}
 \end{figure}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 \subsection{Implémentation optimisée}
 
 \subsection{Performances et Tests}
+La première version utilise une structure d'arbre recombinant ce qui permet de réduire le nombre de nœuds nécessaires pour un arbre de profondeur $n$ à $\frac{n(n+1)}{2}$ au lieu de $2^n$, ce qui permet de réduire en nombre polynomial de nœuds mais n'est toujours pas optimal. Cela justifie une seconde implémentation qui sera plus optimisée.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/node_amount_evolution.png}
+    \caption{Evolution du nombre de nœuds en fonction de la profondeur de l'arbre}
+\end{figure}
+Les différents parcours au sein de l'algorithme nécessitent de traverser chaque nœud ce qui entraine une complexité minimale en $O(n^2)$, ce que l'on peut observer sur le second graphique représentant l'évolution du temps d'exécution.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{Images/execution_time.png}
+    \caption{Evolution du temps d'exécution en fonction de la profondeur de l'arbre}
+\end{figure}
 
 \subsection{???}
