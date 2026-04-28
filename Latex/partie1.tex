@@ -16,9 +16,9 @@ Je réalise ce travail en autodidacte pendant mon temps libre pour mon apprentis
 
 La théorie moderne du portefeuille en finance commence en 1952 grâce aux travaux publiés par Harry Markowitz. Cette théorie expose comment les investisseurs peuvent optimiser leurs portefeuilles et analyser le prix d'un actif en fonction de l'état du marché (volatilité, risque, etc.). Il établit ainsi les fondements de la finance quantitative en définissant le portefeuille comme une collection d'actifs financiers. \\
 
-C'est sur ces travaux que trois économistes : \textit{Fischer Black}, \textit{Myron Scholes} et \textit{Robert Merton}, publient en 1973 un article présentant une formule capable de calculer le prix théorique d'une option européenne. Leur travail révolutionnaire a été de montrer que sous les hypothèses de temps continu et de volatilité constante, il est possible de créer un portefeuille qui élimine tout risque. On ne fixe plus le prix selon la peur du risque, mais selon le coût nécessaire pour copier le comportement de l'option. \\
+C'est sur ces travaux que trois économistes : \textit{Fischer Black}, \textit{Myron Scholes} et \textit{Robert Merton}, publièrent en 1973 un article présentant une formule capable de calculer le prix théorique d'une option européenne. Leur travail révolutionnaire a été de montrer que sous les hypothèses de temps continu et de volatilité constante, il est possible de créer un portefeuille qui élimine tout risque. On ne fixe plus le prix selon la peur du risque, mais selon le coût nécessaire pour copier le comportement de l'option. \\
 
-Avec le développement des ordinateurs et la croissance exponentielle de la puissance de calcul, un nouveau modèle apparaît en 1977 : l'approche Monte-Carlo. Ce modèle consiste à simuler aléatoirement des milliers de trajectoires d'évolution de prix possibles. Le prix de l'option est alors la moyenne des gains obtenus sur ces trajectoires. C'est la principale méthode pour les options exotiques (ex : options asiatiques) dont le gain dépend de l'ensemble de la trajectoire. \\
+Avec le développement des ordinateurs et la croissance exponentielle de la puissance de calcul, une nouvelle méthode apparaît en 1977 : l'approche Monte-Carlo. Ce modèle consiste à simuler aléatoirement des milliers de trajectoires d'évolution de prix possibles. Le prix de l'option est alors la moyenne des gains obtenus sur ces trajectoires. C'est la principale méthode pour les options exotiques (ex : options asiatiques) dont le gain dépend de l'ensemble de la trajectoire. \\
 
 Deux ans plus tard, un nouveau trio d'économistes : \textit{John Cox}, \textit{Stephen Ross} et \textit{Mark Rubinstein} proposent une alternative novatrice : le modèle binomial ou modèle de Cox-Ross-Rubinstein. Le temps est alors discrétisé et la trajectoire d'un prix d'actif peut alors être représentée comme un arbre. Les estimations sont alors simplifiées par rapport au modèle de Black-Scholes. On passe d'un problème complexe de dérivées partielles, à de simples calculs d'espérance. De plus, le modèle permet également d'évaluer des options américaines, exerçables à tout moment.
 
@@ -38,7 +38,7 @@ Avant de continuer dans l'étude de la finance quantitative et les algorithmes d
 \underline{\textbf{Produit dérivé :}} Un produit dérivé est un type de contrat financier dont la valeur dépend d'un actif, appelé \textbf{actif sous-jacent}, et dont le prix évolue selon les variations du taux ou du prix du sous-jacent. \\
 On distingue trois grandes familles de produits dérivés : les \textbf{produits à terme ferme}, les \textbf{swaps} et les \textbf{produits conditionnels ou options}.
 
-\underline{\textbf{Produit à terme ferme :}} Cette famille de produits dérivés comprend généralement les \textbf{forwards} et les \textbf{futures}. Un contrat \textbf{forward} est un accord financier entre deux entités, s'accordant sur un prix défini de vente et d'achat à une échéance fixée. Les deux entités doivent honorer leurs parts du contrat même si la situation à  échéance leur est défavorable. \\
+\underline{\textbf{Produit à terme ferme :}} Cette famille de produits dérivés comprend généralement les \textbf{forward} et les \textbf{futures}. Un contrat \textbf{forward} est un accord financier entre deux entités, s'accordant sur un prix de vente et d'achat défini à une échéance fixée. Les deux entités doivent honorer leurs parts du contrat même si la situation à  échéance leur est défavorable. \\
 Il y a quelques différences entre les \textbf{forwards} et les  \textbf{futures} : les contrats forwards sont négociés de gré à gré ("Over the counter" ou OTC), non standardisés et peu négociables alors que les contrats futures sont négociés sur une place boursière, sont standardisés et négociables. 
 
 \underline{\textbf{Swap :}} échange de flux financiers entre deux entités (ex : intérêts à taux variable contre intérêts à taux fixe).
@@ -70,9 +70,11 @@ On utilisera les notations suivantes : \\
 \end{definitionbox}
 \newpage
 On peut représenter les profits à l'échéance : \vspace{0.025\textheight}\\
-
-\begin{tikzpicture}
+\begin{align*}
+    \begin{tikzpicture}
 \begin{axis}[
+    width=0.75\textwidth,
+    height=0.6\textwidth,
     axis lines = middle,
     xlabel = {$S$},
     ylabel = {$R = \begin{cases} R_{\text{\textcolor{red}{Call Acheteur}}} = \max(S-K, 0) - p \\ R_{\text{\textcolor{blue}{Call Vendeur}}} = -\max(S-K, 0) + p \end{cases}$}, 
@@ -92,8 +94,11 @@ On peut représenter les profits à l'échéance : \vspace{0.025\textheight}\\
 \node[above, font=\small, black, yshift=1pt] at (axis cs:2.8, -0.8) {$K + p$};
 \end{axis}
 \end{tikzpicture}
+\\
 \begin{tikzpicture}
 \begin{axis}[
+    width=0.75\textwidth,
+    height=0.6\textwidth,
     axis lines = middle,
     xlabel = {$S$},
     ylabel = {$R = \begin{cases} R_{\text{\textcolor{red}{Put Acheteur}}} = \max(K-S, 0) - p \\ R_{\text{\textcolor{blue}{Put Vendeur}}} = -\max(K-S, 0) + p \end{cases}$}, 
@@ -113,16 +118,17 @@ On peut représenter les profits à l'échéance : \vspace{0.025\textheight}\\
 \node[above, font=\small, black, yshift=1pt] at (axis cs:2.8, -0.8) {$K$};
 \end{axis}
 \end{tikzpicture}
+\end{align*}
 \vspace{0.025\textheight}
 \\
 La notion d'option est centrale à la compréhension de la finance quantitative. Il est nécessaire de développer un exemple chiffré expliquant son fonctionnement :\vspace{0.025\textheight} \\
-Considérons un acheteur industriel de blé B, qui au 1er janvier sait qu'il devra acheter $n = 1000$ tonnes de blé le 30 juin.\\
-Le 1er janvier, la tonne de blé vaut 200\$. B pense que le prix du blé va augmenter. À partir de 250\$, B commence à perdre de l'argent et décide donc d'acheter $1000$ calls de prix d'exercice 250\$, de prime $p=10$\$ par tonne et avec pour échéance le 30 juin. Il y a alors plusieurs scénarios pour le 30 juin :
+Considérons un acheteur industriel de blé B, qui au 1er janvier sait qu'il devra acheter $n = 1\:000$ tonnes de blé le 30 juin.\\
+Le 1er janvier, la tonne de blé vaut 200\$. B pense que le prix du blé va augmenter. À partir de 250\$, B commence à perdre de l'argent et décide donc d'acheter $1\:000$ calls de prix d'exercice 250\$, de prime $p=10$\$ par tonne et avec pour échéance le 30 juin. Il y a alors plusieurs scénarios pour le 30 juin :
 \begin{itemize}
-    \item \textbf{Cas n°1} : le blé s'échange à 150\$ la tonne. Le call est \textbf{OTM}. \\ La prédiction de B ne s'est pas réalisée. Le call n'a plus aucune valeur ce qui entraîne l'abandon de l'option par B qui perd ainsi $n \cdot p = 1000 \cdot10 = 10000$\$. B achète donc son blé sur le marché à 150\$ la tonne, il aura alors dépensé $150+p=160$\$ par tonne. \\
-    \item \textbf{Cas n°2} : le blé s'échange à 225\$ la tonne. Le call est \textbf{OTM}.\\ La prédiction de B s'est en partie réalisée. Le call n'a cependant plus aucune valeur ce qui entraîne l'abandon de l'option par B qui perd ainsi $n \cdot p = 1000 \cdot10 = 10000$\$. B achète donc son blé sur le marché à 225\$ la tonne, il aura alors dépensé $225+p=235$\$ par tonne. \\
-    \item \textbf{Cas n°3} : le blé s'échange à 255\$ la tonne. Le call est \textbf{ITM}. \\ La prédiction de B s'est réalisée. B exerce son call et achète $250$\$ la tonne de blé. À cause de la prime du call, B aura dépensé $250+p=260$\$ au lieu de $265$\$ par tonne avec le prix du marché. Il économise ainsi $5\cdot n=5000$\$. \\
-    \item \textbf{Cas n°4} : le blé s'échange à 300\$ la tonne. Le call est \textbf{ITM}.\\ La prédiction de B s'est réalisée. B exerce son call et achète $250$\$ la tonne de blé. Ainsi, B aura dépensé $250+p=260$\$ par tonne au lieu de $300$\$. Il économise ainsi $(300-(250+p))\cdot n = 40 \cdot 1000 = 40000$\$. \\
+    \item \textbf{Cas n°1} : le blé s'échange à 150\$ la tonne. Le call est \textbf{OTM}. \\ La prédiction de B ne s'est pas réalisée. Le call n'a plus aucune valeur ce qui entraîne l'abandon de l'option par B qui perd ainsi $n \cdot p = 1\:000 \cdot10 = 10\:000$\$. B achète donc son blé sur le marché à 150\$ la tonne, il aura alors dépensé $150+p=160$\$ par tonne. \\
+    \item \textbf{Cas n°2} : le blé s'échange à 225\$ la tonne. Le call est \textbf{OTM}.\\ La prédiction de B s'est en partie réalisée. Le call n'a cependant plus aucune valeur ce qui entraîne l'abandon de l'option par B qui perd ainsi $n \cdot p = 1000 \cdot10 = 10\:000$\$. B achète donc son blé sur le marché à 225\$ la tonne, il aura alors dépensé $225+p=235$\$ par tonne. \\
+    \item \textbf{Cas n°3} : le blé s'échange à 250\$ la tonne. Le call est \textbf{ATM}. \\ La prédiction de B ne s'est pas encore réalisée car le prix n’a pas dépassé le strike. Le prix du marché est strictement égal au Strike. L'exercice du call ne génère aucun profit car il n'a aucune valeur. B peut abandonner l'option et perd ainsi la prime $n \cdot p = 1\:000 \cdot 10 = 10\:000\$$. B achète alors son blé sur le marché au prix courant, il aura dépensé au total $250 + p = 260\$$ par tonne. \\
+    \item \textbf{Cas n°4} : le blé s'échange à 300\$ la tonne. Le call est \textbf{ITM}.\\ La prédiction de B s'est réalisée. B exerce son call et achète $250$\$ la tonne de blé. Ainsi, B aura dépensé $250+p=260$\$ par tonne au lieu de $300$\$. Il économise ainsi $(300-(250+p))\cdot n = 40 \cdot 1000 = 40\:000$\$. \\
 \end{itemize}
 Ainsi, l'objectif de la finance quantitative est d'optimiser les stratégies afin de générer le profit le plus important possible en tenant compte du risque. Il est ainsi utile de développer des outils mathématiques permettant de modéliser l'évolution d'un marché.
 
