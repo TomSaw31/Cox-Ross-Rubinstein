@@ -268,5 +268,14 @@ On calcule le payoff du Call :
 \end{description}
 Pour cette option, le prix juste à exiger est de $10.71 \$$
 \subsection{Options Américaines}
-TODO
-
+Pour l'instant nous nous sommes contentés de modéliser le prix d'options dites européennes, c'est-à-dire qu'elles ne sont exerçables qu'à la date d'échéance.
+La force du modèle binomial réside dans le fait qu'il est facile de l'adapter aux options dites américaines. Une option américaine, contrairement à une option européenne,
+peut être exercée à tout moment et pas obligatoire à échéance. On pourrait aussi étudier les options bermudéennes qui sont exerçables seulement à certaines dates définies avant échéance, 
+mais par simplicité, nous étudierons seulement les options américaines dans cette partie.
+Du fait de sa flexibilité, une option américaine a au moins la même valeur qu'une option européenne. En effet, une option américaine fait tout ce que fait une option
+européenne mais peut être exercée plus tôt, ce qui permet d'éviter une baisse très importante, par exemple pour un call américain. 
+\vspace{0.1cm}
+En supposant qu'un investisseur est un être rationnel, c'est-à-dire qu'il va toujours choisir de prendre la décision pour maximiser sa rentabilité, il devient facile d'adapter notre modèle.
+Il suffit de faire le maximum entre la valeur donnée par le modèle et la valeur d'exercice lors de la remontée de l'arbre. Par conséquent, un call américain et européen auront la même
+valeur alors qu'un put américain sera plus cher qu'un put européen car le possesseur d'un put américain peut exercer son option pour éviter que le prix ne continue de chuter en dessous.
+d'un certain niveau.
