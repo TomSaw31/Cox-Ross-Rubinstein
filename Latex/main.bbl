@@ -1,0 +1,403 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{ActifSousJacent}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
+      }
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labeltitlesource}{title}
+      \field{title}{Actif sous-jacent}
+      \field{urlday}{7}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Actif_sous-jacent
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Actif_sous-jacent
+      \endverb
+    \endentry
+    \entry{BSLimiteCRR}{online}{}{}
+      \list{organization}{1}{%
+        {Université Côte d'Azur}%
+      }
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labeltitlesource}{title}
+      \field{title}{Black-Scholes comme limite de CRR}
+      \field{urlday}{22}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://math.univ-cotedazur.fr/u/diener/L3MASS08/chap8.pdf
+      \endverb
+      \verb{url}
+      \verb https://math.univ-cotedazur.fr/u/diener/L3MASS08/chap8.pdf
+      \endverb
+    \endentry
+    \entry{OptionPricingASimplifiedApproach}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=0d88b4a591c5402d328fe670bc33bf1b}{%
+           family={Cox},
+           familyi={C\bibinitperiod},
+           given={John\bibnamedelima C.},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=98b2227c5a8dba76158ffb9a20138b89}{%
+           family={Ross},
+           familyi={R\bibinitperiod},
+           given={Stephen\bibnamedelima A.},
+           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=bbe9515d147f6af78ee48885af3e91ad}{%
+           family={Rubinstein},
+           familyi={R\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{ff637c6bea3a121fae297b7931e23274}
+      \strng{fullhash}{ff637c6bea3a121fae297b7931e23274}
+      \strng{fullhashraw}{ff637c6bea3a121fae297b7931e23274}
+      \strng{bibnamehash}{ff637c6bea3a121fae297b7931e23274}
+      \strng{authorbibnamehash}{ff637c6bea3a121fae297b7931e23274}
+      \strng{authornamehash}{ff637c6bea3a121fae297b7931e23274}
+      \strng{authorfullhash}{ff637c6bea3a121fae297b7931e23274}
+      \strng{authorfullhashraw}{ff637c6bea3a121fae297b7931e23274}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Financial Economics}
+      \field{title}{Option Pricing: A Simplified Approach}
+      \field{urlday}{13}
+      \field{urlmonth}{2}
+      \field{urlyear}{2026}
+      \field{year}{1979}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/emintham/Papers/blob/master/Cox%2CRoss%2CRubinstein-%20Option%20Pricing:%20A%20Simplified%20Approach.pdf
+      \endverb
+      \verb{url}
+      \verb https://github.com/emintham/Papers/blob/master/Cox%2CRoss%2CRubinstein-%20Option%20Pricing:%20A%20Simplified%20Approach.pdf
+      \endverb
+    \endentry
+    \entry{TDBlackScholes}{online}{}{}
+      \list{organization}{1}{%
+        {LPTMC}%
+      }
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labeltitlesource}{title}
+      \field{title}{Du mouvement brownien à la modélisation financière TD n°4}
+      \field{urlday}{22}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.lptmc.jussieu.fr/files/TD4_Brown(5).pdf
+      \endverb
+      \verb{url}
+      \verb https://www.lptmc.jussieu.fr/files/TD4_Brown(5).pdf
+      \endverb
+    \endentry
+    \entry{Filtration}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
+      }
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labeltitlesource}{title}
+      \field{title}{Filtration (Probabilités)}
+      \field{urlday}{13}
+      \field{urlmonth}{2}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Filtration_(probabilit%C3%A9s)
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Filtration_(probabilit%C3%A9s)
+      \endverb
+    \endentry
+    \entry{Forward}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
+      }
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labeltitlesource}{title}
+      \field{title}{Forward}
+      \field{urlday}{8}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Forward_(finance)
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Forward_(finance)
+      \endverb
+    \endentry
+    \entry{ModeleDeBlackScholes}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
+      }
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labeltitlesource}{title}
+      \field{title}{Modèle de Black-Scholes}
+      \field{urlday}{21}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Mod%C3%A8le_Black-Scholes
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Mod%C3%A8le_Black-Scholes
+      \endverb
+    \endentry
+    \entry{MouvementBrownien}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
+      }
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labeltitlesource}{title}
+      \field{title}{Mouvement Brownien}
+      \field{urlday}{21}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Mouvement_brownien
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Mouvement_brownien
+      \endverb
+    \endentry
+    \entry{Option}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
+      }
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labeltitlesource}{title}
+      \field{title}{Option}
+      \field{urlday}{7}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Option
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Option
+      \endverb
+    \endentry
+    \entry{Portefeuille}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
+      }
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labeltitlesource}{title}
+      \field{title}{Portefeuille}
+      \field{urlday}{13}
+      \field{urlmonth}{2}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Portefeuille_(finance)
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Portefeuille_(finance)
+      \endverb
+    \endentry
+    \entry{IntroductionALevaluationDoptions}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=ec662146f84b261c757aa4abc8da7b46}{%
+           family={Printems},
+           familyi={P\bibinitperiod},
+           given={Jacques},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Université Paris-Est Marne-la-Vallée}%
+      }
+      \strng{namehash}{ec662146f84b261c757aa4abc8da7b46}
+      \strng{fullhash}{ec662146f84b261c757aa4abc8da7b46}
+      \strng{fullhashraw}{ec662146f84b261c757aa4abc8da7b46}
+      \strng{bibnamehash}{ec662146f84b261c757aa4abc8da7b46}
+      \strng{authorbibnamehash}{ec662146f84b261c757aa4abc8da7b46}
+      \strng{authornamehash}{ec662146f84b261c757aa4abc8da7b46}
+      \strng{authorfullhash}{ec662146f84b261c757aa4abc8da7b46}
+      \strng{authorfullhashraw}{ec662146f84b261c757aa4abc8da7b46}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Probabilités III – Introduction à l’évaluation d’options}
+      \field{urlday}{13}
+      \field{urlmonth}{2}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://perso.math.u-pem.fr/printems.jacques/master_gp/proba_III.pdf
+      \endverb
+      \verb{url}
+      \verb https://perso.math.u-pem.fr/printems.jacques/master_gp/proba_III.pdf
+      \endverb
+    \endentry
+    \entry{ProcessusGaussien}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
+      }
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labeltitlesource}{title}
+      \field{title}{Processus gaussien}
+      \field{urlday}{21}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Processus_gaussien
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Processus_gaussien
+      \endverb
+    \endentry
+    \entry{ProduitDerive}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
+      }
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labeltitlesource}{title}
+      \field{title}{Produit dérivé Financier}
+      \field{urlday}{7}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Produit_d%C3%A9riv%C3%A9_financier
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Produit_d%C3%A9riv%C3%A9_financier
+      \endverb
+    \endentry
+    \entry{ProduitsDerives}{online}{}{}
+      \list{organization}{1}{%
+        {Société Générale Wholesale Banking}%
+      }
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labeltitlesource}{title}
+      \field{title}{Produits dérivés}
+      \field{urlday}{7}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://wholesale.banking.societegenerale.com/fr/lexique-financier/produits-derives-derivatives/
+      \endverb
+      \verb{url}
+      \verb https://wholesale.banking.societegenerale.com/fr/lexique-financier/produits-derives-derivatives/
+      \endverb
+    \endentry
+    \entry{IntegraleDIto}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=c59fdc431bfad34fdc4d38cdb2c41055}{%
+           family={{Quant Catalysts}},
+           familyi={Q\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {YouTube}%
+      }
+      \strng{namehash}{c59fdc431bfad34fdc4d38cdb2c41055}
+      \strng{fullhash}{c59fdc431bfad34fdc4d38cdb2c41055}
+      \strng{fullhashraw}{c59fdc431bfad34fdc4d38cdb2c41055}
+      \strng{bibnamehash}{c59fdc431bfad34fdc4d38cdb2c41055}
+      \strng{authorbibnamehash}{c59fdc431bfad34fdc4d38cdb2c41055}
+      \strng{authornamehash}{c59fdc431bfad34fdc4d38cdb2c41055}
+      \strng{authorfullhash}{c59fdc431bfad34fdc4d38cdb2c41055}
+      \strng{authorfullhashraw}{c59fdc431bfad34fdc4d38cdb2c41055}
+      \field{sortinit}{Q}
+      \field{sortinithash}{ce69a400a872ddd02ee7fdb3b38c6abd}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Unlocking Stochastic Calculus: Episode 5 of 6 – Mastering Ito’s Integral!}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.youtube.com/watch?v=Nfo3_wIWpd4
+      \endverb
+      \verb{url}
+      \verb https://www.youtube.com/watch?v=Nfo3_wIWpd4
+      \endverb
+    \endentry
+    \entry{SelfFinancingPortfolio}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
+      }
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeltitlesource}{title}
+      \field{title}{Self-financing portfolio}
+      \field{urlday}{13}
+      \field{urlmonth}{2}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Self-financing_portfolio
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Self-financing_portfolio
+      \endverb
+    \endentry
+    \entry{Swap}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
+      }
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeltitlesource}{title}
+      \field{title}{Swap}
+      \field{urlday}{8}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Swap_(finance)
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Swap_(finance)
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

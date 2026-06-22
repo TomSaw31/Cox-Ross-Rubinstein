@@ -1,86 +1,87 @@
 \documentclass{article}
 
-\usepackage{parskip}
-\usepackage{graphicx} % Required for inserting images
-\usepackage{tikz} %tracer graphes
-\usepackage{xcolor} %couleurs
-\usepackage{mathrsfs} % symboles stylés
-\usepackage{amsmath} %vecteurs (entre autres)
-\usepackage{stmaryrd} % intervalle d'entiers
-\usepackage{amssymb} % Nécessaire pour \mathbb, les symboles des ensembles
-\usepackage{ulem} %barrer texte 
-\usepackage{cancel} %barrer texte
-\usepackage{amsthm,amsmath} %carré stylé à la fin démo
-\usepackage{mdframed} % Pour les encadrements
-\usepackage{hyperref} % hyperliens pour référencer les sections
-\usepackage{pgfplots} % Package pour tracer des graphiques
-\usepackage{float} % Pour placer les graphes
-\usepackage{mathtools}
-\usepackage{hyperref}
-\usepackage{url}
-\usepackage{needspace}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[french]{babel}
-\usepackage[margin=3.5cm]{geometry}
-\pgfplotsset{compat=1.18} % Version compatible
-\usepgfplotslibrary{polar} % coordonnées polaires
-\usepackage[french]{babel} % pour les guillemets
+
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{tikz} 
+\usepackage{xcolor} 
+\usepackage{mathrsfs}
 \usepackage{stmaryrd}
-\usepackage[utf8]{inputenc}  % Permet de taper les accents directement
-\usepackage[T1]{fontenc}      % Encode les polices pour que le copier-coller fonctionne
-\usepackage{lmodern}          % Utilise une police vectorielle de qualité
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage{amsthm,amsmath}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{needspace}
 \usepackage{listings}
+
+\usepackage[normalem]{ulem} 
+
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=black,
+}
+
+\usepackage[
+    backend=biber,
+    style=numeric,
+    sorting=nyt
+]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage[margin=3.5cm]{geometry}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{polar}
+
 \frenchbsetup{StandardItemLabels=true}
-\renewcommand{\proofname}{Démonstration} % Changer "Proof" en "Démonstration"
+\renewcommand{\proofname}{Démonstration}
 
-\setcounter{tocdepth}{2} % N'affiche que les section et subsection
-\renewcommand{\contentsname}{Table des matières} % Titre personnalisé
-
-% Style de l'encadré pour les définitions
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{Table des matières}
 \newmdenv[
     linewidth=1pt,
     roundcorner=5pt,
     linecolor=black,
     frametitle={Définition}
 ]{definitionbox}
-
-% Style de l'encadré pour les théorèmes
 \newmdenv[
     linewidth=1pt,
     roundcorner=5pt,
     linecolor=black,
     frametitle={Théorème}
 ]{theorembox}
-
-% Style de l'encadré pour les propriétés
 \newmdenv[
     linewidth=1pt,
     roundcorner=5pt,
     linecolor=black,
     frametitle={Propriété}
 ]{propertybox}
-
-% Commande pour la remarque
 \newcommand{\remarque}[1]{%
     \textbf{\textcolor{black}{Remarque.}} #1%
 }
-
-% Commande pour la notation
 \newcommand{\notation}[1]{%
     \textbf{\textcolor{black}{Notation.}} #1%
 }
 
-% Commande pour les corollaires
 \newcommand{\corollaire}[1]{%
     \textbf{\textcolor{black}{Corollaire.}} #1%
 }
-
-% Commande pour la norme
 \newcommand{\norm}[1]{\left\|#1\right\|}
-
-% Commande pour le produit scalaire
 \newcommand{\dotproduct}[2]{\langle #1, #2 \rangle}
 
-\title{}
+\title{Étude du modèle de Cox-Ross-Rubinstein pour la valorisation des options}
+\author{Thomas Saurel}
+\date{Janvier 2026}
 
 \begin{document}
 
@@ -100,14 +101,14 @@
     \vfill
     
     {\large Commencé en Janvier 2026 \par}
-    {\small Dernière mise à jour : \today
-    \par}
+    {\small Dernière mise à jour : \today \par}
     
 \end{titlepage}
 
 \newpage
 \tableofcontents
 \newpage
+
 \input{partie1}
 \newpage
 \input{partie2}
@@ -124,8 +125,8 @@
 \newpage
 \input{partie8}
 \newpage
-\input{references}
-\newpage
 \input{annexe}
-\end{document}
+\newpage
+\printbibliography
 
+\end{document}

@@ -138,7 +138,8 @@ En remplaçant,
     &= \frac{1}{R}\bigg(\frac{R-d}{u-d}C_u + \frac{u-R}{u-d}C_d\bigg) \\
     &= \frac{1}{R}(pC_u + (1-p)C_d), \text{ avec } p=\frac{R-d}{u-d} \text{ et } 1-p = \frac{u-R}{u-d} \\
 \end{align*}
-\remarque On a bien $1 = p + (1 - p) = \dfrac{R-d+u-R}{u-d} = 1$.\\ On a aussi nécessairement $d<R<u$.
+\cite{IntroductionALevaluationDoptions} \\
+\remarque On a bien $1 = p + (1 - p) = \dfrac{R-d+u-R}{u-d} = 1$.\\ On a aussi nécessairement $d<R<u$. 
 En effet, 
 \begin{description}
     \item[Si $R \leq d < u$ :] On emprunte au taux sans risque 
@@ -274,8 +275,13 @@ peut être exercée à tout moment et pas obligatoire à échéance. On pourrait
 mais par simplicité, nous étudierons seulement les options américaines dans cette partie.
 Du fait de sa flexibilité, une option américaine a au moins la même valeur qu'une option européenne. En effet, une option américaine fait tout ce que fait une option
 européenne mais peut être exercée plus tôt, ce qui permet d'éviter une baisse très importante, par exemple pour un call américain. 
-\vspace{0.1cm}
+\vspace{0.1cm} \\
 En supposant qu'un investisseur est un être rationnel, c'est-à-dire qu'il va toujours choisir de prendre la décision pour maximiser sa rentabilité, il devient facile d'adapter notre modèle.
 Il suffit de faire le maximum entre la valeur donnée par le modèle et la valeur d'exercice lors de la remontée de l'arbre. Par conséquent, un call américain et européen auront la même
 valeur alors qu'un put américain sera plus cher qu'un put européen car le possesseur d'un put américain peut exercer son option pour éviter que le prix ne continue de chuter en dessous.
-d'un certain niveau.
+d'un certain niveau.\\
+
+Formule Européenne : On actualise juste l'espérance de la période suivante.
+$$C = \frac{1}{R}[ p C_u + (1-p) C_d]$$
+Formule Américaine : À chaque nœud, on compare cette valeur actualisée avec le gain d'un exercice immédiat et on prend le maximum des deux.
+$$C = \max ( \text{Valeur Intrinsèque} \, , \, \frac{1}{R} [ p C_u + (1-p) C_d ] )$$

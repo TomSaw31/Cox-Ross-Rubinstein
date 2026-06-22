@@ -1,9 +1,11 @@
 \section{Introduction}
+\vspace{0.5cm}
 \begin{center}
     \textit{"A good portfolio is more than a long list of \\
     good stocks and bonds. It is a balanced whole."}\\
     -- \textbf{H. Markowitz} --
 \end{center}
+\vspace{0.5cm}
     
 \subsection{Motivation}
 Ce document a pour but de servir d'introduction à la finance quantitative à travers le développement d'algorithmes d'analyse de risques de marché. Il se concentre sur l'étude du modèle binomial, dit de Cox-Ross-Rubinstein. \\
@@ -16,11 +18,13 @@ Je réalise ce travail en autodidacte pendant mon temps libre pour mon apprentis
 
 La théorie moderne du portefeuille en finance commence en 1952 grâce aux travaux publiés par Harry Markowitz. Cette théorie expose comment les investisseurs peuvent optimiser leurs portefeuilles et analyser le prix d'un actif en fonction de l'état du marché (volatilité, risque, etc.). Il établit ainsi les fondements de la finance quantitative en définissant le portefeuille comme une collection d'actifs financiers. \\
 
-C'est sur ces travaux que trois économistes : \textit{Fischer Black}, \textit{Myron Scholes} et \textit{Robert Merton}, publièrent en 1973 un article présentant une formule capable de calculer le prix théorique d'une option européenne. Leur travail révolutionnaire a été de montrer que sous les hypothèses de temps continu et de volatilité constante, il est possible de créer un portefeuille qui élimine tout risque. On ne fixe plus le prix selon la peur du risque, mais selon le coût nécessaire pour copier le comportement de l'option. \\
+C'est sur ces travaux que trois économistes : \textit{Fischer Black}, \textit{Myron Scholes} et \textit{Robert Merton}, publièrent en 1973 un article présentant une formule capable de calculer le prix théorique d'une option européenne. Leur travail révolutionnaire a été de montrer que sous les hypothèses de temps continu et de volatilité constante, il est possible de créer un portefeuille qui élimine tout risque. On ne fixe plus le prix selon la peur du risque, mais selon le coût nécessaire pour copier le comportement de l'option. \cite{Option} \\
+
+\pagebreak
 
 Avec le développement des ordinateurs et la croissance exponentielle de la puissance de calcul, une nouvelle méthode apparaît en 1977 : l'approche Monte-Carlo. Ce modèle consiste à simuler aléatoirement des milliers de trajectoires d'évolution de prix possibles. Le prix de l'option est alors la moyenne des gains obtenus sur ces trajectoires. C'est la principale méthode pour les options exotiques (ex : options asiatiques) dont le gain dépend de l'ensemble de la trajectoire. \\
 
-Deux ans plus tard, un nouveau trio d'économistes : \textit{John Cox}, \textit{Stephen Ross} et \textit{Mark Rubinstein} proposent une alternative novatrice : le modèle binomial ou modèle de Cox-Ross-Rubinstein. Le temps est alors discrétisé et la trajectoire d'un prix d'actif peut alors être représentée comme un arbre. Les estimations sont alors simplifiées par rapport au modèle de Black-Scholes. On passe d'un problème complexe de dérivées partielles, à de simples calculs d'espérance. De plus, le modèle permet également d'évaluer des options américaines, exerçables à tout moment.
+Deux ans plus tard, un nouveau trio d'économistes : \textit{John Cox}, \textit{Stephen Ross} et \textit{Mark Rubinstein} proposent une alternative novatrice : le modèle binomial ou modèle de Cox-Ross-Rubinstein. Le temps est alors discrétisé et la trajectoire d'un prix d'actif peut alors être représentée comme un arbre. Les estimations sont alors simplifiées par rapport au modèle de Black-Scholes. On passe d'un problème complexe de dérivées partielles, à de simples calculs d'espérance. De plus, le modèle permet également d'évaluer des options américaines, exerçables à tout moment. \cite{OptionPricingASimplifiedApproach}
 
 D'autres modèles plus exotiques sont ensuite apparus (ex : arbre trinomial). Nous nous contenterons par la suite du modèle binomial et de ses comparaisons aux modèles de Black-Scholes et de Monte-Carlo pour avoir respectivement un modèle d'approximation, un modèle analytique et un modèle basé sur des simulations. Le modèle de Cox-Ross-Rubinstein est plus intuitif et simple à implémenter algorithmiquement que celui de Black-Scholes. \\
 
@@ -32,18 +36,20 @@ Nous commencerons par poser le vocabulaire de base et présenter les premiers r�
 
 Enfin, nous confronterons les résultats obtenus à ceux des modèles de Black-Scholes et de Monte-Carlo. Cette analyse comparative nous permettra de mettre en évidence la vitesse de convergence du modèle binomial et d'identifier ses limites face aux données réelles, ouvrant ainsi la voie à des extensions possibles vers des structures d'arbres plus sophistiquées. \\
 
+\pagebreak
+
 \subsection{Vocabulaire}
 Avant de continuer dans l'étude de la finance quantitative et les algorithmes derrière le modèle de Cox-Ross-Rubinstein, il est essentiel d'établir un vocabulaire de base qui sera nécessaire à la bonne compréhension de la suite du document.\\
 
 \underline{\textbf{Produit dérivé :}} Un produit dérivé est un type de contrat financier dont la valeur dépend d'un actif, appelé \textbf{actif sous-jacent}, et dont le prix évolue selon les variations du taux ou du prix du sous-jacent. \\
-On distingue trois grandes familles de produits dérivés : les \textbf{produits à terme ferme}, les \textbf{swaps} et les \textbf{produits conditionnels ou options}.
+On distingue trois grandes familles de produits dérivés : les \textbf{produits à terme ferme}, les \textbf{swaps} et les \textbf{produits conditionnels ou options}. \cite{ActifSousJacent} \cite{ProduitDerive} \cite{ProduitsDerives}
 
 \underline{\textbf{Produit à terme ferme :}} Cette famille de produits dérivés comprend généralement les \textbf{forward} et les \textbf{futures}. Un contrat \textbf{forward} est un accord financier entre deux entités, s'accordant sur un prix de vente et d'achat défini à une échéance fixée. Les deux entités doivent honorer leurs parts du contrat même si la situation à  échéance leur est défavorable. \\
-Il y a quelques différences entre les \textbf{forwards} et les  \textbf{futures} : les contrats forwards sont négociés de gré à gré ("Over the counter" ou OTC), non standardisés et peu négociables alors que les contrats futures sont négociés sur une place boursière, sont standardisés et négociables. 
+Il y a quelques différences entre les \textbf{forwards} et les  \textbf{futures} : les contrats forwards sont négociés de gré à gré ("Over the counter" ou OTC), non standardisés et peu négociables alors que les contrats futures sont négociés sur une place boursière, sont standardisés et négociables. \cite{Forward} \cite{Swap}
 
 \underline{\textbf{Swap :}} échange de flux financiers entre deux entités (ex : intérêts à taux variable contre intérêts à taux fixe).
 
-\underline{\textbf{Option :}} établit un droit entre un acheteur et un vendeur d'acheter (\textbf{Call}) ou vendre (\textbf{Put}) un actif sous-jacent à un prix fixé à l'avance (\textbf{Strike}), à une échéance fixée. Ce produit dérivé est un droit et non une obligation. La symétrie \textbf{Call/Put} permet de choisir d'anticiper soit une évolution favorable des prix du sous-jacent (Call) soit une évolution défavorable (Put). On distingue de nombreux types d'options, notamment les options \textbf{européennes} exerçables seulement à l'échéance ou les options \textbf{américaines} exerçables à tout moment avant échéance qui sont les formes les plus simples, appelées options \textbf{vanilles}.
+\underline{\textbf{Option :}} établit un droit entre un acheteur et un vendeur d'acheter (\textbf{Call}) ou vendre (\textbf{Put}) un actif sous-jacent à un prix fixé à l'avance (\textbf{Strike}), à une échéance fixée. Ce produit dérivé est un droit et non une obligation. La symétrie \textbf{Call/Put} permet de choisir d'anticiper soit une évolution favorable des prix du sous-jacent (Call) soit une évolution défavorable (Put). On distingue de nombreux types d'options, notamment les options \textbf{européennes} exerçables seulement à l'échéance ou les options \textbf{américaines} exerçables à tout moment avant échéance qui sont les formes les plus simples, appelées options \textbf{vanilles} \cite{Option}.
 Le \textbf{Payoff} désigne le résultat à l'échéance. \\
 On dira qu'une option est :
 \begin{itemize}
@@ -68,7 +74,7 @@ On utilisera les notations suivantes : \\
 \end{center}
 
 \end{definitionbox}
-\newpage
+
 On peut représenter les profits à l'échéance : \vspace{0.025\textheight}\\
 \begin{align*}
     \begin{tikzpicture}
@@ -119,8 +125,8 @@ On peut représenter les profits à l'échéance : \vspace{0.025\textheight}\\
 \end{axis}
 \end{tikzpicture}
 \end{align*}
-\vspace{0.025\textheight}
-\\
+
+\newpage
 La notion d'option est centrale à la compréhension de la finance quantitative. Il est nécessaire de développer un exemple chiffré expliquant son fonctionnement :\vspace{0.025\textheight} \\
 Considérons un acheteur industriel de blé B, qui au 1er janvier sait qu'il devra acheter $n = 1\:000$ tonnes de blé le 30 juin.\\
 Le 1er janvier, la tonne de blé vaut 200\$. B pense que le prix du blé va augmenter. À partir de 250\$, B commence à perdre de l'argent et décide donc d'acheter $1\:000$ calls de prix d'exercice 250\$, de prime $p=10$\$ par tonne et avec pour échéance le 30 juin. Il y a alors plusieurs scénarios pour le 30 juin :

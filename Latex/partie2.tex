@@ -13,6 +13,7 @@ On introduit la notion de $\textbf{filtration}$ de $\mathcal{F}$ qui est une fam
 \begin{align*}
     \forall (t_\alpha,t_\beta) \in I \times I, \qquad t_\alpha \le t_\beta \implies \mathcal{F}_{t_\alpha} \subseteq \mathcal{F}_{t_\beta} \subseteq \mathcal{F}
 \end{align*}
+\cite{Filtration}
 On définit alors l'\textbf{espace probabilisé filtré} $(\Omega, \mathcal{F}, \mathbb{F}, \mathbb{P})$ \\ \\
 \remarque Se placer dans cet espace permet de modéliser les évolutions d'un marché financier. En effet, chaque tribu de la filtration permet de représenter les informations connues à l'instant $t$. Ainsi un observateur se trouvant à l'instant $t_{\alpha}$ a accès à toutes les informations issues d'un temps précédent $t_\beta$ tant que $t_\beta \leq t_{\alpha}$. Les variables aléatoires devront être $\mathcal{F}_t$-mesurables afin de pouvoir être observées sans anticipation. \\ \\
 On peut maintenant définir les variables aléatoires servant à modéliser les processus financiers du modèle.
@@ -36,9 +37,10 @@ On note $B_t = (1+r)^t$ la valeur d'une unité investie dans l'actif sans risque
 
 On définit un \textbf{portefeuille discret $\Pi_t$} au temps $t$ par la valeur :
 \begin{align*}
-    \Pi_t = \Delta_tS_t+\beta_tB_t
+    \Pi_t = \Delta_tS_t+\beta_tB_t 
 \end{align*}
-Ainsi, $\Pi_t$ se décompose en deux parties : $\Delta_tS_t$ qui représente la partie risquée du portefeuille et $B_t$ qui représente la valeur du compte au taux sans risque. \\
+Ainsi, $\Pi_t$ se décompose en deux parties : $\Delta_tS_t$ qui représente la partie risquée du portefeuille et $B_t$ qui représente la valeur du compte au taux sans risque. 
+\cite{Portefeuille} \\
 
 \notation 
 Bien que le modèle évolue en temps discret, nous distinguerons par la suite, au temps $t+1$, deux états infinitésimaux: l'instant $t+1^-$ correspondant à l'observation du nouveau prix de l'actif avec l'ancienne stratégie, et l'instant $t+1^+$ correspondant à la mise en place de la nouvelle. \\
@@ -53,7 +55,7 @@ Afin de pouvoir utiliser ce portefeuille, nous imposerons que $\Pi^+_{t+1} = \Pi
     \begin{align*}
         \forall t \in \mathbb{N},  \quad \Pi_{t+1} = \Delta_t S_{t+1} + \beta_tB_{t+1} = \Delta_{t+1}S_{t+1} + \beta_{t+1}B_{t+1}
     \end{align*}
-    où $r > -1$ est le taux sans risque.
+    où $r > -1$ est le taux sans risque. \cite{SelfFinancingPortfolio}
 \end{definitionbox}
 \vspace{0.025\textheight}
 La propriété d'autofinancement permet donc d'assurer que l'évolution de $\Pi_t$ est entièrement déterminée par la stratégie $(\Delta_t,\beta_t)$ et la dynamique de $S_t$ et $B_t$ sans modifications externes. On considérera par la suite que tous les portefeuilles sont autofinancés.
@@ -127,6 +129,7 @@ On définit le \textbf{prix actualisé} de l'actif risqué par :
 \[
 \tilde{S}_t \coloneq \frac{S_t}{B_t}.
 \]
+\cite{IntroductionALevaluationDoptions}
 
 \remarque On voit bien ici que le prix est exprimé en fonction de $B_t$ qui devient ainsi le numéraire. \\
 D'après le premier théorème fondamental de l'évaluation des actifs, si le marché est \textbf{sans arbitrage}, il existe au moins une mesure $\mathbb{Q}$ équivalente à $\mathbb{P}$ telle que :

@@ -3,7 +3,7 @@
 \contentsline {subsection}{\numberline {1.1}Motivation}{2}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Histoire de la valorisation des options}{2}{subsection.1.2}%
 \contentsline {subsection}{\numberline {1.3}Objectifs}{3}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Vocabulaire}{3}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.4}Vocabulaire}{4}{subsection.1.4}%
 \contentsline {section}{\numberline {2}Cadre théorique et principe de non-arbitrage}{7}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Espace probabilisé filtré}{7}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Portefeuille d'autofinancement}{8}{subsection.2.2}%
@@ -21,7 +21,7 @@
 \contentsline {section}{\numberline {5}Convergence vers le modèle de Black-Scholes}{23}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Mouvement Brownien / Processus de Wiener}{23}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Intégration d'Itō}{25}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Equation de Black-Scholes}{27}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.3}Equation de Black-Scholes}{28}{subsection.5.3}%
 \contentsline {subsection}{\numberline {5.4}Convergence}{28}{subsection.5.4}%
 \contentsline {section}{\numberline {6}Evaluations des indicateurs de risque}{29}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Delta $(\Delta )$}{29}{subsection.6.1}%

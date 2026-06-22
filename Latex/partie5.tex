@@ -3,7 +3,7 @@
 Avant de continuer à étudier le modèle binomial, il est nécessaire de comprendre que le modèle de Cox-Ross-Rubinstein est une discrétisation d'un autre modèle que nous allons voir dans cette section : le modèle de \textbf{Black-Scholes}.
 
 \subsection{Mouvement Brownien / Processus de Wiener}
-Commençons par introduire un phénomène mathématique fort utile : le \textbf{mouvement brownien}, introduit en 1827 par le botaniste \textbf{Robert Brown}. Le mouvement brownien décrit le mouvement aléatoire d'une particule dans un fluide, subissant des chocs avec les autres particules du milieu. Entre deux chocs, la particule se déplace avec un mouvement rectiligne uniforme. La nature de ce procédé chaotique peut être modélisé à l'aide d'un processus stochastique appelé \textbf{Processus de Wiener}, utilisable pour la représentation d'une évolution de marché incertain. En 1933, le mathématicien Paul Lévy a démontré que le mouvement brownien est une martingale continue ce qui nous permettra d'utiliser les résultats évoqués dans les sections précédentes. On notera $W_t : \mathbb{\mathbb{R}^+} \to \mathbb{R}^d$ le processus de Wiener associé à un mouvement brownien à l'instant $t \in I$ dans un espace de dimension $d$. \\
+Commençons par introduire un phénomène mathématique fort utile : le \textbf{mouvement brownien}, introduit en 1827 par le botaniste \textbf{Robert Brown}. Le mouvement brownien décrit le mouvement aléatoire d'une particule dans un fluide, subissant des chocs avec les autres particules du milieu. Entre deux chocs, la particule se déplace avec un mouvement rectiligne uniforme. La nature de ce procédé chaotique peut être modélisé à l'aide d'un processus stochastique appelé \textbf{Processus de Wiener}, utilisable pour la représentation d'une évolution de marché incertain. En 1933, le mathématicien Paul Lévy a démontré que le mouvement brownien est une martingale continue ce qui nous permettra d'utiliser les résultats évoqués dans les sections précédentes. On notera $W_t : \mathbb{\mathbb{R}^+} \to \mathbb{R}^d$ le processus de Wiener associé à un mouvement brownien à l'instant $t \in I$ dans un espace de dimension $d$. \cite{MouvementBrownien}\\
 \vspace{0.02\textheight}
 \begin{definitionbox}[frametitle = {Processus de Wiener}]
     On dit qu'une famille de variables aléatoires réelles $(W_t)_{t \in \mathbb{R}^+}$ est un processus de Wiener si :
@@ -35,7 +35,8 @@ On peut également montrer que $W_t$ est un cas particulier de processus stochas
 \begin{align*}
     \forall A \subset I, \ \forall (a_t)_{t\in A} \subset \mathbb{R}, \ \ \sum_{s \in A} a_s W_s \sim \mathcal{N}(\mu, \sigma^2) 
 \end{align*}
-
+\cite{ProcessusGaussien}
+\pagebreak
 Considérons une option sur un marché. A chaque instant $t$ son prix augmente ou baisse. On peut ainsi modéliser l'évolution du prix d'une option par une marche aléatoire. \\
 D'après le \textbf{théorème de Donsker}, cette marche aléatoire converge en loi vers un mouvement brownien standard $W = (W_t, t \geq 0)$. Ainsi, étudier le caractère aléatoire et chaotique de l'évolution du prix d'une option revient à étudier un mouvement brownien.\\
 
@@ -52,7 +53,9 @@ Comme vu précédemment,  Il n'existe donc pas de dérivée au sens classique du
 \\
 
 
-On considère un processus de Wiener $W_t$ sur un intervalle $I = [0; T]$ avec $T \in \mathbb{R^+}$ et une subdivision régulière de cet intervalle $0=t_0<t_1<...<t_n=T$, avec $n \in \mathbb{N}$. De manière analogue à l'intégration de Riemann, on peut approcher la valeur de l'intégrale à l'aide de sommes partielles de rectangles de longueur $t_{i+1}-t_i$ et de hauteur $W_t$. Le côté gauche du rectangle doit coïncider avec la valeur à gauche de l'intégrande car le mouvement brownien est une martingale et ne doit pas tenir compte du futur (si l'on prenait le milieu de chaque segment de subdivision, on obtiendrait une intégrale de Stratonovich). Ainsi l'intégrale d'Itō est définie comme la limite en moyenne quadratique de la somme de Riemann évaluée en borne gauche :
+On considère un processus de Wiener $W_t$ sur un intervalle $I = [0; T]$ avec $T \in \mathbb{R^+}$ et une subdivision régulière de cet intervalle $0=t_0<t_1<...<t_n=T$, avec $n \in \mathbb{N}$. De manière analogue à l'intégration de Riemann, on peut approcher la valeur de l'intégrale à l'aide de sommes partielles de rectangles de longueur $t_{i+1}-t_i$ et de hauteur $W_t$. Le côté gauche du rectangle doit coïncider avec la valeur à gauche de l'intégrande car le mouvement brownien est une martingale et ne doit pas tenir compte du futur (si l'on prenait le milieu de chaque segment de subdivision, on obtiendrait une intégrale de Stratonovich). \\
+\newpage
+Ainsi l'intégrale d'Itō est définie comme la limite en moyenne quadratique de la somme de Riemann évaluée en borne gauche :
 
 \begin{align*}
     I(T) = \int_0^T W_tdW_t &= \lim_{n \to \infty} \sum_{i=0}^{n-1} W_{t_i}(W_{t_{i+1}}-W_{t_i})\\
@@ -69,7 +72,7 @@ Ainsi, $I(t)$ dépend de deux membres, le premier représentant la position fina
 Terminons notre introduction de ce type d'intégration avec un lemme appelé : \textbf{Lemme d'Itō}.
 Il faut ainsi définir le \textbf{processus d'Itō :}
 \
-$$I_t = \int_0^t \mu_sds+\int_0^t\sigma_sdW_s \quad\text{ qui est équivalent à } \quad dI_t=\mu_tdt+\sigma_tdW_t$$
+$$I_t = \int_0^t \mu_sds+\int_0^t\sigma_sdW_s \quad\text{ qui est équivalent à } \quad dI_t=\mu_tdt+\sigma_tdW_t$$ \cite{IntegraleDIto}
 avec $W_t$ un processus de Wiener, $\mu\in L^1$ et $\sigma\in L^2$ des processus déterministes. \\
 \remarque Le processus de Wiener a une espérance nulle donc $\mathbb{E}[I_t]=\int_0^t\mu_sds$ et a une variance non nulle donc $Var[X_t]=\int_0^t\sigma^2dW_s$ \\
 
@@ -78,7 +81,9 @@ avec $W_t$ un processus de Wiener, $\mu\in L^1$ et $\sigma\in L^2$ des processus
     $$d(f(I_t,t))=\dfrac{\partial f}{\partial t}(I_t,t)dt+\dfrac{\partial f}{\partial x}(I_t,t)dI_t+\frac{1}{2}\dfrac{\partial^2 f}{\partial x^2}(I_t,t)\sigma^2_tdt$$
 \end{definitionbox}
 
-On a précédemment comparé l'évolution d'une option sur un marché à un mouvement brownien. Cependant, le prix d'une option ne peut pas être négatif. Pour pallier ce problème, on peut définir le \textbf{processus log-normal} ou \textbf{mouvement brownien géométrique} :
+\newpage
+
+Nous avons précédemment comparé l'évolution d'une option sur un marché à un mouvement brownien. Cependant, le prix d'une option ne peut pas être négatif. Pour pallier ce problème, on peut définir le \textbf{processus log-normal} ou \textbf{mouvement brownien géométrique} :
 $$X_t = X_0e^{(a-\frac{1}{2}\sigma^2)t + \sigma W_t} \quad\text{avec } a,\sigma\in \mathbb{R}$$
 Ainsi, le mouvement brownien géométrique est solution de l'équation différentielle stochastique : $dX_t = a X_t dt + \sigma X_t dW_t$ \\
 \proofname{} \\
@@ -102,13 +107,16 @@ Finalement, on a bien :
 $$dX_t = a X_t dt + \sigma X_t dW_t$$ \\
 
 Après avoir défini tous ces processus, nous allons pouvoir les appliquer au modèle de Black-Scholes dans la sous-partie suivante.
+
+\newpage
+
 \subsection{Equation de Black-Scholes}
 Introduisons maintenant l'équation aux dérivées partielles la plus importante des mathématiques financières : l'équation de Black-Scholes dont le nom fait référence à Fischer Black et Myron Scholes qui l'ont évoqué dans un texte de recherche académique. Nous allons étudier le modèle de Black-Scholes dans un premier temps avant de montrer qu'en diminuant les pas de temps, le modèle de cox-Ross-Rubinstein converge vers le modèle de Black-Scholes.
 
 \vspace{0.05\textheight}
 \begin{definitionbox}[frametitle = {Equation aux Dérivées Partielles de Black-Scholes-Merton}]
     Soit $V(S,t)$ le prix d'une option avec $S$ le prix du sous-jacent et $t$ représentant le temps :
-    $$\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2S^2\frac{\partial^2V}{\partial S^2}+rS\frac{\partial V}{\partial S}-rV=0$$
+    $$\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2S^2\frac{\partial^2V}{\partial S^2}+rS\frac{\partial V}{\partial S}-rV=0$$ \cite{ModeleDeBlackScholes}
 \end{definitionbox}
 \vspace{0.05\textheight}
 Le modèle repose sur un grand nombre d'hypothèses assez contraignantes, nécessaires pour la démonstration de la formule. Le but étant d'étudier le modèle de Cox-Ross-Rubinstein. Je vais donner les hypothèses simplifiées nécessaires à la compréhension de la résolution. Elles sont néanmoins trouvables sur \hyperlink{https://fr.wikipedia.org/wiki/Modèle_Black-Scholes}{la page Wikipédia du modèle de Black-Scholes}. 
@@ -125,5 +133,7 @@ Les hypothèses de ce modèle sont donc :
 \vspace{0.025\textheight}
 La formule de Black-Scholes permet de calculer le prix d'un \textbf{call ou put européen} mais ne permet pas de calculer des calls/puts américains contrairement au modèle de Cox-Ross-Rubinstein. \\
 TODO
+\cite{TDBlackScholes}
 \subsection{Convergence}
 TODO
+\cite{BSLimiteCRR}
