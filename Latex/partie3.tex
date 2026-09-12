@@ -12,7 +12,7 @@ Pour discrétiser la période de temps du call, on considère une subdivision de
 \begin{align*}
     t_n=\frac{nT}{N} ,\forall n \in {0,..,N}
 \end{align*}
-\remarque Faire tendre $N$ vers des valeurs très grandes revient à se rapprocher d'un modèle continu. \\\\
+\remark Faire tendre $N$ vers des valeurs très grandes revient à se rapprocher d'un modèle continu. \\\\
 Sur chaque subdivision, on définit deux facteurs :
 \begin{center}
     \begin{itemize}
@@ -22,7 +22,7 @@ Sur chaque subdivision, on définit deux facteurs :
 \end{center}
 Ces deux facteurs correspondent respectivement à la hausse et à la baisse du prix de l'actif. Sur un schéma d'arbre, on adoptera la convention où le facteur de hausse est sur la branche la plus haute et vice-versa. \\
 \\
-\remarque Nous ne nous attarderons pas, dans un premier temps, sur la manière dont sont calculés ces deux facteurs.
+\remark Nous ne nous attarderons pas, dans un premier temps, sur la manière dont sont calculés ces deux facteurs.
 
 L'algorithme se décompose donc en deux phases distinctes :
 \begin{itemize}
@@ -79,7 +79,7 @@ Représentons l'évolution du prix d'un sous-jacent ayant pour cours initial $S_
 
 
 
-\remarque L'arbre est recombinant, les évolutions sont invariantes par permutations de facteurs de hausse et baisse.  \\
+\remark L'arbre est recombinant, les évolutions sont invariantes par permutations de facteurs de hausse et baisse.  \\
 Plus formellement, soit un mot $w = (w_1, w_2, \dots, w_n)$ de longueur $n$ sur l'alphabet $\{u, d\}$. Si l'on note $|w|_u = k$ le nombre de hausses et $|w|_d = n-k$ le nombre de baisses, alors pour toute permutation $\sigma \in \mathcal{S}_n$, le prix final est identique :
 \begin{equation*}
     S_n = S_0 \cdot \prod_{i=1}^{n} w_i = S_0 \cdot \prod_{i=1}^{n} w_{\sigma(i)} = S_0 u^k d^{n-k}
@@ -139,7 +139,7 @@ En remplaçant,
     &= \frac{1}{R}(pC_u + (1-p)C_d), \text{ avec } p=\frac{R-d}{u-d} \text{ et } 1-p = \frac{u-R}{u-d} \\
 \end{align*}
 \cite{IntroductionALevaluationDoptions} \\
-\remarque On a bien $1 = p + (1 - p) = \dfrac{R-d+u-R}{u-d} = 1$.\\ On a aussi nécessairement $d<R<u$. 
+\remark On a bien $1 = p + (1 - p) = \dfrac{R-d+u-R}{u-d} = 1$.\\ On a aussi nécessairement $d<R<u$. 
 En effet, 
 \begin{description}
     \item[Si $R \leq d < u$ :] On emprunte au taux sans risque 

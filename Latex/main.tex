@@ -20,6 +20,8 @@
 \usepackage{float}
 \usepackage{needspace}
 \usepackage{listings}
+\usepackage{subcaption}
+\usepackage{csquotes}
 
 \usepackage[normalem]{ulem} 
 
@@ -35,7 +37,7 @@
 \usepackage[
     backend=biber,
     style=numeric,
-    sorting=nyt
+    sorting=none
 ]{biblatex}
 \addbibresource{references.bib}
 
@@ -44,44 +46,44 @@
 \usepgfplotslibrary{polar}
 
 \frenchbsetup{StandardItemLabels=true}
-\renewcommand{\proofname}{Démonstration}
+\renewcommand{\proofname}{Proof}
 
 \setcounter{tocdepth}{2}
-\renewcommand{\contentsname}{Table des matières}
+\renewcommand{\contentsname}{Table of contents}
 \newmdenv[
     linewidth=1pt,
     roundcorner=5pt,
     linecolor=black,
-    frametitle={Définition}
+    frametitle={Definition}
 ]{definitionbox}
 \newmdenv[
     linewidth=1pt,
     roundcorner=5pt,
     linecolor=black,
-    frametitle={Théorème}
+    frametitle={Theorem}
 ]{theorembox}
 \newmdenv[
     linewidth=1pt,
     roundcorner=5pt,
     linecolor=black,
-    frametitle={Propriété}
+    frametitle={Property}
 ]{propertybox}
-\newcommand{\remarque}[1]{%
-    \textbf{\textcolor{black}{Remarque.}} #1%
+\newcommand{\remark}[1]{%
+    \textbf{\textcolor{black}{Remark.}} #1%
 }
 \newcommand{\notation}[1]{%
     \textbf{\textcolor{black}{Notation.}} #1%
 }
 
-\newcommand{\corollaire}[1]{%
-    \textbf{\textcolor{black}{Corollaire.}} #1%
+\newcommand{\corollary}[1]{%
+    \textbf{\textcolor{black}{Corollary.}} #1%
 }
 \newcommand{\norm}[1]{\left\|#1\right\|}
 \newcommand{\dotproduct}[2]{\langle #1, #2 \rangle}
 
-\title{Étude du modèle de Cox-Ross-Rubinstein pour la valorisation des options}
+\title{Study of the Cox-Ross-Rubinstein model for option valuation}
 \author{Thomas Saurel}
-\date{Janvier 2026}
+\date{January 2026}
 
 \begin{document}
 
@@ -94,14 +96,14 @@
     \vspace{2.5cm}
 
     \rule{0.6\textwidth}{0.4pt} \\ [0.5cm]
-    {\Huge \bfseries Étude du modèle de Cox-Ross-Rubinstein pour la valorisation des options \par}
+    {\Huge \bfseries Study of the Cox-Ross-Rubinstein model for option valuation \par}
     \vspace{0.3cm}
     \rule{0.6\textwidth}{0.4pt}
     
     \vfill
     
-    {\large Commencé en Janvier 2026 \par}
-    {\small Dernière mise à jour : \today \par}
+    {\large Begun in January 2026 \par}
+    {\small Last update : \today \par}
     
 \end{titlepage}
 
@@ -109,7 +111,7 @@
 \tableofcontents
 \newpage
 
-\input{partie1}
+\input{part1}
 \newpage
 \input{partie2}
 \newpage

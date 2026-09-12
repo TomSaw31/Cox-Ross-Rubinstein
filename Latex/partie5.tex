@@ -23,7 +23,7 @@ Commençons par introduire un phénomène mathématique fort utile : le \textbf{
     \caption{Simulation du mouvement brownien 2D}
 \end{figure}
 \vspace{0.03\textheight}
-\remarque Le processus de Wiener est continu partout mais dérivable nulle part. Il s'apparente en ce sens à une fonction de Weierstrass.
+\remark Le processus de Wiener est continu partout mais dérivable nulle part. Il s'apparente en ce sens à une fonction de Weierstrass.
 \vspace{0.025\textheight}\\
 Si on considère le déplacement d'une particule dans un espace de dimension $d$, on peut alors associer l'évolution de sa position au processus de Wiener $W_t : \mathbb{\mathbb{R}^+} \to \mathbb{R}^d$. On obtient, de par la nature du mouvement brownien, que la position moyenne par la particule jusqu'à $t_\alpha$ vaut $\mathbb{E}[W_t] = 0$ car le mouvement brownien n'a pas de direction privilégiée. \\
 Ainsi, on remarque directement que $Var(W_t) = \mathbb{E}[W_t^2]-\mathbb{E}[W_t]^2 = \mathbb{E}[W_t^2]$. \\
@@ -74,7 +74,7 @@ Il faut ainsi définir le \textbf{processus d'Itō :}
 \
 $$I_t = \int_0^t \mu_sds+\int_0^t\sigma_sdW_s \quad\text{ qui est équivalent à } \quad dI_t=\mu_tdt+\sigma_tdW_t$$ \cite{IntegraleDIto}
 avec $W_t$ un processus de Wiener, $\mu\in L^1$ et $\sigma\in L^2$ des processus déterministes. \\
-\remarque Le processus de Wiener a une espérance nulle donc $\mathbb{E}[I_t]=\int_0^t\mu_sds$ et a une variance non nulle donc $Var[X_t]=\int_0^t\sigma^2dW_s$ \\
+\remark Le processus de Wiener a une espérance nulle donc $\mathbb{E}[I_t]=\int_0^t\mu_sds$ et a une variance non nulle donc $Var[X_t]=\int_0^t\sigma^2dW_s$ \\
 
 \begin{definitionbox}[frametitle = {Lemme d'Itō}]
     Soit $\mu\in L^1$,$\sigma\in L^2$,$I_t$ un processus d'Itō et $f(I_t,t)$ une fonction de classe $\mathcal{C}^2(\mathbb{R \times R^+, R)}$ alors :

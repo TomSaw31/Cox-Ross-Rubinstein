@@ -1,0 +1,222 @@
+\section{Introduction}
+\vspace{0.5cm}
+\begin{center}
+    \textit{"A good portfolio is more than a long list of \\
+    good stocks and bonds. It is a balanced whole $[...]$."}\\
+    -- \textbf{H. Markowitz \cite{MarkowitzQuote}} --
+\end{center}
+\vspace{0.5cm}
+    
+\subsection{Motivation}
+This document was made to be an introduction to quantitative finance through development of market risk analysis algorithms.
+It focuses on the study of the binomial model, known as the Cox-Ross-Rubinstein model.
+
+Firstly, we will talk about the theoretical foundations of this prediction model before analyzing how it differs from the Black-Scholes and Monte Carlo models.
+Finally, we will implement and analyze the  market variation estimators, known as the "Greeks".
+
+I am working on this paper in my spare time for personal learning and curiosity. Consequently, it may contain errors or inaccuracies. 
+The provided sources are in French or English, you may use a translator if you do not understand either of these languages.
+
+\subsection{History of option valuation}
+
+Modern portfolio theory in finance originated in 1952 with the work published by Harry Markowitz \cite{HarryMarkowitz}.
+This theory explains how investors can optimize their portfolios and analyze asset pricing based on market conditions (volatility, risk and so on). 
+Therefore it lays the foundations of quantitative finance by defining the portfolio as a collection of financial assets.
+
+Based on Markowitz's work, three economists \textit{Fischer Black}, \textit{Myron Scholes} and \textit{Robert Merton} published an article in 1973 presenting a formula allowing to calculate the theoretical price of a European option.
+Their contribution was to find a partial differential equation (PDE) to find the fair price for a European call option. \cite{Option}
+
+With the development of computers and the exponential growth of computing power, a new method emerged in 1977 : the Monte Carlo approach. 
+This model involves randomly simulating thousands of possible price paths.
+The option price is the the average of the payoffs obtained from these paths. \cite{MonteCarloPricing}
+It is the primary method for exotic options such as Asian options, where the payoff depends on the average price over a certain period of time.\cite{AsianOption}
+
+Two years later, a new trio of economists :  \textit{John Cox}, \textit{Stephen Ross} and \textit{Mark Rubinstein} proposed an innovative alternative : the binomial model, also known as the Cox-Ross-Rubinstein model.
+In this model, time is discretized, allowing the path of an asset price to be represented as a binary tree.
+This simplifies estimation, providing a numerical approximation to the Black-Scholes model which relies on an anlytical solution.
+The approach shifts the problem from a complex partial differential equation to a simple approximation that can be programmed on a computer.
+Furthermore, the model enables the valuation of American options, wich can be exercised at any time with only a minor change in the algorithm. \cite{OptionPricingASimplifiedApproach}
+
+Subsequently, other more exotic models appeared (e.g. trinomial trees) \cite{TrinomialTree}.
+In one of the following part, we will focus on the binomial model and compare it with the Black-Scholes and Monte Carlo models, representing respectively an approximation model, an analytical model and a simulation-based one.
+The Cox-Ross-Rubinstein model is more intuitive and simpler to implement algorithmically than the Black-Scholes model.
+
+\subsection{Goals}
+
+The main goal of this paper is to present the theoretical foundations of the binomial model, implement it and the compare it to other option pricing models.
+
+We will begin by establishing the basic terminology and presenting key theoretical results from financial mathematics.
+Once the model's algorithmic implementation is complete, we will explore its capabilities by pricing complex options.
+We will analyze how the model's discrete structure allows for the valuation of products that cannot be handled analytically by the Black-Scholes model, such as American options which can be exercised early.
+The study will be complemented by the calculation of sensitivity indicators known as \textit{Greeks}, which are essential risk management tools for measuring a portfolio's sensitivity to market volatility.
+
+Finally, we will compare our results with those obtained from the Black-Scholes and Monte Carlo models. 
+This comparative analysis will enable us to highlight the binomial model's convergence rate and identiy its limitations when applied to real-world date, thereby preparing for potential extensions involving more sophisticated tree structures.
+
+\subsection{Vocabulary}
+
+Before proceeding with the study of quantitative finance and the algorithms behind the Cox-Ross-Rubinstein model, it is essential to establish a basic vocabulary necessary for a proper understanding of the remainder of the document. 
+If you have a financial background, you can skip this part as it will only present the basic key ideas in market finance.
+
+
+\underline{\textbf{Derivative :}} A derivative is a type of financial contract whose value depends on an asset known as \textbf{underlying asset} and whose price fluctuates in line with changes in the rate or price of that underlying asset.
+There are three main categories of derivatives : \textbf{firm commitment products}, \textbf{swaps} and \textbf{contingent products or options} \cite{Derivatives} \cite{ProduitsDerives} \cite{ProduitDerive} 
+
+\underline{\textbf{Forward product :}} This group of derivative products generally includes \textbf{forward} and \textbf{futures}. 
+A \textbf{forward} contract is a financial agreement between two entities, agreeing on a defined sale and purchase price at a fixed deadline.
+Both entities must honor their parts of the contract even if the situation at maturity is unfavorable to them.
+There are some differences between \textbf{forwards} and \textbf{futures} : forward contracts are negotiated over the counter, non-standardized and not very negotiable, whereas futures contracts are negotiated on a stock exchange, are standardized and negotiable. \cite{Derivatives} \cite{ProduitsDerives} \cite{Forward} \cite{Swap} 
+
+\underline{\textbf{Swap :}} Exchange of financial flows between two entities (e.g. floating-rate interest for fixed-rate interest). \cite{Swap}
+
+\underline{\textbf{Option :}} Establishes a right between a buyer and a seller to buy (\textbf{Call}) or sell (\textbf{Put}) an underlying asset at a predetermined price (\textbf{Strike}) by a set expiration date.
+This derivative represents a right and is not an obligation.
+The \textbf{Call/Put} symmetry allows one to anticipate either a favorable movement in the underlying asset's price (Call) or an unfavorable one (Put).
+There are numerous types of options, notably \textbf{European} options that are exercisable only at expiration, and \text{American} options that are exercisable at any time prior to expiration.
+These represent the simplest forms, known as \text{Vanilla options}. \cite{VanillaOptions} \cite{Option}
+The \textbf{Payoff} refers to the outcome at expiration.
+
+An option is :
+\begin{itemize}
+    \item \textbf{In the money / ITM} when it strike price is lower than the price of its underlying asset for a call, or higher than the price of its underlying asset for a put.
+    \item \textbf{Out of the money / OTM} when its strike price is higher than the price of its underlying asset for a call, or lower than the price of its underlying asset for a put.
+    \item \textbf{At the money / ATM} when its strike is equal to the current price of the underlying asset.
+\end{itemize}
+We will use the following notations :
+\begin{itemize}
+    \item K : Strike
+    \item S : Price of the underlying asset
+    \item p : Option Premium
+    \item R : Profit at maturity
+    \item P : Payoff
+\end{itemize}
+
+\bigskip
+
+\begin{definitionbox}[frametitle = {Payoff Formulas}]
+\begin{center}
+    $P_{Call} = \max(S-K,0)$ \\
+    $P_{Put} = \max(K-S,0)$
+\end{center}
+
+\end{definitionbox}
+
+We can represent profits at maturity : \vspace{0.025\textheight}
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        width=\textwidth,
+        height=0.8\textwidth,
+        axis lines = middle,
+        xlabel = {$S$},
+        ylabel = {$R = \begin{cases} R_{\text{\textcolor{red}{Call - Buyer}}} = \max(S-K, 0) - p \\ R_{\text{\textcolor{blue}{Call - Seller}}} = -\max(S-K, 0) + p \end{cases}$}, 
+        ylabel style={at={(axis description cs:0,1.05)}, anchor=south west},
+        ymin = -3.5, ymax = 3.5,
+        xmin = 0, xmax = 4.5,
+        xtick = {2, 2.8},
+        xticklabels = {$K$, $K+p$},
+        ytick = {-0.8,0.8},
+        yticklabels = {$-p$,$p$},
+        grid = none
+    ]
+    \addplot [domain=0:2, samples=2, color=red, thick] {-0.8};
+    \addplot [domain=2:4.5, samples=2, color=red, thick] {x - 2.8}; 
+    \addplot [domain=0:2, samples=2, color=blue, thick] {0.8};
+    \addplot [domain=2:4.5, samples=2, color=blue, thick] {2.8 - x}; 
+    \end{axis}
+    \end{tikzpicture}
+    \caption{Option - Call}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        width=\textwidth,
+        height=0.8\textwidth,
+        axis lines = middle,
+        xlabel = {$S$},
+        ylabel = {$R = \begin{cases} R_{\text{\textcolor{red}{Put Buyer}}} = \max(K-S, 0) - p \\ R_{\text{\textcolor{blue}{Put - Seller}}} = -\max(K-S, 0) + p \end{cases}$}, 
+        ylabel style={at={(axis description cs:0,1.05)}, anchor=south west},
+        ymin = -3.5, ymax = 3.5,
+        xmin = 0, xmax = 4.5,
+        xtick = {1.2, 2},
+        xticklabels = {$K-p$, $K$},
+        ytick = {-0.8,0.8},
+        yticklabels = {$-p$,$p$},
+        grid = none
+    ]
+    \addplot [domain=0:2, samples=2, color=red, thick] {1.2 - x};
+    \addplot [domain=2:4.5, samples=2, color=red, thick] {-0.8}; 
+    \addplot [domain=0:2, samples=2, color=blue, thick] {x - 1.2};
+    \addplot [domain=2:4.5, samples=2, color=blue, thick] {0.8}; 
+    \end{axis}
+    \end{tikzpicture}
+    \caption{Option - Put}
+  \end{subfigure}
+  \caption{Profit of Call and Put options}
+\end{figure}
+
+\newpage
+
+Options are a key concept to understand qunatitative finance.
+It is useful to work through a numerical example to see how it works : 
+
+Consider an industrial buyer of wheat, \textbf{B}, who knows on \textbf{January 1st} that they will need to purchase $n = 1\:000$ tonnes of wheat on \textbf{June 30th}.
+On January 1st, the price of wheat is 200\$ per tonne. 
+B anticipates that the price of wheat will rise. 
+Since B would begin to lose money if the price exceeds 250\$, they decide to purchase $1\:000$ call options with a strike price of 250\$, a premium of $p=10$\$ per tonne and an expiration date of June 30th.
+
+Several scenarios are possible for June 30th : 
+\begin{itemize}
+    \item \textbf{Case 1}: Wheat trades at 150\$ per tonne.
+    The call option is \textbf{OTM}.
+    B's prediction did not materialize.
+    The call option is now worthless, leading B to let it expire.
+    B thus loses $n \cdot p = 1000 \cdot10 = 10\:000$\$.
+    B therefore purchases the wheat on the market at 150\$ per tonne, resulting in a total cost of $150 + p = 160$\$ per tonne.
+
+    \item \textbf{Case 2}: Wheat trades at 225\$ per tonne.
+    The call option is \textbf{OTM}.
+    B's prediction has partly come true but not enough to make the call options worth using.
+    The call option is still worthless, leading B to let it expire.
+    B thus loses $n \cdot p = 1000 \cdot10 = 10\:000$\$.
+    B therefore purchases the wheat on the market at 225\$ per tonne, resulting in a total cost of $225+p=235$\$ per tonne.
+
+    \item \textbf{Case 3}: Wheat trades at 250\$ per tonne.
+    The call option is \textbf{ATM}.
+    B's prediction has partly come true but not enough to make the call options worth using because the price is equal to the strike.
+    Using the call option does not change anything.
+    B thus loses $n \cdot p = 1000 \cdot10 = 10\:000$\$.
+    B therefore purchases the wheat on the market at 250\$ per tonne, resulting in a total cost of $250 + p = 260$\$ per tonne.
+    
+    \item \textbf{Case 4}: Wheat trades at 300\$ per tonne.
+    The call option is \textbf{ITM}.
+    B's prediction came true.
+    B uses its call options and spend $250$\$ per wheat tonne.
+    Thus, B will have spent $250 + p = 260$\$ per tonne instead of 300\$.
+    B saved $(300-(250+p))\cdot n = 40 \cdot 1000 = 40\:000$\$. \\   
+  
+
+\end{itemize}
+Therefore, the goal of market finance is to optimize strategies in order to generate the highest possible profit while taking risk into account. 
+Thus, it is useful to develop mathematical tools that allow for the modeling of market dynamics.
+
+\underline{\textbf{Positions}} : There are two positions when buying or selling options : \\
+\begin{itemize}
+    \item \textbf{Long Position}
+    \begin{description}
+        \item[Action] Buying the asset in anticipation of a price increase
+        \item[Profit] Making money by reselling at a higher price than the purchase price
+        \item[Risk] Risk limited to the amount invested
+    \end{description}
+    \item \textbf{Short Position}
+    \begin{description}
+        \item[Action] Borrowing an asset from someone, selling it immediately, waiting for the price to drop and buying back the asset at the lower price to return it
+        \item[Profit] Gaining the difference
+        \item[Risk] Theoretically infinite risk if the share price rises without limit
+    \end{description}
+\end{itemize}

@@ -172,7 +172,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortingtemplatename</bcf:key>
-      <bcf:value>nyt</bcf:value>
+      <bcf:value>none</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortsets</bcf:key>
@@ -2373,60 +2373,49 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">references.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1" intorder="1">Option</bcf:citekey>
-    <bcf:citekey order="2" intorder="1">OptionPricingASimplifiedApproach</bcf:citekey>
-    <bcf:citekey order="3" intorder="1">ActifSousJacent</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">ProduitDerive</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">ProduitsDerives</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">Forward</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">Swap</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">Option</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">Filtration</bcf:citekey>
-    <bcf:citekey order="10" intorder="1">Portefeuille</bcf:citekey>
-    <bcf:citekey order="11" intorder="1">SelfFinancingPortfolio</bcf:citekey>
-    <bcf:citekey order="12" intorder="1">IntroductionALevaluationDoptions</bcf:citekey>
-    <bcf:citekey order="13" intorder="1">IntroductionALevaluationDoptions</bcf:citekey>
-    <bcf:citekey order="14" intorder="1">MouvementBrownien</bcf:citekey>
-    <bcf:citekey order="15" intorder="1">ProcessusGaussien</bcf:citekey>
-    <bcf:citekey order="16" intorder="1">IntegraleDIto</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">ModeleDeBlackScholes</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">TDBlackScholes</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">BSLimiteCRR</bcf:citekey>
+    <bcf:citekey order="1" intorder="1">MarkowitzQuote</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">HarryMarkowitz</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">Option</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">MonteCarloPricing</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">AsianOption</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">OptionPricingASimplifiedApproach</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">TrinomialTree</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">Derivatives</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">ProduitsDerives</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">ProduitDerive</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">Derivatives</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">ProduitsDerives</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">Forward</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">Swap</bcf:citekey>
+    <bcf:citekey order="15" intorder="1">Swap</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">VanillaOptions</bcf:citekey>
+    <bcf:citekey order="17" intorder="1">Option</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">Filtration</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">Portefeuille</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">SelfFinancingPortfolio</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">IntroductionALevaluationDoptions</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">IntroductionALevaluationDoptions</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">MouvementBrownien</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">ProcessusGaussien</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">IntegraleDIto</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">ModeleDeBlackScholes</bcf:citekey>
+    <bcf:citekey order="27" intorder="1">TDBlackScholes</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">BSLimiteCRR</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
-  <bcf:sortingtemplate name="nyt">
+  <bcf:sortingtemplate name="none">
     <bcf:sort order="1">
-      <bcf:sortitem order="1">presort</bcf:sortitem>
+      <bcf:sortitem order="1">citeorder</bcf:sortitem>
     </bcf:sort>
-    <bcf:sort order="2" final="1">
-      <bcf:sortitem order="1">sortkey</bcf:sortitem>
-    </bcf:sort>
-    <bcf:sort order="3">
-      <bcf:sortitem order="1">sortname</bcf:sortitem>
-      <bcf:sortitem order="2">author</bcf:sortitem>
-      <bcf:sortitem order="3">editor</bcf:sortitem>
-      <bcf:sortitem order="4">translator</bcf:sortitem>
-      <bcf:sortitem order="5">sorttitle</bcf:sortitem>
-      <bcf:sortitem order="6">title</bcf:sortitem>
-    </bcf:sort>
-    <bcf:sort order="4">
-      <bcf:sortitem order="1">sortyear</bcf:sortitem>
-      <bcf:sortitem order="2">year</bcf:sortitem>
-    </bcf:sort>
-    <bcf:sort order="5">
-      <bcf:sortitem order="1">sorttitle</bcf:sortitem>
-      <bcf:sortitem order="2">title</bcf:sortitem>
-    </bcf:sort>
-    <bcf:sort order="6">
-      <bcf:sortitem order="1">volume</bcf:sortitem>
-      <bcf:sortitem literal="1" order="2">0</bcf:sortitem>
+    <bcf:sort order="2">
+      <bcf:sortitem order="1">intciteorder</bcf:sortitem>
     </bcf:sort>
   </bcf:sortingtemplate>
   <!-- DATALISTS -->
   <bcf:datalist section="0"
-                name="nyt/global//global/global/global"
+                name="none/global//global/global/global"
                 type="entry"
-                sortingtemplatename="nyt"
+                sortingtemplatename="none"
                 sortingnamekeytemplatename="global"
                 labelprefix=""
                 uniquenametemplatename="global"

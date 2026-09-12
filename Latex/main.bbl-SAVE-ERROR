@@ -59,7 +59,7 @@
     \endentry
     \entry{Option}{online}{}{}
       \list{organization}{1}{%
-        {Wikipedia}%
+        {Wikipédia}%
       }
       \field{sortinit}{3}
       \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
@@ -70,10 +70,10 @@
       \field{urlyear}{2026}
       \field{urldateera}{ce}
       \verb{urlraw}
-      \verb https://en.wikipedia.org/wiki/Option_(finance)
+      \verb https://fr.wikipedia.org/wiki/Option
       \endverb
       \verb{url}
-      \verb https://en.wikipedia.org/wiki/Option_(finance)
+      \verb https://fr.wikipedia.org/wiki/Option
       \endverb
     \endentry
     \entry{MonteCarloPricing}{online}{}{}
@@ -93,25 +93,6 @@
       \endverb
       \verb{url}
       \verb https://en.wikipedia.org/wiki/Monte_Carlo_methods_for_option_pricing
-      \endverb
-    \endentry
-    \entry{AsianOption}{online}{}{}
-      \list{organization}{1}{%
-        {Investopedia}%
-      }
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
-      \field{labeltitlesource}{title}
-      \field{title}{Asian Options Explained: Payoffs, Benefits, and Comparisons}
-      \field{urlday}{12}
-      \field{urlmonth}{9}
-      \field{urlyear}{2026}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://www.investopedia.com/terms/a/asianoption.asp
-      \endverb
-      \verb{url}
-      \verb https://www.investopedia.com/terms/a/asianoption.asp
       \endverb
     \endentry
     \entry{OptionPricingASimplifiedApproach}{article}{}{}
@@ -140,8 +121,8 @@
       \strng{authornamehash}{ff637c6bea3a121fae297b7931e23274}
       \strng{authorfullhash}{ff637c6bea3a121fae297b7931e23274}
       \strng{authorfullhashraw}{ff637c6bea3a121fae297b7931e23274}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Financial Economics}
@@ -162,8 +143,8 @@
       \list{organization}{1}{%
         {Wikipedia}%
       }
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labeltitlesource}{title}
       \field{title}{Trinomial Tree}
       \field{urlday}{6}
@@ -177,23 +158,42 @@
       \verb https://en.wikipedia.org/wiki/Trinomial_tree
       \endverb
     \endentry
-    \entry{Derivatives}{online}{}{}
+    \entry{ActifSousJacent}{online}{}{}
       \list{organization}{1}{%
-        {BME Bolsas y Mercados Españoles}%
+        {Wikipédia}%
+      }
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labeltitlesource}{title}
+      \field{title}{Actif sous-jacent}
+      \field{urlday}{7}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Actif_sous-jacent
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Actif_sous-jacent
+      \endverb
+    \endentry
+    \entry{ProduitDerive}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipédia}%
       }
       \field{sortinit}{8}
       \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labeltitlesource}{title}
-      \field{title}{What are Derivatives and Why Do They Exist?}
-      \field{urlday}{13}
-      \field{urlmonth}{9}
+      \field{title}{Produit dérivé Financier}
+      \field{urlday}{7}
+      \field{urlmonth}{3}
       \field{urlyear}{2026}
       \field{urldateera}{ce}
       \verb{urlraw}
-      \verb https://www.bolsasymercados.es/en/blog/what-are-derivatives.html
+      \verb https://fr.wikipedia.org/wiki/Produit_d%C3%A9riv%C3%A9_financier
       \endverb
       \verb{url}
-      \verb https://www.bolsasymercados.es/en/blog/what-are-derivatives.html
+      \verb https://fr.wikipedia.org/wiki/Produit_d%C3%A9riv%C3%A9_financier
       \endverb
     \endentry
     \entry{ProduitsDerives}{online}{}{}
@@ -215,28 +215,9 @@
       \verb https://wholesale.banking.societegenerale.com/fr/lexique-financier/produits-derives-derivatives/
       \endverb
     \endentry
-    \entry{ProduitDerive}{online}{}{}
-      \list{organization}{1}{%
-        {Wikipedia}%
-      }
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labeltitlesource}{title}
-      \field{title}{Derivative (finance)}
-      \field{urlday}{7}
-      \field{urlmonth}{3}
-      \field{urlyear}{2026}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://en.wikipedia.org/wiki/Derivative_(finance)
-      \endverb
-      \verb{url}
-      \verb https://en.wikipedia.org/wiki/Derivative_(finance)
-      \endverb
-    \endentry
     \entry{Forward}{online}{}{}
       \list{organization}{1}{%
-        {Wikipedia}%
+        {Wikipédia}%
       }
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
@@ -255,45 +236,26 @@
     \endentry
     \entry{Swap}{online}{}{}
       \list{organization}{1}{%
-        {Wikipedia}%
+        {Wikipédia}%
       }
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labeltitlesource}{title}
-      \field{title}{Swap (Finance)}
+      \field{title}{Swap}
       \field{urlday}{8}
       \field{urlmonth}{3}
       \field{urlyear}{2026}
       \field{urldateera}{ce}
       \verb{urlraw}
-      \verb https://en.wikipedia.org/wiki/Swap_(finance)
+      \verb https://fr.wikipedia.org/wiki/Swap_(finance)
       \endverb
       \verb{url}
-      \verb https://en.wikipedia.org/wiki/Swap_(finance)
-      \endverb
-    \endentry
-    \entry{VanillaOptions}{online}{}{}
-      \list{organization}{1}{%
-        {Investopedia}%
-      }
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labeltitlesource}{title}
-      \field{title}{Understanding Vanilla Options: Types, Features, and Real-world Examples}
-      \field{urlday}{13}
-      \field{urlmonth}{9}
-      \field{urlyear}{2026}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://www.investopedia.com/terms/v/vanillaoption.asp
-      \endverb
-      \verb{url}
-      \verb https://www.investopedia.com/terms/v/vanillaoption.asp
+      \verb https://fr.wikipedia.org/wiki/Swap_(finance)
       \endverb
     \endentry
     \entry{Filtration}{online}{}{}
       \list{organization}{1}{%
-        {Wikipedia}%
+        {Wikipédia}%
       }
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
@@ -312,7 +274,7 @@
     \endentry
     \entry{Portefeuille}{online}{}{}
       \list{organization}{1}{%
-        {Wikipedia}%
+        {Wikipédia}%
       }
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
@@ -331,10 +293,10 @@
     \endentry
     \entry{SelfFinancingPortfolio}{online}{}{}
       \list{organization}{1}{%
-        {Wikipedia}%
+        {Wikipédia}%
       }
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labeltitlesource}{title}
       \field{title}{Self-financing portfolio}
       \field{urlday}{13}
@@ -367,11 +329,11 @@
       \strng{authornamehash}{ec662146f84b261c757aa4abc8da7b46}
       \strng{authorfullhash}{ec662146f84b261c757aa4abc8da7b46}
       \strng{authorfullhashraw}{ec662146f84b261c757aa4abc8da7b46}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Probabilités III - Introduction à l'évaluation d'options}
+      \field{title}{Probabilités III – Introduction à l’évaluation d’options}
       \field{urlday}{13}
       \field{urlmonth}{2}
       \field{urlyear}{2026}
@@ -385,7 +347,7 @@
     \endentry
     \entry{MouvementBrownien}{online}{}{}
       \list{organization}{1}{%
-        {Wikipedia}%
+        {Wikipédia}%
       }
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
@@ -404,7 +366,7 @@
     \endentry
     \entry{ProcessusGaussien}{online}{}{}
       \list{organization}{1}{%
-        {Wikipedia}%
+        {Wikipédia}%
       }
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
@@ -442,7 +404,7 @@
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Unlocking Stochastic Calculus: Episode 5 of 6 – Mastering Ito's Integral!}
+      \field{title}{Unlocking Stochastic Calculus: Episode 5 of 6 – Mastering Ito’s Integral!}
       \field{urlday}{22}
       \field{urlmonth}{3}
       \field{urlyear}{2026}
@@ -456,7 +418,7 @@
     \endentry
     \entry{ModeleDeBlackScholes}{online}{}{}
       \list{organization}{1}{%
-        {Wikipedia}%
+        {Wikipédia}%
       }
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
