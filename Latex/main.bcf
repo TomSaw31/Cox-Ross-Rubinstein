@@ -168,7 +168,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortlocale</bcf:key>
-      <bcf:value>french</bcf:value>
+      <bcf:value>english</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortingtemplatename</bcf:key>
@@ -2391,16 +2391,20 @@
     <bcf:citekey order="16" intorder="1">VanillaOptions</bcf:citekey>
     <bcf:citekey order="17" intorder="1">Option</bcf:citekey>
     <bcf:citekey order="18" intorder="1">Filtration</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">Portefeuille</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">Portfolio</bcf:citekey>
     <bcf:citekey order="20" intorder="1">SelfFinancingPortfolio</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">IntroductionALevaluationDoptions</bcf:citekey>
-    <bcf:citekey order="22" intorder="1">IntroductionALevaluationDoptions</bcf:citekey>
-    <bcf:citekey order="23" intorder="1">MouvementBrownien</bcf:citekey>
-    <bcf:citekey order="24" intorder="1">ProcessusGaussien</bcf:citekey>
-    <bcf:citekey order="25" intorder="1">IntegraleDIto</bcf:citekey>
-    <bcf:citekey order="26" intorder="1">ModeleDeBlackScholes</bcf:citekey>
-    <bcf:citekey order="27" intorder="1">TDBlackScholes</bcf:citekey>
-    <bcf:citekey order="28" intorder="1">BSLimiteCRR</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">Arbitrageurs</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">FundamentalTheorems</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">FundamentalTheorem</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">Martingales</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">IntroductionALevaluationDoptions</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">IntroductionALevaluationDoptions</bcf:citekey>
+    <bcf:citekey order="27" intorder="1">MouvementBrownien</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">ProcessusGaussien</bcf:citekey>
+    <bcf:citekey order="29" intorder="1">IntegraleDIto</bcf:citekey>
+    <bcf:citekey order="30" intorder="1">ModeleDeBlackScholes</bcf:citekey>
+    <bcf:citekey order="31" intorder="1">TDBlackScholes</bcf:citekey>
+    <bcf:citekey order="32" intorder="1">BSLimiteCRR</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

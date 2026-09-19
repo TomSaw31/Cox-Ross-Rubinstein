@@ -1,0 +1,253 @@
+\section{Mathematical theory and no-arbitrage principle}
+
+In this section, we will focus on the theoretical notions and concepts necessary to understand finance.
+
+\subsection{Filtered probability space}
+
+Consider the triplet $(\Omega,\mathcal{F},\mathbb{P})$ forming a probability space, with : 
+\begin{itemize}
+    \item[$\bullet$] the sample space $\Omega$ representing the possible states of a financial market
+    \item[$\bullet$] a $\sigma$-algebra $\mathcal{F}$ on the sample space $\Omega$
+    \item[$\bullet$] a probability measure $\mathbb{P}$ on the $\sigma$-algebra $\mathcal{F}$
+\end{itemize}
+
+Let $I = \{0,1,...,T\}$, with $T < \infty$ be the discrete set representing time points, where $T$ is the option's maturity date.
+We introduce a $\textbf{filtration}$ $(\mathcal{F}_t)_{t \in I}$ on the probability space $(\Omega,\mathcal{F},\mathbb{P})$. 
+The filtration $(\mathcal{F}_t)_{t \in I}$ is an increasing set of sub-$\sigma$-algebra of $\mathcal{F}$ with the property : 
+\begin{align*}
+    \forall (t_0,t_1) \in I \times I, \qquad t_0 \le t_1 \implies \mathcal{F}_{t_0} \subseteq \mathcal{F}_{t_1} \subseteq \mathcal{F}
+\end{align*}
+\cite{Filtration}
+We then defin the \textbf{filtered probability space} $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \in I}, \mathbb{P})$
+
+\bigskip
+
+\remark Working within this space allows us to model the evolution of a financial market.
+Thus, each $\sigma$-algebra in the filtration $(\mathcal{F}_t)_{t \in I}$ represents the information known at time $t$.
+Therefore, an agent at time $t_1$ has access to all information from an earlier time $t_0$, provided $t_0 \leq t_1$.
+The studied stochastic process $X\coloneq(X_t)_{t \in I}$ must be adapted to the filtration $(\mathcal{F}_t)_{t \in I}$ ($\forall t \in I$, $X_t$ is $\mathcal{F}_t$-measurable) 
+We can now define the random variables used to model the financial processes of the model.
+
+Consider the following random variables :
+\begin{align*}
+    \text{Asset quantity : } \quad \alpha_t& : \Omega \to \mathbb{R} \\
+    \text{Risky asset : } \quad S_t& : \Omega \to \mathbb{R}^+ \\
+    \text{Risk-free asset : } \quad B_t& : \Omega \to \mathbb{R}^+, t \mapsto (1+r)^t
+\end{align*}
+with $r>-1$ the risk-free rate.
+We assume that the random variables $\alpha_t$, $S_t$ and $B_t$ are $\mathcal{F}_t$-measurable for all $t \in I$.
+
+\remark For each $t \in I$, the random variable $B_t$ is constant on $\Omega$ ($\forall \omega \in \Omega, B_t(\omega)=(1+r)^t$).
+Therefore, it is a deterministic random variable.
+$S_t$ represents financial market uncertainty, $\alpha_t$ is a strategy adapted to the filtration (and thus adapted to the information known at time $t$), and $B_t$ represents the deterministic evolution of a risk-free investment.
+
+
+
+\pagebreak
+
+
+
+\subsection{Portfolio theory}
+
+We then introduce the concept of an \textbf{investment strategy} as a stochastic process $\Theta = (\Theta_t)_{t \in I} \coloneq (\alpha_t, \beta_t)_{t \in I}$
+where $\alpha_t$ and $\beta_t$ represent respectively the number of units at time $t$ in the risky asset and in the risk-free asset.
+This stochastic process is adapted to the filtration $(\mathcal{F}_t)_{t \in I}$.
+
+Let $B_t = (1+r)^t$ be the value of one unit invested in the risk-free asset.
+Thus, the value of the risk-free account is given by $\beta_t B_t$.
+
+A \textbf{discrete portfolio $\Pi_t$} at time $t$ is defined by the value : 
+\begin{align*}
+    \Pi_t = \alpha_tS_t+\beta_tB_t 
+\end{align*}
+Therefore, the stochastic process $\Pi_t$ is composed of two parts : $\alpha_tS_t$ representing the risky component of the portfolio,
+and $\beta_tB_t$ representing the risk-free component of the account. \cite{Portfolio}
+
+Although the model evolves in discrete time, each transition from $t$ to $t+1$ contains two phases : 
+\begin{itemize}
+    \item Price Update : Asset prices change from $(S_t,B_t)$ to $(S_{t+1},B_{t+1})$. 
+    The value of the portfolio held from period $t$, prior to any updates, becomes $\alpha_tS_{t+1}+\beta_tB_{t+1}$.
+    \item Portfolio update : The investor updates their holdings from $(\alpha_t,\beta_t)$ to $(\alpha_{t+1}, \beta_{t+1})$ at the newly observed prices $(S_{t+1},B_{t+1})$.
+    The value of the new portfolio is $\alpha_{t+1}S_{t+1} + \beta_{t+1}B_{t+1}$.
+\end{itemize}
+
+\bigskip
+
+\begin{definitionbox}[frametitle = {Self-financing property}]
+    A discrete portfolio is said to be \textbf{self-financing} if
+    \begin{align*}
+        \forall t \in I,  \quad \Pi_{t+1} = \alpha_t S_{t+1} + \beta_tB_{t+1} = \alpha_{t+1}S_{t+1} + \beta_{t+1}B_{t+1} 
+    \end{align*}\cite{SelfFinancingPortfolio}
+\end{definitionbox}
+
+\bigskip
+
+Thus, the self-financing property ensures that the evolution of $\Pi_t$ is entirely determined by the strategy $\Theta$ and the dynamics of both $S_t$ and $B_t$, without external adjustments.
+In the following, we will assume that all portfolios are self-financing.
+
+\bigskip
+
+\begin{definitionbox}[frametitle = {No-Arbitrage Principle}]
+    The No-Arbitrage principle means that there is no strategy $\Theta$ ensuring a self-financing portfolio with zero initial value and positive final value almost surely.
+    \begin{center}
+         $\nexists \Theta, \Pi_0=0, \; \mathbb{P}(\Pi_T\geq0)=1, \; \mathbb{P}(\Pi_T > 0) > 0$
+    \end{center}
+\end{definitionbox}
+\bigskip
+
+
+
+\pagebreak
+
+\remark The No-arbitrage principle forbid the theoretical existence of a risk-free asset requiring no initial investment.
+Consequently, any potential gain requires an initial outlay or entails risk.
+Without this condition, every investors would exploit arbitrage opportunities, causing markets to collapse.
+This property is a necessary condition to ensure market consistency.
+In practice, very minor arbitrage opportunities appear during market fluctuations and are exploited by arbitrageurs. \cite{Arbitrageurs}
+
+\subsection{Replication strategy}
+\bigskip
+\begin{definitionbox}[frametitle = {Replication}]
+    A payoff $H$ is said to be \textbf{replicable} if : $\exists \Pi, \; \Pi_T=H \quad \mathbb{P}$-a.s. \\
+    $\Pi$ is called the \textbf{replicating portfolio for H}.
+\end{definitionbox}
+\bigskip
+\begin{definitionbox}[frametitle = {Market Completeness}]
+    A market is said to be \textbf{complete} if every payoff is replicable with a portfolio.
+\end{definitionbox}
+\bigskip
+\remark 
+It follows naturally that market completeness implies the existence of a replicating portfolio for every payoff.
+However, one can go further and demonstrate the uniqueness of the portolio for each payoff.
+
+Consider a complete market, for any payoff H, there exists a \textbf{unique} replicating portfolio for H.
+
+\begin{proof}
+
+Let $\Pi = \Pi^1-\Pi^2$ be the difference between two self-financing portfolios that both replicate the payoff $H$.
+Since the difference of two self-financing portfolios is self-financing, $\Pi$ is self-financing. Furthermore,
+$$\Pi_T=\Pi_T^1-\Pi_T^2=H-H=0$$
+
+We will now prove that $\Pi_t=0$ for every $t\in[0,T]$.
+
+Suppose by contradiction that there exists $t\in[0,T]$ such that $\Pi_t \neq 0$.
+
+If $\Pi_t>0$, take the opposite position $-\Pi$ at time $t$. This creates an initial cash amount $\Pi_t>0$. 
+Invest this amount in the risk-free asset until time $T$. 
+
+Since $\Pi_T=0,$ the position $-\Pi$ has zero final value, while the amount invested in the risk-free asset has strictly positive value
+$$\Pi_t\frac{B_T}{B_t}>0$$
+
+Thus, starting from zero initial wealth at time $t$, we obtain a strictly positive final payoff, yielding an arbitrage opportunity.
+
+If $\Pi_t<0$, take the position $\Pi$ at time $t$ and borrow $-\Pi_t>0$ from the risk-free asset. The initial value of the combined position is $\Pi_t+(-\Pi_t)=0$.
+
+At time $T$, the portfolio $\Pi$ has value $\Pi_T=0$, while the loan has to be repaid in the amount
+$$(-\Pi_t)\frac{B_T}{B_t}>0$$
+
+Therefore this position produces a strictly negative final payoff. Taking the opposite position produces an arbitrage opportunity.
+In both cases, $\Pi_t \neq 0$ leads to an arbitrage opportunity, contradicting the no-arbitrage assumption.
+
+Therefore, $\Pi_t=0\qquad\text{for all }t\in[0,T]$
+
+Consequently, $\Pi_t^1=\Pi_t^2\qquad\text{for all }t\in[0,T]$
+
+Thus the self-financing replicating portfolio for $H$ is unique.
+\end{proof}
+
+
+
+\subsection{Risk-neutral measure}
+
+\bigskip
+
+\begin{definitionbox}[frametitle = {Fundamental Theorems of Asset Pricing}]
+    \textbf{First Theorem : } A discret financial market on the filtered probability space \\
+    $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \in I}, \mathbb{P})$ is arbitrage-free 
+    if and only if there exists at least one risk neutral probability measure that is equivalent to the original probability measure $\mathbb{P}$.
+
+    \textbf{Second Theorem : } An arbitrage-free market is complete if and only if there exists an unique risk-neutral measure,
+    equivalent to $\mathbb{P}$ for which the \textbf{numeraire} (reference asset used to express prices) is the risk-free asset.
+\end{definitionbox} \cite{FundamentalTheorems} \cite{FundamentalTheorem} \cite{Martingales}
+
+\bigskip
+
+\remark
+We previously required markets to satisfy the no-arbitrage principle. Thus, we assume the existence of a risk-neutral measure.
+Furthermore, if the market is complete, the risk-neutral measure is \textbf{unique}, allowing for the consistent pricing of all assets.
+This theorem forms the basis of models for valuing options and derivatives.
+
+The second theorem states that a market is complete if and only if there exists a unique risk-neutral probability measure.
+In the binomial model, this property corresponds to the fact that the number of future states (up/down) equals the number of assets (risky/risk-free).
+Thus, the model considered so far involves two types of assets (risky/risk-free), and only two possible scenarios (rise/fall) can be considered at each step.
+This justifies the use of binomial models, whichis the easiest complete model, as opposed to a trionmial model, which would be incomplete.
+
+\bigskip
+
+\begin{definitionbox}[frametitle = {Martingale}]
+    $M \coloneq (M_t)_{t \in I}$ is an $\mathcal{F}$-martingale if : 
+    \begin{itemize}
+        \item $\forall t \in I, M_t$ is $\mathcal{F}_t$-measurable
+        \item $\forall t \in I, M_t$ is integrable 
+        \item $\forall s \le t$, $M_{s} = \mathbb{E}(M_{t} | \mathcal{F}_{s})$ a.s.
+    \end{itemize}
+\end{definitionbox}
+
+\bigskip
+
+Thus, the concept of martingale is useful to represent a financial market.
+Intuitively, the future expectation of a martingale, taking the past into account, is equal to the current value $(\mathbb{E}(M_{t+1}|\mathcal{F}_t) = M_t)$.
+ 
+Consider a discret market with a risk asset $S_t$ and a risk-free asset $B_t$.
+The \textbf{discounted yield} of the risky asset is defined as : 
+$$\tilde{S}_t \coloneq \frac{S_t}{B_t}$$
+\cite{IntroductionALevaluationDoptions}
+
+We obviously see that the price is expressed in terms of $B_t$, which thus becomes the numeraire.
+According to the first fundamental theorem of asset pricing, if the market is \textbf{arbritrage-free}, there exists at least one measure $\mathbb{Q}$ equivalent to $\mathbb{P}$ such that : 
+
+\begin{align*}
+    \tilde{S}_t = \mathbb{E}_{\mathbb{Q}}\big[\tilde{S}_{t+1} \mid \mathcal{F}_t]
+\end{align*}
+In other words, under $\mathbb{Q}$, the discounted price becomes an $\mathcal{F}$-martingale.
+
+To better understand this concept, let's look at an example : 
+Consider a market with : 
+$$
+S_0 = 100, \quad S_1 = 
+\begin{cases}
+120 \; \text{with probability $p$} \\
+90 \; \text{with probability $1-p$} \end{cases} \quad \text{avec } r_f = 5\%
+$$
+
+We search the risk-neutral probability $q$ such that the discounted yield is a martingale under $\mathbb{Q}$:
+
+$$\tilde{S}_0 = \frac{1}{1+r}\mathbb{E_Q}[S_1|\mathcal{F}_0] = \frac{120q + 90(1-p)}{1+r_f}$$
+
+The solution $q$ corresponds to the \textbf{risk-neutral probability} of an asset price increase.
+Under this probability, the discounted yield $\tilde{S}_t$ is a martingale and is used to value all derivative products.
+
+  
+Let $\Pi_T$ be the \textbf{payoff} of an asset at maturity $T$. 
+If the market is \textbf{arbitrage-free}, the first fundamental theorem guarantees the existence of a risk-neutral measure $\mathbb{Q}$.
+
+The initial price $\Pi_0$ of the asset is defined as the discounted expectation of its payoff under the measure $\mathbb{Q}$:
+$$\Pi_0 = \mathbb{E}_{\mathbb{Q}}\Big[\frac{\Pi_T}{B_T}\Big] = \frac{\mathbb{E}_{\mathbb{Q}}[\Pi_T]}{B_T} = \frac{\mathbb{E}_{\mathbb{Q}}[\Pi_T]}{(1+r)^T}$$
+This equality holds because $B$ is deterministic.
+
+Example:
+Consider a European call option with strike $K = 100$, maturity $T = 1$ period, and underlying asset $S_T$ such that:
+$$
+S_T = 
+\begin{cases}
+120 \; \text{with probability } p \\
+50 \; \text{with probability } 1-p
+\end{cases} \quad  \text{avec } r_f = 5\%.
+$$
+
+The option being being a call, its payoff is $\Pi_T = \max(S_T - K, 0)$.  
+
+The initial price is :
+$$ \Pi_0 = \frac{\mathbb{E}_{\mathbb{Q}}[\Pi_T]}{1+r_f} = \frac{1}{1+r_f} \big(20q + (1-q) \cdot 0 \big) = \frac{20q}{1 + r_f} $$
+$q$ is the risk-neutral probability of an increase in the asset's price.
+Under this probability, the discounted option price is consistent with an arbitrage-free market.

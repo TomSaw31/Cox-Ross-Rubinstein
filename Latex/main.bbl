@@ -298,35 +298,35 @@
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labeltitlesource}{title}
-      \field{title}{Filtration (Probabilités)}
-      \field{urlday}{13}
-      \field{urlmonth}{2}
+      \field{title}{Filtration (probability theory)}
+      \field{urlday}{17}
+      \field{urlmonth}{9}
       \field{urlyear}{2026}
       \field{urldateera}{ce}
       \verb{urlraw}
-      \verb https://fr.wikipedia.org/wiki/Filtration_(probabilit%C3%A9s)
+      \verb https://en.wikipedia.org/wiki/Filtration_(probability_theory)
       \endverb
       \verb{url}
-      \verb https://fr.wikipedia.org/wiki/Filtration_(probabilit%C3%A9s)
+      \verb https://en.wikipedia.org/wiki/Filtration_(probability_theory)
       \endverb
     \endentry
-    \entry{Portefeuille}{online}{}{}
+    \entry{Portfolio}{online}{}{}
       \list{organization}{1}{%
         {Wikipedia}%
       }
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labeltitlesource}{title}
-      \field{title}{Portefeuille}
-      \field{urlday}{13}
-      \field{urlmonth}{2}
+      \field{title}{Portfolio (finance)}
+      \field{urlday}{18}
+      \field{urlmonth}{9}
       \field{urlyear}{2026}
       \field{urldateera}{ce}
       \verb{urlraw}
-      \verb https://fr.wikipedia.org/wiki/Portefeuille_(finance)
+      \verb https://en.wikipedia.org/wiki/Portfolio_(finance)
       \endverb
       \verb{url}
-      \verb https://fr.wikipedia.org/wiki/Portefeuille_(finance)
+      \verb https://en.wikipedia.org/wiki/Portfolio_(finance)
       \endverb
     \endentry
     \entry{SelfFinancingPortfolio}{online}{}{}
@@ -346,6 +346,114 @@
       \endverb
       \verb{url}
       \verb https://en.wikipedia.org/wiki/Self-financing_portfolio
+      \endverb
+    \endentry
+    \entry{Arbitrageurs}{online}{}{}
+      \list{organization}{1}{%
+        {Quora}%
+      }
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{title}{Who are Arbitrageurs?}
+      \field{urlday}{19}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://financeconcepts.quora.com/Who-are-Arbitrageurs-In-the-financial-markets-arbitrageurs-trade-when-they-are-able-to-spot-chances-to-purchase-and-se
+      \endverb
+      \verb{url}
+      \verb https://financeconcepts.quora.com/Who-are-Arbitrageurs-In-the-financial-markets-arbitrageurs-trade-when-they-are-able-to-spot-chances-to-purchase-and-se
+      \endverb
+    \endentry
+    \entry{FundamentalTheorems}{online}{}{}
+      \list{organization}{1}{%
+        {Wikipedia}%
+      }
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{title}{Fundamental Theorem of asset pricing}
+      \field{urlday}{19}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Fundamental_theorem_of_asset_pricing
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Fundamental_theorem_of_asset_pricing
+      \endverb
+    \endentry
+    \entry{FundamentalTheorem}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=dec03082e5987a475f3fa5150febe9ae}{%
+           family={Freddy\bibnamedelima Delbaen},
+           familyi={F\bibinitperiod\bibinitdelim D\bibinitperiod},
+           given={Walter\bibnamedelima Schachermayer},
+           giveni={W\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {ResearchGate}%
+      }
+      \strng{namehash}{dec03082e5987a475f3fa5150febe9ae}
+      \strng{fullhash}{dec03082e5987a475f3fa5150febe9ae}
+      \strng{fullhashraw}{dec03082e5987a475f3fa5150febe9ae}
+      \strng{bibnamehash}{dec03082e5987a475f3fa5150febe9ae}
+      \strng{authorbibnamehash}{dec03082e5987a475f3fa5150febe9ae}
+      \strng{authornamehash}{dec03082e5987a475f3fa5150febe9ae}
+      \strng{authorfullhash}{dec03082e5987a475f3fa5150febe9ae}
+      \strng{authorfullhashraw}{dec03082e5987a475f3fa5150febe9ae}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A General Version of the Fundamental Theorem of Asset Pricing (1994)}
+      \field{urlday}{19}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.researchgate.net/publication/225903732_A_General_Version_of_the_Fundamental_Theorem_of_Asset_Pricing_1994
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/publication/225903732_A_General_Version_of_the_Fundamental_Theorem_of_Asset_Pricing_1994
+      \endverb
+    \endentry
+    \entry{Martingales}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=c36ba277862ee6eb40af51177bd3491f}{%
+           family={J.Michael\bibnamedelima Harrison},
+           familyi={J\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={Stanley\bibnamedelimb R.\bibnamedelimi Pliska},
+           giveni={S\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {ScienceDirect}%
+      }
+      \strng{namehash}{c36ba277862ee6eb40af51177bd3491f}
+      \strng{fullhash}{c36ba277862ee6eb40af51177bd3491f}
+      \strng{fullhashraw}{c36ba277862ee6eb40af51177bd3491f}
+      \strng{bibnamehash}{c36ba277862ee6eb40af51177bd3491f}
+      \strng{authorbibnamehash}{c36ba277862ee6eb40af51177bd3491f}
+      \strng{authornamehash}{c36ba277862ee6eb40af51177bd3491f}
+      \strng{authorfullhash}{c36ba277862ee6eb40af51177bd3491f}
+      \strng{authorfullhashraw}{c36ba277862ee6eb40af51177bd3491f}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Martingales and stochastic integrals in the theory of continuous trading}
+      \field{urlday}{19}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/0304414981900260?via%3Dihub
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/0304414981900260?via%3Dihub
       \endverb
     \endentry
     \entry{IntroductionALevaluationDoptions}{online}{}{}
@@ -458,8 +566,8 @@
       \list{organization}{1}{%
         {Wikipedia}%
       }
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labeltitlesource}{title}
       \field{title}{Modèle de Black-Scholes}
       \field{urlday}{21}
@@ -477,8 +585,8 @@
       \list{organization}{1}{%
         {LPTMC}%
       }
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labeltitlesource}{title}
       \field{title}{Du mouvement brownien à la modélisation financière TD n°4}
       \field{urlday}{22}
@@ -496,8 +604,8 @@
       \list{organization}{1}{%
         {Université Côte d'Azur}%
       }
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labeltitlesource}{title}
       \field{title}{Black-Scholes comme limite de CRR}
       \field{urlday}{22}

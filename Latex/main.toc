@@ -1,14 +1,13 @@
-\babel@toc {french}{}\relax 
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Motivation}{2}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}History of option valuation}{2}{subsection.1.2}%
 \contentsline {subsection}{\numberline {1.3}Goals}{3}{subsection.1.3}%
 \contentsline {subsection}{\numberline {1.4}Vocabulary}{3}{subsection.1.4}%
-\contentsline {section}{\numberline {2}Cadre théorique et principe de non-arbitrage}{6}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Espace probabilisé filtré}{6}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Portefeuille d'autofinancement}{7}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Stratégie de réplication}{8}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Mesure de probabilité risque-neutre}{9}{subsection.2.4}%
+\contentsline {section}{\numberline {2}Mathematical theory and no-arbitrage principle}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Filtered probability space}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Portfolio theory}{7}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Replication strategy}{8}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Risk-neutral measure}{9}{subsection.2.4}%
 \contentsline {section}{\numberline {3}Analyse du modèle de Cox-Ross-Rubinstein}{11}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Objectifs et Structure du modèle}{11}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Parcours Descendant}{12}{subsection.3.2}%
@@ -16,19 +15,19 @@
 \contentsline {subsection}{\numberline {3.4}Options Américaines}{16}{subsection.3.4}%
 \contentsline {section}{\numberline {4}Conception et implémentation algorithmique}{17}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Implémentation à l'aide d'arbres recombinants}{17}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Implémentation optimisée}{20}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Performances et Tests}{20}{subsection.4.3}%
-\contentsline {section}{\numberline {5}Convergence vers le modèle de Black-Scholes}{22}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Mouvement Brownien / Processus de Wiener}{22}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Intégration d'Itō}{24}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Equation de Black-Scholes}{27}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Convergence}{27}{subsection.5.4}%
-\contentsline {section}{\numberline {6}Evaluations des indicateurs de risque}{28}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Delta $(\Delta )$}{28}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Gamma $(\Gamma )$}{28}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Vega $(\nu )$}{28}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Thêta $(\Theta )$}{28}{subsection.6.4}%
-\contentsline {section}{\numberline {7}Analyse comparative avec d'autres modèles}{29}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Monte-Carlo}{29}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Arbres trinomiaux}{29}{subsection.7.2}%
-\contentsline {section}{\numberline {8}Conclusion}{30}{section.8}%
+\contentsline {subsection}{\numberline {4.2}Implémentation optimisée}{21}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Performances et Tests}{21}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Convergence vers le modèle de Black-Scholes}{23}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Mouvement Brownien / Processus de Wiener}{23}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Intégration d'Itō}{25}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Equation de Black-Scholes}{28}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Convergence}{28}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Evaluations des indicateurs de risque}{29}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Delta $(\Delta )$}{29}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Gamma $(\Gamma )$}{29}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Vega $(\nu )$}{29}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Thêta $(\Theta )$}{29}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Analyse comparative avec d'autres modèles}{30}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Monte-Carlo}{30}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Arbres trinomiaux}{30}{subsection.7.2}%
+\contentsline {section}{\numberline {8}Conclusion}{31}{section.8}%
