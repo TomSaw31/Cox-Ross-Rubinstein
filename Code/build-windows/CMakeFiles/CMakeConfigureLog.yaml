@@ -1,0 +1,371 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      The system is: Windows - 6.2.9200 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35229 for x64
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      CMakeCXXCompilerId.cpp
+      Microsoft (R) Incremental Linker Version 14.44.35229.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      /out:CMakeCXXCompilerId.exe 
+      CMakeCXXCompilerId.obj 
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/3.29.2/CompilerIdCXX/CMakeCXXCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:1216 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Detecting CXX compiler /showIncludes prefix:
+        main.c
+        Note: including file: C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\ShowIncludes\\foo.h
+        
+      Found prefix "Note: including file: "
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-y6fp4c"
+      binary: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-y6fp4c"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-y6fp4c'
+        
+        Run Build Command(s): C:/Strawberry/c/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_60b7b\\fast
+        	"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_60b7b.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_60b7b.dir\\build
+        Building CXX object CMakeFiles/cmTC_60b7b.dir/CMakeCXXCompilerABI.cpp.obj
+        	C:\\Strawberry\\c\\bin\\cmake.exe -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_60b7b.dir\\CMakeCXXCompilerABI.cpp.obj.d --working-dir=C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-y6fp4c --filter-prefix="Note: including file: " -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe @C:\\Users\\PC\\AppData\\Local\\Temp\\nm7050.tmp
+        CMakeCXXCompilerABI.cpp
+        Linking CXX executable cmTC_60b7b.exe
+        	C:\\Strawberry\\c\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_60b7b.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_60b7b.dir\\objects1.rsp @C:\\Users\\PC\\AppData\\Local\\Temp\\nm70BE.tmp
+        Visual Studio Incremental Link with embedded manifests
+        Create CMakeFiles\\cmTC_60b7b.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_60b7b.dir/embed.manifest
+        RC Pass 1:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe /fo CMakeFiles\\cmTC_60b7b.dir/manifest.res CMakeFiles\\cmTC_60b7b.dir/manifest.rc
+        LINK Pass 1:
+        C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_60b7b.dir\\objects1.rsp /out:cmTC_60b7b.exe /implib:cmTC_60b7b.lib /pdb:C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-y6fp4c\\cmTC_60b7b.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_60b7b.dir/intermediate.manifest CMakeFiles\\cmTC_60b7b.dir/manifest.res
+        MT:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe /nologo /manifest CMakeFiles\\cmTC_60b7b.dir/intermediate.manifest /out:CMakeFiles\\cmTC_60b7b.dir/embed.manifest /notify_update
+        RC Pass 2:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe /fo CMakeFiles\\cmTC_60b7b.dir/manifest.res CMakeFiles\\cmTC_60b7b.dir/manifest.rc
+        FINAL LINK:
+        C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_60b7b.dir\\objects1.rsp /out:cmTC_60b7b.exe /implib:cmTC_60b7b.lib /pdb:C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-y6fp4c\\cmTC_60b7b.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_60b7b.dir/intermediate.manifest CMakeFiles\\cmTC_60b7b.dir/manifest.res
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:170 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/PROGRA~2/MICROS~2/2022/BUILDT~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:207 (cmake_determine_linker_id)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/PROGRA~2/MICROS~2/2022/BUILDT~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35229.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35229 for x64
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      CMakeCCompilerId.c
+      Microsoft (R) Incremental Linker Version 14.44.35229.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      /out:CMakeCCompilerId.exe 
+      CMakeCCompilerId.obj 
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+      
+      The C compiler identification is MSVC, found in:
+        C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/3.29.2/CompilerIdC/CMakeCCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:1216 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:3 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        main.c
+        Note: including file: C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\ShowIncludes\\foo.h
+        
+      Found prefix "Note: including file: "
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-d7kq9y"
+      binary: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-d7kq9y"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-d7kq9y'
+        
+        Run Build Command(s): C:/Strawberry/c/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_7b522\\fast
+        	"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_7b522.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_7b522.dir\\build
+        Building C object CMakeFiles/cmTC_7b522.dir/CMakeCCompilerABI.c.obj
+        	C:\\Strawberry\\c\\bin\\cmake.exe -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_7b522.dir\\CMakeCCompilerABI.c.obj.d --working-dir=C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-d7kq9y --filter-prefix="Note: including file: " -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe @C:\\Users\\PC\\AppData\\Local\\Temp\\nm8A50.tmp
+        CMakeCCompilerABI.c
+        Linking C executable cmTC_7b522.exe
+        	C:\\Strawberry\\c\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_7b522.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_7b522.dir\\objects1.rsp @C:\\Users\\PC\\AppData\\Local\\Temp\\nm8ABE.tmp
+        Visual Studio Incremental Link with embedded manifests
+        Create CMakeFiles\\cmTC_7b522.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_7b522.dir/embed.manifest
+        RC Pass 1:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe /fo CMakeFiles\\cmTC_7b522.dir/manifest.res CMakeFiles\\cmTC_7b522.dir/manifest.rc
+        LINK Pass 1:
+        C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_7b522.dir\\objects1.rsp /out:cmTC_7b522.exe /implib:cmTC_7b522.lib /pdb:C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-d7kq9y\\cmTC_7b522.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_7b522.dir/intermediate.manifest CMakeFiles\\cmTC_7b522.dir/manifest.res
+        MT:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe /nologo /manifest CMakeFiles\\cmTC_7b522.dir/intermediate.manifest /out:CMakeFiles\\cmTC_7b522.dir/embed.manifest /notify_update
+        RC Pass 2:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe /fo CMakeFiles\\cmTC_7b522.dir/manifest.res CMakeFiles\\cmTC_7b522.dir/manifest.rc
+        FINAL LINK:
+        C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_7b522.dir\\objects1.rsp /out:cmTC_7b522.exe /implib:cmTC_7b522.lib /pdb:C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-d7kq9y\\cmTC_7b522.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_7b522.dir/intermediate.manifest CMakeFiles\\cmTC_7b522.dir/manifest.res
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:170 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': C:/PROGRA~2/MICROS~2/2022/BUILDT~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:207 (cmake_determine_linker_id)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:3 (project)"
+    message: |
+      Running the C compiler's linker: "C:/PROGRA~2/MICROS~2/2022/BUILDT~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35229.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:60 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-wl0stu"
+      binary: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-wl0stu"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-wl0stu'
+        
+        Run Build Command(s): C:/Strawberry/c/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_ca865\\fast
+        	"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_ca865.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_ca865.dir\\build
+        Building C object CMakeFiles/cmTC_ca865.dir/src.c.obj
+        	C:\\Strawberry\\c\\bin\\cmake.exe -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_ca865.dir\\src.c.obj.d --working-dir=C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-wl0stu --filter-prefix="Note: including file: " -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe @C:\\Users\\PC\\AppData\\Local\\Temp\\nm8CE0.tmp
+        src.c
+        C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-wl0stu\\src.c(1): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory
+        NMAKE : fatal error U1077: 'C:\\Strawberry\\c\\bin\\cmake.exe -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_ca865.dir\\src.c.obj.d --working-dir=C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-wl0stu --filter-prefix="Note: including file: " -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe @C:\\Users\\PC\\AppData\\Local\\Temp\\nm8CE0.tmp' : return code '0x2'
+        Stop.
+        NMAKE : fatal error U1077: '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_ca865.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_ca865.dir\\build' : return code '0x2'
+        Stop.
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:175 (_threads_check_lib)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:60 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthreads"
+    directories:
+      source: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-3lm81c"
+      binary: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-3lm81c"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREADS_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-3lm81c'
+        
+        Run Build Command(s): C:/Strawberry/c/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_af7aa\\fast
+        	"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_af7aa.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_af7aa.dir\\build
+        Building C object CMakeFiles/cmTC_af7aa.dir/CheckFunctionExists.c.obj
+        	C:\\Strawberry\\c\\bin\\cmake.exe -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_af7aa.dir\\CheckFunctionExists.c.obj.d --working-dir=C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-3lm81c --filter-prefix="Note: including file: " -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe @C:\\Users\\PC\\AppData\\Local\\Temp\\nm8DCA.tmp
+        CheckFunctionExists.c
+        Linking C executable cmTC_af7aa.exe
+        	C:\\Strawberry\\c\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_af7aa.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_af7aa.dir\\objects1.rsp @C:\\Users\\PC\\AppData\\Local\\Temp\\nm8E29.tmp
+        Visual Studio Incremental Link with embedded manifests
+        Create CMakeFiles\\cmTC_af7aa.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_af7aa.dir/embed.manifest
+        RC Pass 1:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe /fo CMakeFiles\\cmTC_af7aa.dir/manifest.res CMakeFiles\\cmTC_af7aa.dir/manifest.rc
+        LINK Pass 1:
+        C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_af7aa.dir\\objects1.rsp /out:cmTC_af7aa.exe /implib:cmTC_af7aa.lib /pdb:C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-3lm81c\\cmTC_af7aa.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_af7aa.dir/intermediate.manifest CMakeFiles\\cmTC_af7aa.dir/manifest.res
+        LINK Pass 1: command "C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_af7aa.dir\\objects1.rsp /out:cmTC_af7aa.exe /implib:cmTC_af7aa.lib /pdb:C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-3lm81c\\cmTC_af7aa.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_af7aa.dir/intermediate.manifest CMakeFiles\\cmTC_af7aa.dir/manifest.res" failed (exit code 1104) with the following output:
+        LINK : fatal error LNK1104: cannot open file 'pthreads.lib'
+        NMAKE : fatal error U1077: 'C:\\Strawberry\\c\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_af7aa.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_af7aa.dir\\objects1.rsp @C:\\Users\\PC\\AppData\\Local\\Temp\\nm8E29.tmp' : return code '0xffffffff'
+        Stop.
+        NMAKE : fatal error U1077: '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_af7aa.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_af7aa.dir\\build' : return code '0x2'
+        Stop.
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:176 (_threads_check_lib)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:60 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthread"
+    directories:
+      source: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-41cqfw"
+      binary: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-41cqfw"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREAD_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/PC/Documents/Cox-Ross-Rubinstein/Code/build-windows/CMakeFiles/CMakeScratch/TryCompile-41cqfw'
+        
+        Run Build Command(s): C:/Strawberry/c/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_5dc50\\fast
+        	"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_5dc50.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_5dc50.dir\\build
+        Building C object CMakeFiles/cmTC_5dc50.dir/CheckFunctionExists.c.obj
+        	C:\\Strawberry\\c\\bin\\cmake.exe -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_5dc50.dir\\CheckFunctionExists.c.obj.d --working-dir=C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-41cqfw --filter-prefix="Note: including file: " -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe @C:\\Users\\PC\\AppData\\Local\\Temp\\nm8F03.tmp
+        CheckFunctionExists.c
+        Linking C executable cmTC_5dc50.exe
+        	C:\\Strawberry\\c\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_5dc50.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_5dc50.dir\\objects1.rsp @C:\\Users\\PC\\AppData\\Local\\Temp\\nm8F62.tmp
+        Visual Studio Incremental Link with embedded manifests
+        Create CMakeFiles\\cmTC_5dc50.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_5dc50.dir/embed.manifest
+        RC Pass 1:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe /fo CMakeFiles\\cmTC_5dc50.dir/manifest.res CMakeFiles\\cmTC_5dc50.dir/manifest.rc
+        LINK Pass 1:
+        C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_5dc50.dir\\objects1.rsp /out:cmTC_5dc50.exe /implib:cmTC_5dc50.lib /pdb:C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-41cqfw\\cmTC_5dc50.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_5dc50.dir/intermediate.manifest CMakeFiles\\cmTC_5dc50.dir/manifest.res
+        LINK Pass 1: command "C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_5dc50.dir\\objects1.rsp /out:cmTC_5dc50.exe /implib:cmTC_5dc50.lib /pdb:C:\\Users\\PC\\Documents\\Cox-Ross-Rubinstein\\Code\\build-windows\\CMakeFiles\\CMakeScratch\\TryCompile-41cqfw\\cmTC_5dc50.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_5dc50.dir/intermediate.manifest CMakeFiles\\cmTC_5dc50.dir/manifest.res" failed (exit code 1104) with the following output:
+        LINK : fatal error LNK1104: cannot open file 'pthread.lib'
+        NMAKE : fatal error U1077: 'C:\\Strawberry\\c\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_5dc50.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_5dc50.dir\\objects1.rsp @C:\\Users\\PC\\AppData\\Local\\Temp\\nm8F62.tmp' : return code '0xffffffff'
+        Stop.
+        NMAKE : fatal error U1077: '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_5dc50.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_5dc50.dir\\build' : return code '0x2'
+        Stop.
+        
+      exitCode: 2
+...

@@ -199,7 +199,7 @@ Thus, the concept of martingale is useful to represent a financial market.
 Intuitively, the future expectation of a martingale, taking the past into account, is equal to the current value $(\mathbb{E}(M_{t+1}|\mathcal{F}_t) = M_t)$.
  
 Consider a discret market with a risk asset $S_t$ and a risk-free asset $B_t$.
-The \textbf{discounted yield} of the risky asset is defined as : 
+The \textbf{discounted cash flow} of the risky asset is defined as : 
 $$\tilde{S}_t \coloneq \frac{S_t}{B_t}$$
 \cite{IntroductionALevaluationDoptions}
 
@@ -220,12 +220,12 @@ S_0 = 100, \quad S_1 =
 90 \; \text{with probability $1-p$} \end{cases} \quad \text{avec } r_f = 5\%
 $$
 
-We search the risk-neutral probability $q$ such that the discounted yield is a martingale under $\mathbb{Q}$:
+We search the risk-neutral probability $q$ such that the discounted cash flow is a martingale under $\mathbb{Q}$:
 
 $$\tilde{S}_0 = \frac{1}{1+r}\mathbb{E_Q}[S_1|\mathcal{F}_0] = \frac{120q + 90(1-p)}{1+r_f}$$
 
 The solution $q$ corresponds to the \textbf{risk-neutral probability} of an asset price increase.
-Under this probability, the discounted yield $\tilde{S}_t$ is a martingale and is used to value all derivative products.
+Under this probability, the discounted cash flow $\tilde{S}_t$ is a martingale and is used to value all derivative products.
 
   
 Let $\Pi_T$ be the \textbf{payoff} of an asset at maturity $T$. 

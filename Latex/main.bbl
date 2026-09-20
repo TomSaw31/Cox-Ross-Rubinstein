@@ -600,25 +600,6 @@
       \verb https://www.lptmc.jussieu.fr/files/TD4_Brown(5).pdf
       \endverb
     \endentry
-    \entry{BSLimiteCRR}{online}{}{}
-      \list{organization}{1}{%
-        {Université Côte d'Azur}%
-      }
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labeltitlesource}{title}
-      \field{title}{Black-Scholes comme limite de CRR}
-      \field{urlday}{22}
-      \field{urlmonth}{6}
-      \field{urlyear}{2026}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://math.univ-cotedazur.fr/u/diener/L3MASS08/chap8.pdf
-      \endverb
-      \verb{url}
-      \verb https://math.univ-cotedazur.fr/u/diener/L3MASS08/chap8.pdf
-      \endverb
-    \endentry
   \enddatalist
 \endrefsection
 \endinput

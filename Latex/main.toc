@@ -8,26 +8,16 @@
 \contentsline {subsection}{\numberline {2.2}Portfolio theory}{7}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Replication strategy}{8}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Risk-neutral measure}{9}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Analyse du modèle de Cox-Ross-Rubinstein}{11}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Objectifs et Structure du modèle}{11}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Parcours Descendant}{12}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Raisonnement Rétrograde}{14}{subsection.3.3}%
+\contentsline {section}{\numberline {3}Analysis of the Cox-Ross-Rubinstein model}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Objectives and Structure of the Model}{11}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Forward Phase}{12}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Backward Phase}{14}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Options Américaines}{16}{subsection.3.4}%
 \contentsline {section}{\numberline {4}Conception et implémentation algorithmique}{17}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Implémentation à l'aide d'arbres recombinants}{17}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Implémentation optimisée}{21}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Performances et Tests}{21}{subsection.4.3}%
-\contentsline {section}{\numberline {5}Convergence vers le modèle de Black-Scholes}{23}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Mouvement Brownien / Processus de Wiener}{23}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Intégration d'Itō}{25}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Equation de Black-Scholes}{28}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Convergence}{28}{subsection.5.4}%
-\contentsline {section}{\numberline {6}Evaluations des indicateurs de risque}{29}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Delta $(\Delta )$}{29}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Gamma $(\Gamma )$}{29}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Vega $(\nu )$}{29}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Thêta $(\Theta )$}{29}{subsection.6.4}%
-\contentsline {section}{\numberline {7}Analyse comparative avec d'autres modèles}{30}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Monte-Carlo}{30}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Arbres trinomiaux}{30}{subsection.7.2}%
-\contentsline {section}{\numberline {8}Conclusion}{31}{section.8}%
+\contentsline {section}{\numberline {5}Convergence vers le modèle de Black-Scholes}{18}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Mouvement Brownien / Processus de Wiener}{18}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Intégration d'Itō}{20}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Equation de Black-Scholes}{23}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Evaluations des indicateurs de risque}{24}{section.6}%
+\contentsline {section}{\numberline {7}Analyse comparative avec d'autres modèles}{25}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{26}{section.8}%

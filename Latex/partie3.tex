@@ -1,36 +1,48 @@
-\section{Analyse du modèle de Cox-Ross-Rubinstein}
-Dans cette partie, nous nous intéresserons à la théorie du modèle de Cox-Ross-Rubinstein afin de l'implémenter dans la prochaine partie.
+\section{Analysis of the Cox-Ross-Rubinstein model}
+In this section, we will examine the theory behind the Cox-Ross-Rubinstein model to implement it later in the next section.
 
-\subsection{Objectifs et Structure du modèle}
+\subsection{Objectives and Structure of the Model}
 
-L'objectif du modèle \textbf{binomial} ou de \textbf{Cox-Ross-Rubinstein} est de trouver le prix sans arbitrage d'un produit dérivé. Le \textbf{prix sans arbitrage} est le prix auquel il n'existe aucune opportunité d'arbitrage. Ce modèle repose sur la réplication de portefeuille, l'absence d'arbitrage et la complétude de marché afin de reproduire exactement les flux futurs de l'option et de garantir l'existence et l'unicité d'une probabilité risque-neutre. \\
+The objective of the \textbf{binomial} or \textbf{Cox-Ross-Rubinstein} model is to find the no-arbitrage price of the derivative product.
+The \textbf{no-arbitrage price} is the price at which no arbitrage opportunity exists.
+This model is based on portfolio replication, the absence of arbitrage and market completeness to exactly replicate the option's future cash flows and to guarantee the existence and uniqueness of a risk-neutral probability measure.
 
-Le modèle \textbf{Cox-Ross-Rubinstein} est un modèle de valorisation discret contrairement au modèle de \textbf{Black-Scholes} qui est continu.
-Les principaux intérêts de travailler en temps discret sont la facilité de modélisation ainsi que l'implémentation algorithmique. En effet, le modèle binomial est facilement compréhensible intuitivement en représentant l'évolution des actifs sur les branches d'un arbre pondérées par les probabilités de montée et descente des prix. Nous nous intéresserons à cette représentation dans la suite de cette section. \\
 
-Pour discrétiser la période de temps du call, on considère une subdivision de la période de validité de l'option en $N$ périodes de même longueur, ainsi on obtient chaque division : 
-\begin{align*}
-    t_n=\frac{nT}{N} ,\forall n \in {0,..,N}
-\end{align*}
-\remark Faire tendre $N$ vers des valeurs très grandes revient à se rapprocher d'un modèle continu. \\\\
-Sur chaque subdivision, on définit deux facteurs :
+The \textbf{Cox-Ross-Rubinstein} model is a discrete pricing model unlike the \textbf{Black-Scholes} model which is continuous.
+The main advantages of working in discrete time are the ease of modeling and algorithmic implementation.
+Indeed, the binomial model is intuitively easy to understand as it represents asset evolution along the branches of a binary tree weighted by the probabilities of price increases and decreases.
+We will focus on this representation in the remainder of this section.
+
+To discretize the time horizon of the call, we consider subdivision of the option's validity period into $N$ periods of equal length, yielding the following divisions :
+
+$$t_n=\frac{nT}{N} ,\forall n \in {0,..,N}$$
+
+\remark Letting $N$ tend towards very large values amounts to approaching a continuous model.
+
+\bigskip
+
+For each subdivision, two factors are defined :
 \begin{center}
     \begin{itemize}
-        \item[\textbf{u}] : le facteur de hausse de l'actif (up)
-        \item[\textbf{d}] : le facteur de baisse de l'actif (down)
+        \item[\textbf{u}] : the asset's upward movement factor (up)
+        \item[\textbf{d}] : the asset's downward movement factor (down)
     \end{itemize}
 \end{center}
-Ces deux facteurs correspondent respectivement à la hausse et à la baisse du prix de l'actif. Sur un schéma d'arbre, on adoptera la convention où le facteur de hausse est sur la branche la plus haute et vice-versa. \\
-\\
-\remark Nous ne nous attarderons pas, dans un premier temps, sur la manière dont sont calculés ces deux facteurs.
+These two factors correspond to the rise and fall in the asset's price, respectively.
+In a tree diagram, we will consider the convention of placing the up-factor on the upper branch and vice-versa.
 
-L'algorithme se décompose donc en deux phases distinctes :
+\remark For the time being, we won't dwell on how these two factors are calculated.
+
+The algorithm therefore breaks down into two distinc phases :
 \begin{itemize}
-\item \textbf{La phase de propagation (Descente) :} On part de $S_0$ pour construire l'arbre des prix du sous-jacent jusqu'à l'échéance $T$.
-\item \textbf{La phase d'évaluation (Remontée) :} Une fois les prix à l'échéance fixés, on calcule les \textbf{payoffs} sur les feuilles de l'arbre, puis on remonte pour déterminer la prime $S_0$
+    \item \textbf{The propagation phase (Forward Phase) :} Starting from $S_0$ the underlying asset price tree is constructed up to maturity $T$.
+    \item \textbf{The evaluation phase (Backward Phase) :} Once the prices are set at maturity, the \textbf{payoffs} on the tree leaves are calculated.
+    Then, we go backwards in the tree traversal to determine the payoff $S_0$
 \end{itemize}
+
 \pagebreak
-\subsection{Parcours Descendant}
+
+\subsection{Forward Phase}
 Représentons l'évolution du prix d'un sous-jacent ayant pour cours initial $S_0$, qui a une probabilité $p$ d'augmenter de $u$ et qui a une probabilité $1-p$ de baisser de $d$ à chaque période : 
 
 \def\mallevel{2}
@@ -164,7 +176,7 @@ On peut réécrire la formule en utilisant la probabilité risque-neutre. \\
     \end{align*}
 \end{definitionbox}
 
-\subsection{Raisonnement Rétrograde}
+\subsection{Backward Phase}
 On peut maintenant appliquer le principe dit de \textbf{Raisonnement Rétrograde} ou de \textbf{Backward Induction}. Ce principe consiste à partir de la fin de l'arbre puis remonter sur le noeud précédent pour calculer sa valeur égale à l'espérance des noeuds suivants et répétant itérativement jusqu'à l'origine. Du fait de la nature non linéaire des formules d'évaluations des calls et puts (max), on ne peut savoir la valeur des noeuds terminaux qu'à la fin de la construction de l'arbre. On a alors besoin de construire l'arbre une première fois avant de le remonter. Ce principe est également très utile pour gérer les \textbf{options américaines} ainsi que pour le \textbf{delta hedging}. \\
 ~\\
 Notons $C_{i,t}$ les noeuds dans un arbre binomial, où $i$ est l'indice du noeud représentant le nombre de montées et $t$ la couche de l'arbre représentant le temps. \\

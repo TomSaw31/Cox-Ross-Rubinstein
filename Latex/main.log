@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.6)  19 SEP 2026 20:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.6)  21 SEP 2026 00:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1143,12 +1143,12 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
 <to be read again> 
                    \relax 
 l.110 \newpage
-               [1{C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}] (part1.tex
+               [1] (part1.tex
 Overfull \hbox (4.87503pt too wide) in paragraph at lines 22--25
 \T1/lmr/m/n/10 Modern port-fo-lio the-ory in fi-nance orig-i-nated in 1952 with the work pub-lished by Harry Markowitz
  []
 
-[2] [3]
+[2{C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}] [3]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 81.
  (C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -1179,7 +1179,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 208--209
 
  []
 
-) [5] (partie2.tex [6]
+) [5] (part2.tex [6]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 76.
@@ -1218,69 +1218,49 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 194.
- [9]) [10] (partie3.tex
-Underfull \hbox (badness 10000) in paragraph at lines 6--7
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 8--10
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--17
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 23--26
-
- []
-
-[11]
+ [9]) [10] (partie3.tex [11]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 76.
+(Font)              <9> on input line 88.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 76.
+(Font)              <6> on input line 88.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 76.
+(Font)              <12> on input line 88.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 76.
+(Font)              <8> on input line 88.
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--88
+Underfull \hbox (badness 10000) in paragraph at lines 98--100
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--88
+Underfull \hbox (badness 10000) in paragraph at lines 98--100
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 156--158
+Underfull \hbox (badness 10000) in paragraph at lines 168--170
 
  []
 
 [13]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 159.
+(mdframed)              on input line 171.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 165.
+(mdframed)              on input line 177.
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--177
+Underfull \hbox (badness 10000) in paragraph at lines 180--189
 
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 258--259
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
 
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 272--283
+Underfull \hbox (badness 10000) in paragraph at lines 284--295
 
  []
 
@@ -1290,46 +1270,7 @@ File: lstlang1.sty 2025/11/14 1.11b listings language file
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 ) (C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
-)
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 15.
- (C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-<Images/tree_creation.png, id=317, 1939.99782pt x 578.16pt>
-File: Images/tree_creation.png Graphic file (type png)
-<use Images/tree_creation.png>
-Package pdftex.def Info: Images/tree_creation.png  used on input line 38.
-(pdftex.def)             Requested size: 415.12572pt x 123.71089pt.
- [17]
-<Images/tree_prices.png, id=324, 673.01437pt x 578.16pt>
-File: Images/tree_prices.png Graphic file (type png)
-<use Images/tree_prices.png>
-Package pdftex.def Info: Images/tree_prices.png  used on input line 57.
-(pdftex.def)             Requested size: 332.10184pt x 285.29465pt.
- [18 <./Images/tree_creation.png>]
-<Images/tree_evaluated_leaves.png, id=343, 672.26157pt x 578.16pt>
-File: Images/tree_evaluated_leaves.png Graphic file (type png)
-<use Images/tree_evaluated_leaves.png>
-Package pdftex.def Info: Images/tree_evaluated_leaves.png  used on input line 67.
-(pdftex.def)             Requested size: 373.61061pt x 321.31487pt.
- [19 <./Images/tree_prices.png>]
-<Images/node_amount_evolution.png, id=349, 1172.88188pt x 581.92406pt>
-File: Images/node_amount_evolution.png Graphic file (type png)
-<use Images/node_amount_evolution.png>
-Package pdftex.def Info: Images/node_amount_evolution.png  used on input line 77.
-(pdftex.def)             Requested size: 373.61061pt x 185.36707pt.
- [20 <./Images/tree_evaluated_leaves.png>]
-<Images/execution_time.png, id=355, 1563.8425pt x 775.89874pt>
-File: Images/execution_time.png Graphic file (type png)
-<use Images/execution_time.png>
-Package pdftex.def Info: Images/execution_time.png  used on input line 84.
-(pdftex.def)             Requested size: 456.64081pt x 226.55582pt.
-
-Overfull \hbox (41.51509pt too wide) in paragraph at lines 84--85
- [][] 
- []
-
-[21 <./Images/node_amount_evolution.png>]) [22 <./Images/execution_time.png (PNG copy)>] (partie5.tex
+)) [17] (partie5.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 8.
@@ -1340,7 +1281,7 @@ LaTeX Font Warning: Command \Large invalid in math mode on input line 14.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 16.
-<Images/brownien2D.png, id=368, 889.07156pt x 581.92406pt>
+<Images/brownien2D.png, id=271, 889.07156pt x 581.92406pt>
 File: Images/brownien2D.png Graphic file (type png)
 <use Images/brownien2D.png>
 Package pdftex.def Info: Images/brownien2D.png  used on input line 22.
@@ -1350,13 +1291,13 @@ Overfull \hbox (41.51509pt too wide) in paragraph at lines 22--23
  [][] 
  []
 
-[23]
+[18]
 Underfull \hbox (badness 10000) in paragraph at lines 37--42
 
  []
 
-[24 <./Images/brownien2D.png>]
-<Images/brownien1D.png, id=384, 1172.88188pt x 581.92406pt>
+[19 <./Images/brownien2D.png>]
+<Images/brownien1D.png, id=287, 1172.88188pt x 581.92406pt>
 File: Images/brownien1D.png Graphic file (type png)
 <use Images/brownien1D.png>
 Package pdftex.def Info: Images/brownien1D.png  used on input line 45.
@@ -1376,7 +1317,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 56--57
 
  []
 
-[25 <./Images/brownien1D.png (PNG copy)>]
+[20 <./Images/brownien1D.png (PNG copy)>]
 Underfull \hbox (badness 10000) in paragraph at lines 70--71
 
  []
@@ -1392,104 +1333,56 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 82.
-[26]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 107--108
 
  []
 
-[27]
+[22]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 117.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 120.
-) [28] (partie6.tex
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 6.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Delta' on input line 6.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 6.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 8.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Gamma' on input line 8.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 8.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 10.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\nu' on input line 10.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 10.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 12.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Theta' on input line 12.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 12.
-
-) [29] (partie7.tex) [30] (partie8.tex) [31] (annexe.tex
+) [23] (partie6.tex) [24] (partie7.tex) [25] (partie8.tex) [26] (annexe.tex
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 34.
+ (C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 34.
- [32] [33] [34]) [35]
+ [27] [28] [29]) [30]
 Overfull \hbox (4.52255pt too wide) in paragraph at lines 131--131
 []\T1/lmr/m/it/10 Produits dérivés\T1/lmr/m/n/10 . So-ciété Générale Whole-sale Bank-ing. \T1/lmr/m/sc/10 url\T1/lmr/m/n/10 : []$\T1/lmtt/m/n/10 https : / / wholesale . banking .
  []
 
-[36] [37] (main.aux)
+[31] [32] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: DE6B4F19D27F27525FB3E9C84F9C6788;5736.
+(rerunfilecheck)             Checksum: 0FB477437093F20F00788D7BCED1CDB3;4230.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45541 strings out of 467871
- 1008997 string characters out of 5419829
- 2179523 words of memory out of 5000000
- 73456 multiletter control sequences out of 15000+600000
+ 45457 strings out of 467871
+ 1006973 string characters out of 5419829
+ 2179453 words of memory out of 5000000
+ 73404 multiletter control sequences out of 15000+600000
  710009 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,21n,104p,1123b,2322s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{https://fr.wikipedia.org/wiki/Mod\303\250le_Black-Scholes} has been referenced but does not exist, replaced by a fixed one
 
-
-pdfTeX warning (dest): name{https://github.com/TomSaw31/Cox-Ross-Rubinstein} has been referenced but does not exist, replaced by a fixed one
-
 <C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy9.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on main.pdf (38 pages, 1036552 bytes).
+Output written on main.pdf (33 pages, 658262 bytes).
 PDF statistics:
- 806 PDF objects out of 1000 (max. 8388607)
- 242 named destinations out of 1000 (max. 500000)
- 312 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 697 PDF objects out of 1000 (max. 8388607)
+ 210 named destinations out of 1000 (max. 500000)
+ 207 words of extra memory for PDF output out of 10000 (max. 10000000)
 
