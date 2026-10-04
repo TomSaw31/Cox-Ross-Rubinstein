@@ -43,8 +43,7 @@ The algorithm therefore breaks down into two distinc phases :
 \pagebreak
 
 \subsection{Forward Phase}
-Représentons l'évolution du prix d'un sous-jacent ayant pour cours initial $S_0$, qui a une probabilité $p$ d'augmenter de $u$ et qui a une probabilité $1-p$ de baisser de $d$ à chaque période : 
-
+Let us represent the price evolution of an underlying asset with an initial price $S_0$, which has a probability $p$ of increasing by $u$ and a probability $1-p$ of decreasing by $d$ in each period:
 \def\mallevel{2}
 \def\ratiox{3.5} 
 \def\ratioy{2.0} 
@@ -91,19 +90,23 @@ Représentons l'évolution du prix d'un sous-jacent ayant pour cours initial $S_
 
 
 
-\remark L'arbre est recombinant, les évolutions sont invariantes par permutations de facteurs de hausse et baisse.  \\
-Plus formellement, soit un mot $w = (w_1, w_2, \dots, w_n)$ de longueur $n$ sur l'alphabet $\{u, d\}$. Si l'on note $|w|_u = k$ le nombre de hausses et $|w|_d = n-k$ le nombre de baisses, alors pour toute permutation $\sigma \in \mathcal{S}_n$, le prix final est identique :
-\begin{equation*}
-    S_n = S_0 \cdot \prod_{i=1}^{n} w_i = S_0 \cdot \prod_{i=1}^{n} w_{\sigma(i)} = S_0 u^k d^{n-k}
-\end{equation*}
-L'intérêt de la discrétisation apparaît ainsi. En effet, pour un arbre binaire non recombinant, l'étape $N=10$ sera représenté par $2^{10}=1024$ feuilles (nœuds terminaux) alors que pour un arbre recombinant, le nombre de feuilles de l'arbre sera de $N+1$. Pour résumer, la recombinaison de l'arbre permet de transformer l'évolution exponentielle du nombre de feuilles en évolution linéaire. \\\\
+\remark The tree is recombining; price paths are invariant under permutations of the up and down factors.
+More formally, let $w = (w_1, w_2, \dots, w_n)$ be a word of length $n$ over the alphabet $\{u, d\}$. 
+If we denote $|w|_u = k$ as the number of up moves and $|w|_d = n-k$ as the number of down moves, then for any permutation $\sigma \in \mathcal{S}_n$, the final price is identical:
 
-L'idée du modèle de Cox-Ross-Rubinstein (et de celui de Black-Scholes) est d'utiliser la réplication de portefeuilles pour reproduire l'évolution d'un produit dérivé. En effet, on a supposé l'A.O.A donc le marché est complet et ainsi tout payoff est réplicable comme vu précédemment. \\
-Représentons l'évolution d'un portefeuille afin de trouver des relations entre les différents coefficients du modèle. \\
-Soit $\Pi=\Delta S+\beta B$ avec $B$ au taux sans risque $r$. \\
-On définit le facteur sans risque $R \coloneqq 1+r$. \\
-Soient $u$, $d$ les facteurs d'évolution du modèle et $p$ la probabilité de hausse.
-On considère un call $C$ qui peut voir son prix augmenter ($C_u$) ou baisser ($C_d$) et on construit alors notre modèle afin de répliquer ce call.
+$$S_n = S_0 \cdot \prod_{i=1}^{n} w_i = S_0 \cdot \prod_{i=1}^{n} w_{\sigma(i)} = S_0 u^k d^{n-k}$$
+
+This highlights the advantage of discretization. Indeed, for a non-recombining binary tree, the $N=10$ stage would be represented by $2^{10}=1024$ leaves (terminal nodes), 
+whereas for a recombining tree, the number of leaves is $N+1$. In short, tree recombination transforms the exponential growth in the number of leaves into linear growth.
+
+The concept behind the Cox-Ross-Rubinstein model (and the Black-Scholes model) is to use portfolio replication to mimic the evolution of a derivative product. 
+Since we have assumed the absence of arbitrage opportunities (AOA), the market is complete, and thus any payoff can be replicated, as previously discussed.
+Let us model the evolution of a portfolio to establish relationships between the model's various coefficients.
+By convention, we will use the \textit{Continuous Compounding Formula} for the discount factor : $e^{-r \Delta t}$ with $\Delta t \coloneq \frac{T}{N}$.
+We could also use the discret compounding one $\dfrac{1}{1+r}$ but it is less precise and it will be easier to prove the convergence to the Black-Scholes model using the continuous one.
+Let $\Pi=\Delta S+\beta B$, where $B$ earns the risk-free rate $r$. We define the risk-free factor $R \coloneqq 1+r$.
+Let $u$ and $d$ be the model's evolution factors, and $p$ the probability of an upward movement.
+We consider a call option $C$ whose price can rise ($C_u$) or fall ($C_d$), and we construct our model to replicate this call.
 
 \tikzset{
    malnode/.style={draw=white, fill=white, minimum width=3.5em, circle, font=\small},
@@ -114,71 +117,79 @@ On considère un call $C$ qui peut voir son prix augmenter ($C_u$) ou baisser ($
 \begin{center}
 \begin{tikzpicture}
     \node[malnode] (init) at (0,0) {$\Delta S + \beta B$};
-    \node[malnode] (up) at (3, 1.5) {$\Delta uS + \beta BR$};
-    \node[malnode] (down) at (3, -1.5) {$\Delta dS + \beta BR$};
+    \node[malnode] (up) at (3, 1.5) {$\Delta uS + \beta Be^{r \Delta t}$};
+    \node[malnode] (down) at (3, -1.5) {$\Delta dS + \beta Be^{r \Delta t}$};
     \draw[->] (init) -- (up) node[prob, above] {$p$};
     \draw[->] (init) -- (down) node[prob, below] {$1-p$};
 \end{tikzpicture}
 \end{center}
 
-Ainsi, comme le portefeuille réplique $C$, on obtient :
+Thus, since the portfolio replicates $C$, we obtain:
 \begin{align*}
     \left\{
     \begin{array}{cl}
-        \Delta uS + \beta BR &= C_u \\
-        \Delta dS + \beta BR &= C_d
+        \Delta uS + \beta Be^{r \Delta t} &= C_u \\
+        \Delta dS + \beta Be^{r \Delta t} &= C_d
     \end{array}
     \right.
 \end{align*}
-De plus,
+Thus,
 \begin{align*}
     \left\{ \begin{array}{cl}
-    &\Delta uS + \beta BR=C_u \\
-    &\Delta dS + \beta BR=C_d \\
+    &\Delta uS + \beta Be^{r \Delta t}=C_u \\
+    &\Delta dS + \beta Be^{r \Delta t}=C_d \\
     \end{array} \right. \iff  
     \left\{ \begin{array}{cl}
-    -\Delta udS - d\beta BR&=-dC_u \\
-    \Delta udS + u\beta BR&=uC_d \\
+    -\Delta udS - d\beta Be^{r \Delta t}&=-dC_u \\
+    \Delta udS + u\beta Be^{r \Delta t}&=uC_d \\
     \end{array} \right. \\
-    \implies \beta RB(u-d)=uC_d-dC_u
-    \implies \beta B=\frac{uC_d-dC_u}{R(u-d)}
+    \implies \beta e^{r \Delta t}B(u-d)=uC_d-dC_u
+    \implies \beta B=\frac{uC_d-dC_u}{e^{r \Delta t}(u-d)}
 \end{align*}
-En remplaçant,
+With substitution,
 \begin{align*}
-    C = \Delta S + \beta B &= \frac{C_u - C_d}{S(u-d)}S + \frac{uC_d - dC_u}{R(u-d)} \\
-    &= \frac{R(C_u - C_d) + uC_d - dC_u}{R(u-d)} \\ 
-    &= \frac{1}{R}\bigg(\frac{R-d}{u-d}C_u + \frac{u-R}{u-d}C_d\bigg) \\
-    &= \frac{1}{R}(pC_u + (1-p)C_d), \text{ avec } p=\frac{R-d}{u-d} \text{ et } 1-p = \frac{u-R}{u-d} \\
+    C = \Delta S + \beta B &= \frac{C_u - C_d}{S(u-d)}S + \frac{uC_d - dC_u}{e^{r \Delta t}(u-d)} \\
+    &= \frac{e^{r \Delta t}(C_u - C_d) + uC_d - dC_u}{e^{r \Delta t}(u-d)} \\ 
+    &= e^{-r \Delta t}\bigg(\frac{e^{r \Delta t}-d}{u-d}C_u + \frac{u-e^{r \Delta t}}{u-d}C_d\bigg) \\
+    &= e^{-r \Delta t}(pC_u + (1-p)C_d), \text{ avec } p=\frac{e^{r \Delta t}-d}{u-d} \text{ et } 1-p = \frac{u-e^{r \Delta t}}{u-d} \\
 \end{align*}
-\cite{IntroductionALevaluationDoptions} \\
-\remark On a bien $1 = p + (1 - p) = \dfrac{R-d+u-R}{u-d} = 1$.\\ On a aussi nécessairement $d<R<u$. 
-En effet, 
-\begin{description}
-    \item[Si $R \leq d < u$ :] On emprunte au taux sans risque 
-    \begin{itemize}
-        \item En cas de baisse : $dS_0-RS_0=S_0(d-R) \geq 0$
-        \item En cas de hausse : $uS_0-RS_0 = S_0(u-R) \geq 0$
-    \end{itemize}
-    \item[Si $d < u \leq R$ :] On vend à découvert
-    \begin{itemize}
-        \item En cas de hausse : $RS_0-uS_0 = S_0(R-u) \geq 0$
-        \item En cas de baisse : $RS_0-dS_0 = S_0(R-d) \geq 0$
-    \end{itemize}
-\end{description}
-Dans les quatre cas, on obtient un arbitrage ce qui contredit l'A.O.A. Ainsi, le rendement sans risque est strictement compris entre les meilleurs et pires rendements risqués. \\
-On peut réécrire la formule en utilisant la probabilité risque-neutre. \\
+\cite{IntroductionALevaluationDoptions}
+\remark Indeed, $1 = p + (1 - p) = \dfrac{e^{r \Delta t}-d+u-e^{r \Delta t}}{u-d} = 1$. We also necessarily have $d<e^{r \Delta t}<u$
 
-\begin{definitionbox}[frametitle = {Formule d'évaluation risque-neutre}]
-    Soient $u$ et $d$ les facteurs d'évolution avec $d < R < u$ où $R$ est le facteur sans risque, et $C_u, C_d$ les flux futurs de l'option : 
+
+Indeed,
+\begin{description}
+    \item[If $e^{r \Delta t} \leq d < u$:] One borrows at the risk-free rate
+    \begin{itemize}
+    \item In the event of a drop: $dS_0-e^{r \Delta t}S_0=S_0(d-e^{r \Delta t}) \geq 0$
+    \item In the event of a rise: $uS_0-e^{r \Delta t}S_0 = S_0(u-e^{r \Delta t}) \geq 0$
+    \end{itemize}
+    \item[If $d < u \leq e^{r \Delta t}$:] One sells short
+    \begin{itemize}
+    \item In the event of a rise: $e^{r \Delta t}S_0-uS_0 = S_0(e^{r \Delta t}-u) \geq 0$
+    \item In the event of a drop: $e^{r \Delta t}S_0-dS_0 = S_0(e^{r \Delta t}-d) \geq 0$
+\end{itemize}
+\end{description}
+
+In all four cases, an arbitrage opportunity arises, contradicting the No-Arbitrage Assumption. Thus, the risk-free return lies strictly between the best and worst risky returns. \\
+The formula can be rewritten using the risk-neutral probability. \\
+
+\begin{definitionbox}[frametitle = {Risk-neutral valuation formula}]
+    Let $u$ and $d$ be the evolution factors with $d < e^{r \Delta t} < u$, where $e^{r \Delta t}$ is the risk-free factor, and let $C_u$ and $C_d$ be the future option payoffs:
     \begin{align*}
-         C_0&=\dfrac{1}{R}(pC_u+(1-p)C_d), \text{ avec } p=\dfrac{R-d}{u-d} \text{ et } 1-p = \dfrac{u-R}{u-d} \\
-         &=\frac{\mathbb{E}^{\mathbb{Q}}(C_1)}{R}, \text{ avec } \mathbb{Q} \text{ la mesure de probabilité risque-neutre} \\
+        C_0&=\dfrac{1}{e^{r \Delta t}}(pC_u+(1-p)C_d), \text{ with } p=\dfrac{e^{r \Delta t}-d}{u-d} \text{ and } 1-p = \dfrac{u-e^{r \Delta t}}{u-d} \\
+        &=\frac{\mathbb{E}^{\mathbb{Q}}(C_1)}{e^{r \Delta t}}, \text{ with } \mathbb{Q} \text{ being the risk-neutral probability measure} \\
     \end{align*}
 \end{definitionbox}
 
 \subsection{Backward Phase}
-On peut maintenant appliquer le principe dit de \textbf{Raisonnement Rétrograde} ou de \textbf{Backward Induction}. Ce principe consiste à partir de la fin de l'arbre puis remonter sur le noeud précédent pour calculer sa valeur égale à l'espérance des noeuds suivants et répétant itérativement jusqu'à l'origine. Du fait de la nature non linéaire des formules d'évaluations des calls et puts (max), on ne peut savoir la valeur des noeuds terminaux qu'à la fin de la construction de l'arbre. On a alors besoin de construire l'arbre une première fois avant de le remonter. Ce principe est également très utile pour gérer les \textbf{options américaines} ainsi que pour le \textbf{delta hedging}. \\
-~\\
+We can now apply the principle known as \textbf{backward induction}. 
+This involves starting at the end of the tree and working back to the preceding node to calculate its value—defined as the expected value of the subsequent nodes—and repeating this process iteratively until the root is reached. 
+Due to the non-linear nature of the valuation formulas for calls and puts (involving the \textit{max} function), the values of the terminal nodes can only be determined once the tree construction is complete. 
+Consequently, the tree must be built in its entirety before the backward induction step is performed. 
+This principle is also highly useful for handling \textbf{American options} and for \textbf{delta hedging}.
+\vspace{0.25cm}
+
 Notons $C_{i,t}$ les noeuds dans un arbre binomial, où $i$ est l'indice du noeud représentant le nombre de montées et $t$ la couche de l'arbre représentant le temps. \\
 Considérons alors le morceau d'arbre suivant :
 \tikzset{
@@ -221,79 +232,96 @@ Considérons alors le morceau d'arbre suivant :
 }
 \end{tikzpicture}
 \end{center}
-En utilisant le raisonnement rétrograde, on peut exprimer la valeur du noeud $C_{0,1}$ à partir de celles de $C_{0,2}$ et $C_{1,2}$. On obtient alors : 
-$$C_{0,1} = \frac{1}{R}(pC_{1,2}+(1-p)C_{0,2})$$
-Ainsi, on peut remonter l'arbre en partant des feuilles pour évaluer l'ensemble des noeuds précédents: 
-$$C_{i,t}=\frac{1}{R}(pC_{i+1,t+1}+(1-p)C_{i,t+1})$$
-avec $i$ la position du noeud parmi les noeuds de profondeur $t$.
-Les valeurs des feuilles sont données par la formule du call (resp. put) si on modélise un call (resp. put). Ici, on aura : $C_{i,N} = \max(S_{i,N}-K,0)$ avec $S$ le prix du sous-jacent et $K$ le strike. 
-\vspace{0.02\textheight}\\
-Appliquons le modèle binomial sur une option dans l'exemple suivant: \\
-\vspace{0.01\textheight}
-\underline{Données} : 
+
+Using backward induction, the value of node $C_{0,1}$ can be expressed in terms of the values of $C_{0,2}$ and $C_{1,2}$. We thus obtain:
+$$C_{0,1} = e^{-r \Delta t}(pC_{1,2}+(1-p)C_{0,2})$$
+Thus, we can work backwards up the tree from the leaves to evaluate all preceding nodes:
+$$C_{i,t}=e^{-r \Delta t}(pC_{i+1,t+1}+(1-p)C_{i,t+1})$$
+where $i$ represents the position of the node among the nodes at depth $t$.
+The values at the leaves are determined by the call (or put) formula, depending on whether a call (or put) is being modeled. 
+In this case, we have: $C_{i,N} = \max(S_{i,N}-K,0)$, where $S$ is the price of the underlying asset and $K$ is the strike price.
+
+\vspace{0.2cm}
+
+Let us apply the binomial model to an option in the following example:
+\vspace{0.1cm}
+
+\underline{Data}:
 \begin{itemize}
-    \item Prix actuel : $S_0 = 100$
-    \item Prix d'exercice : $K = 100\$$
-    \item Facteur de hausse : $u = 1,1$
-    \item Facteur de baisse : $d = 0,9$
-    \item Taux sans risque : $r = 0.05$ donc $R=1.05$
-    \item Nombre de périodes : $N=2$
+    \item Current price: $S_0 = 100$
+    \item Strike price: $K = \$100$
+    \item Up factor: $u = 1.1$
+    \item Down factor: $d = 0.9$
+    \item Risk-free rate: $r = 0.05$, so $R=1.05$
+    \item Number of periods: $N=2$
 \end{itemize}
-\vspace{0.01\textheight}
-\underline{Phase de descente :} \\
-On calcule les trajectoires possibles
+
+\vspace{0.1cm}
+
+\underline{Downward phase:}
+
+We calculate the possible paths
 \begin{description}
-    \item[Temps t=1:] ~\
-        \begin{itemize}
-            \item $S_u = 100 \times 1,1 = 110$
-            \item $S_d = 100 \times 0,9 = 90$
-        \end{itemize}
-    \item[Temps t=2:] ~\
-        \begin{itemize}
-            \item $S_{uu} = 110 \times 1,1 = 121$
-            \item $S_{ud} = 110 \times 0,9 = 99$
-            \item $S_{dd} = 90 \times 0,9 = 81$
-        \end{itemize}
+    \item[Time t=1:] ~\
+    \begin{itemize}
+        \item $S_u = 100 \times 1.1 = 110$
+        \item $S_d = 100 \times 0.9 = 90$
+    \end{itemize}
+    \item[Time t=2:] ~\
+    \begin{itemize}
+        \item $S_{uu} = 110 \times 1.1 = 121$
+        \item $S_{ud} = 110 \times 0.9 = 99$
+        \item $S_{dd} = 90 \times 0.9 = 81$
+    \end{itemize}
 \end{description}
-\vspace{0.01\textheight}
-\underline{Calcul des probabilités risque-neutres :}
-$$p = \frac{R - d}{u - d} = \frac{1,05 - 0,9}{1,1 - 0,9} = \frac{0,15}{0,20} = 0,75$$
-\vspace{0.01\textheight}
-\underline{Calcul des valeurs des feuilles :} \\
-On calcule le payoff du Call : 
+
+\vspace{0.1cm}
+
+\underline{Calculation of risk-neutral probabilities:}
+$$p = \frac{R - d}{u - d} = \frac{1.05 - 0.9}{1.1 - 0.9} = \frac{0.15}{0.20} = 0.75$$
+
+\vspace{0.1cm}
+
+\underline{Calculation of leaf values:} \\
+We calculate the call option payoff:
 \begin{itemize}
     \item $C_{uu} = \max(121 - 100, 0) = 21$
     \item $C_{ud} = \max(99 - 100, 0) = 0$
     \item $C_{dd} = \max(81 - 100, 0) = 0$
 \end{itemize}
-\vspace{0.01\textheight}
-\underline{Phase de remontée :} \\
-\begin{description}
-    \item[Temps t = 1:] 
-        \begin{align*}
-            C_u &= \frac{1}{1,05} (0,75 \cdot 21 + 0,25 \cdot 0) = \frac{15,75}{1,05} = 15\\
-            C_d &= \frac{1}{1,05} (0,75 \cdot 0 + 0,25 \cdot 0) = 0
-        \end{align*}
-    \item[Temps t = 0:]
-        \begin{align*}
-            C_0 = \frac{1}{1,05}(0.75 \cdot15+0.25\cdot0) = \frac{11.25}{1.05} \approx 10.71
-        \end{align*}
-\end{description}
-Pour cette option, le prix juste à exiger est de $10.71 \$$
-\subsection{Options Américaines}
-Pour l'instant nous nous sommes contentés de modéliser le prix d'options dites européennes, c'est-à-dire qu'elles ne sont exerçables qu'à la date d'échéance.
-La force du modèle binomial réside dans le fait qu'il est facile de l'adapter aux options dites américaines. Une option américaine, contrairement à une option européenne,
-peut être exercée à tout moment et pas obligatoire à échéance. On pourrait aussi étudier les options bermudéennes qui sont exerçables seulement à certaines dates définies avant échéance, 
-mais par simplicité, nous étudierons seulement les options américaines dans cette partie.
-Du fait de sa flexibilité, une option américaine a au moins la même valeur qu'une option européenne. En effet, une option américaine fait tout ce que fait une option
-européenne mais peut être exercée plus tôt, ce qui permet d'éviter une baisse très importante, par exemple pour un call américain. 
-\vspace{0.1cm} \\
-En supposant qu'un investisseur est un être rationnel, c'est-à-dire qu'il va toujours choisir de prendre la décision pour maximiser sa rentabilité, il devient facile d'adapter notre modèle.
-Il suffit de faire le maximum entre la valeur donnée par le modèle et la valeur d'exercice lors de la remontée de l'arbre. Par conséquent, un call américain et européen auront la même
-valeur alors qu'un put américain sera plus cher qu'un put européen car le possesseur d'un put américain peut exercer son option pour éviter que le prix ne continue de chuter en dessous.
-d'un certain niveau.\\
 
-Formule Européenne : On actualise juste l'espérance de la période suivante.
-$$C = \frac{1}{R}[ p C_u + (1-p) C_d]$$
-Formule Américaine : À chaque nœud, on compare cette valeur actualisée avec le gain d'un exercice immédiat et on prend le maximum des deux.
-$$C = \max ( \text{Valeur Intrinsèque} \, , \, \frac{1}{R} [ p C_u + (1-p) C_d ] )$$
+\vspace{0.1cm}
+
+\underline{Backward induction phase:} \\
+\begin{description}
+    \item[Time t = 1:]
+        \begin{align*}
+            C_u &= \frac{1}{1.05} (0.75 \cdot 21 + 0.25 \cdot 0) = \frac{15.75}{1.05} = 15\\
+            C_d &= \frac{1}{1.05} (0.75 \cdot 0 + 0.25 \cdot 0) = 0
+        \end{align*}
+    \item[Time t = 0:]
+\begin{align*}
+C_0 = \frac{1}{1.05}(0.75 \cdot 15 + 0.25 \cdot 0) = \frac{11.25}{1.05} \approx 10.71
+\end{align*}
+
+\end{description}
+For this option, the fair price to charge is $\$10.71$.
+\subsection{American Options}
+So far, we have focused on modeling the price of so-called European options—that is, options that can only be exercised at the expiration date.
+The strength of the binomial model lies in the ease with which it can be adapted to American options. Unlike a European option,
+an American option can be exercised at any time, rather than only at expiration. One could also examine Bermudan options, which are exercisable only on specific dates prior to expiration;
+however, for the sake of simplicity, we will limit our study in this section to American options.
+Due to this flexibility, an American option is worth at least as much as a European option. Indeed, an American option offers all the features of a European option
+but allows for earlier exercise, thereby making it possible to avoid a significant drop in value—for instance, in the case of an American call option.
+
+\vspace{0.1cm}
+
+Assuming an investor is rational—meaning they will always choose the decision that maximizes profitability—adapting our model becomes straightforward.
+One simply takes the maximum of the model-derived value and the exercise value when working backward through the tree. 
+Consequently, American and European call options will have the same value, whereas an American put option will be more expensive than a European one, 
+because the holder of an American put can exercise the option to prevent the price from falling below a certain level.
+
+European formula: We simply discount the expected value of the next period.
+    $$C = e^{-r \Delta t}[ p C_u + (1-p) C_d]$$
+American formula: At each node, we compare this discounted value with the payoff from immediate exercise and take the maximum of the two.
+    $$C = \max ( \text{Intrinsic Value} \, , \, e^{-r \Delta t} [ p C_u + (1-p) C_d ] )$$

@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1789940425.45763 "main.bcf" "main.bbl" "main" 1789942218.29665 0
-  "main.bcf" 1789942217 109927 7a8ddd2be4cfaafcbf06159de369e637 "pdflatex"
+["biber main"] 1791064322.22055 "main.bcf" "main.bbl" "main" 1791149217.59399 0
+  "main.bcf" 1791149217 109927 7a8ddd2be4cfaafcbf06159de369e637 "pdflatex"
   "references.bib" 1789840783 6995 2c6e6214d2be8d84d7dbd88d608a9f6c ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1789942215.95402 "c:/Users/PC/Documents/Cox-Ross-Rubinstein/Latex/main.tex" "main.pdf" "main" 1789942218.29737 0
+["pdflatex"] 1791149215.10635 "c:/Users/PC/Documents/Cox-Ross-Rubinstein/Latex/main.tex" "main.pdf" "main" 1791149217.59514 0
   "C:/Users/PC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1789255038 81086 6fddea6b023469843de28035c851ec71 ""
   "C:/Users/PC/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1788652586 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/PC/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1788652588 684 3a51bd4fd9600428d5264cf25f04bb9a ""
@@ -309,23 +309,23 @@
   "C:/Users/PC/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "C:/Users/PC/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1773584792 2269 91cd03da61ab1da00145ba8a81560051 ""
   "C:/Users/PC/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1773584792 20785 8db5f0a2b2ce96dda9fac87ccab29449 ""
-  "Images/brownien1D.png" 1788652162 26714 3bc731292abeffb539695061ba4453ef ""
-  "Images/brownien2D.png" 1788652162 64380 05913d5b57efb46509dcb6f31c092a0c ""
+  "Images/brownien1D.png" 1791063647 107287 ffd817a77c9494bbaadc8a12fec7ebd8 ""
+  "Images/brownien2D.png" 1791060282 68232 ad047f304f39594887b1bb7c5fe92d7c ""
   "annexe.tex" 1777047829 5057 7da8957b6cd5c7a163350e3ce1f56bfe ""
-  "c:/Users/PC/Documents/Cox-Ross-Rubinstein/Latex/main.tex" 1789940397 2599 14591f50a8f90d187b1d700b03012730 ""
-  "main.aux" 1789942217 8049 ffea615971680dcdc2aa3655bcfd1f78 "pdflatex"
-  "main.bbl" 1789940427 21923 f22d28556d1b9b61a2ca4469b3a32ef6 "biber main"
-  "main.out" 1789942217 4230 0fb477437093f20f00788d7bced1cdb3 "pdflatex"
-  "main.run.xml" 1789942217 2305 52095dfad395b381e9a32937e764a41c "pdflatex"
-  "main.tex" 1789940397 2599 14591f50a8f90d187b1d700b03012730 ""
-  "main.toc" 1789942217 2028 d6c6ca95c8dc85a29209036c7db5ed85 "pdflatex"
+  "c:/Users/PC/Documents/Cox-Ross-Rubinstein/Latex/main.tex" 1791058748 2599 14591f50a8f90d187b1d700b03012730 ""
+  "main.aux" 1791149217 8096 7d7e860632760ce825ce118fb20a70e9 "pdflatex"
+  "main.bbl" 1791064323 21923 f22d28556d1b9b61a2ca4469b3a32ef6 "biber main"
+  "main.out" 1791149217 4004 235000cc729b29b85c303c23df490b66 "pdflatex"
+  "main.run.xml" 1791149217 2305 52095dfad395b381e9a32937e764a41c "pdflatex"
+  "main.tex" 1791058748 2599 14591f50a8f90d187b1d700b03012730 ""
+  "main.toc" 1791149217 2041 3df6060378b041cc31c5ce62ded9e538 "pdflatex"
   "part1.tex" 1789681607 13905 6f3f6c8b3fbdcf68a66d0aabcf61527e ""
   "part2.tex" 1789940694 13464 aab6d620a275da5cd3338255da1ee2e1 ""
-  "partie3.tex" 1789942215 15975 49e12b71a0c224c9ff5affbf7524280c ""
-  "partie4.tex" 1789940386 305 5d3b01c1f3cdfe2836200dad3f02b021 ""
-  "partie5.tex" 1789940424 11337 8e1466ff1c553ef4c591c77ff14c4887 ""
-  "partie6.tex" 1789940437 710 28868c12b08f7f25eb87276587e9bc37 ""
-  "partie7.tex" 1789940448 118 3524adb16e6eec725dc5c55ff6ca6e85 ""
+  "partie3.tex" 1791065219 16438 579b378e7a6731e3da48f09bcfceb218 ""
+  "partie4.tex" 1791149131 286 73700c7f0c6f1739baa5f3f72e9d018b ""
+  "partie5.tex" 1791066884 10366 d3b1d69547caf269d16f97285bd5d627 ""
+  "partie6.tex" 1791149193 586 22cdcdef315db3137475d3dc150cc4c4 ""
+  "partie7.tex" 1791149214 113 78d4db56160780930d3e411334455dff ""
   "partie8.tex" 1789940450 26 d3f173db575f9fe632ebb2206631671a ""
   (generated)
   "main.aux"

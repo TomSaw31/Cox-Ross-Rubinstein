@@ -12,12 +12,13 @@
 \contentsline {subsection}{\numberline {3.1}Objectives and Structure of the Model}{11}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Forward Phase}{12}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Backward Phase}{14}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Options Américaines}{16}{subsection.3.4}%
-\contentsline {section}{\numberline {4}Conception et implémentation algorithmique}{17}{section.4}%
-\contentsline {section}{\numberline {5}Convergence vers le modèle de Black-Scholes}{18}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Mouvement Brownien / Processus de Wiener}{18}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Intégration d'Itō}{20}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Equation de Black-Scholes}{23}{subsection.5.3}%
-\contentsline {section}{\numberline {6}Evaluations des indicateurs de risque}{24}{section.6}%
-\contentsline {section}{\numberline {7}Analyse comparative avec d'autres modèles}{25}{section.7}%
+\contentsline {subsection}{\numberline {3.4}American Options}{16}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Algorithm Implementation}{17}{section.4}%
+\contentsline {section}{\numberline {5}Convergence towards the Black-Scholes model}{18}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Brownian motion / Wiener process}{18}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Itō Integration}{20}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Black-Scholes Equation}{23}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Convergence}{23}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Risk indicators}{24}{section.6}%
+\contentsline {section}{\numberline {7}Comparative analysis of others models}{25}{section.7}%
 \contentsline {section}{\numberline {8}Conclusion}{26}{section.8}%
