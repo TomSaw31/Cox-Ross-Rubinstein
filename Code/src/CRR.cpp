@@ -1,78 +1,74 @@
 #include "CRR.hpp"
+#include "iostream" // TODO REMOVE IOSTREAM
 
-enum class OptionType {Call, Put};
-enum class ExerciseType {European, American};
+CRR::CRR() {
+    dt = T / N;
+    u = std::exp(sigma * std::sqrt(dt));
+    d = 1.0 / u;
+    for(int i = 0; i < N + 1; ++i) {
+        optionValues.push_back(0);
+    }
+}
 
-/**
- * Calculates the option price using the CRR model (Binomial Tree)
- * @param S0    : Current price of the underlying asset
- * @param K     : Strike price
- * @param r     : Risk-free interest rate
- * @param sigma : Volatility of the underlying asset
- * @param T     : Time to maturity in years
- * @param N     : Tree depth
- * @param oType : Option type
- * @param eType : Exercise type
- * @return      : The estimated option price
- */
-double crrOptionPrice(double S0, double K, double r, double sigma, double T, int N, OptionType oType, ExerciseType eType) {
-    double dt = T / N;
-    double u = std::exp(sigma * std::sqrt(dt));
-    double d = 1.0 / u;
+double CRR::crrOptionPrice() {
     double p = (std::exp(r * dt) - d) / (u - d);
     double discount = std::exp(-r * dt);
 
     if (p <= 0.0 || p >= 1.0) {
-        std::cerr << "Problème d'arbitrage\n";
+        std::cerr << "ERROR : Arbitrage\n";
     }
-
-    std::vector<double> optionValues(N + 1);
-
-    for (int i = 0; i <= N; i++) {
+    for (int i = 0; i <= N; ++i) {
         double ST = S0 * std::pow(u, N - i) * std::pow(d, i);
-        if (oType == OptionType::Call) {
+        if (oType == OptionType::CALL) {
             optionValues[i] = std::max(0., ST - K);
         } else {
             optionValues[i] = std::max(0., K - ST);
         }
     }
 
-    for (int j = N - 1; j >= 0; j--) {
-        for (int i = 0; i <= j; i++) {
+    for (int j = N - 1; j >= 0; --j) {
+        for (int i = 0; i <= j; ++i) {
             double continuation = discount * (p * optionValues[i] + (1.0 - p) * optionValues[i + 1]);
-            if (eType == ExerciseType::American) {
-                double S_current = S0 * std::pow(u, j - i) * std::pow(d, i);
-                double value = (oType == OptionType::Call) ? std::max(0.0, S_current - K) : std::max(0.0, K - S_current);
-                optionValues[i] = std::max(continuation, value);
-            } else {
+                std::cout << discount << p << optionValues[i] << optionValues[i + 1] << std::endl; // TODO
+            if (eType == ExerciseType::EUROPEAN) {
                 optionValues[i] = continuation;
+            } else {
+                double S_current = S0 * std::pow(u, j - i) * std::pow(d, i);
+                double value = (oType == OptionType::CALL) ? std::max(0.0, S_current - K) : std::max(0.0, K - S_current);
+                optionValues[i] = std::max(continuation, value);
             }
         }
     }
+    // for(int i = 0; i < N +1 ; ++i) {
+    //     std::cout << optionValues[i] << std::endl;
+    // }
     return optionValues[0];
 }
 
-// int main() {
-//     double S0 = 50.0;
-//     double K = 50.0;
-//     double r = 0.04;
-//     double sigma = 0.20;
-//     double T = 1.0;
-//     int N = 10;
+double CRR::getS0() const { return S0; }
+double CRR::getK() const { return K; }
+double CRR::getR() const { return r; }
+double CRR::getSigma() const { return sigma; }
+double CRR::getU() const { return u; }
+double CRR::getD() const { return d; }
+double CRR::getDt() const { return dt; }
+int CRR::getT() const { return T; }
+int CRR::getN() const { return N; }
+bool CRR::getComputed() const { return computed; }
+double CRR::getResult() const { return result; }
+ExerciseType CRR::getEType() const { return eType; };
+OptionType CRR::getOType() const { return oType; };
 
-//     // Calculations
-//     double eCall = crrOptionPrice(S0, K, r, sigma, T, N, OptionType::Call, ExerciseType::European);
-//     double aCall = crrOptionPrice(S0, K, r, sigma, T, N, OptionType::Call, ExerciseType::American);
-//     double ePut  = crrOptionPrice(S0, K, r, sigma, T, N, OptionType::Put,  ExerciseType::European);
-//     double aPut  = crrOptionPrice(S0, K, r, sigma, T, N, OptionType::Put,  ExerciseType::American);
-
-//     // Results
-//     std::cout << std::fixed << std::setprecision(4);
-//     std::cout << "--- Résultats du Modèle CRR (N = " << N << ") ---\n";
-//     std::cout << "European Call : " << eCall << "\n";
-//     std::cout << "American Call : " << aCall << "\n";
-//     std::cout << "European Put  : " << ePut << "\n";
-//     std::cout << "American Put  : " << aPut  << "\n";
-
-//     return 0;
-// }
+void CRR::setS0(double s0) { S0 = s0; }
+void CRR::setK(double k) { K = k; }
+void CRR::setR(double rate) { r = rate; }
+void CRR::setSigma(double vol) { sigma = vol; }
+void CRR::setU(double up) { u = up; }
+void CRR::setD(double down) { d = down; }
+void CRR::setDt(double delta_t) { dt = delta_t; }
+void CRR::setT(int t) { T = t; }
+void CRR::setN(int n) { N = n; }
+void CRR::setComputed(bool b) { computed = b; }
+void CRR::setResult(double r) { result = r; }
+void CRR::setEType(ExerciseType e) { eType = e; };
+void CRR::setOType(OptionType o) { oType = o; };

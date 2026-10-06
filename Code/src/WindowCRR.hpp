@@ -1,6 +1,14 @@
 #pragma once
 
+#include "CRR.hpp"
+
 class WindowCRR {
-public:
-    void render(double& spot, double& strike, double& priceResult);
+    private:
+        CRR crr;
+        void drawUI();
+
+    public:
+        WindowCRR(CRR crr);
+
+        void render(double spot, double strike, double priceResult);
 };
