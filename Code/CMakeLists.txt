@@ -46,6 +46,7 @@ add_executable(BinomialModel
     src/CRR.cpp
     src/WindowCRR.cpp
     src/Greeks.cpp
+    src/JsonParser.cpp
 
     ${IMGUI_SOURCES}
 )

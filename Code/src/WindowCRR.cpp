@@ -94,7 +94,7 @@ void WindowCRR::drawUI() {
 
     ImGui::Begin("Binomial Model", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
 
-    ImGui::Text("Pricer d'option - Modele binomial (CRR)");
+    ImGui::Text("Option Pricing - Binomial Model");
 
     ImGui::SeparatorText("Option");
 
@@ -106,9 +106,9 @@ void WindowCRR::drawUI() {
     crr.setOType(optionType);
 
     int eType = crr.getEType() == AMERICAN ? 1 : 0;
-    ImGui::RadioButton("Europeenne", &eType, 0);
+    ImGui::RadioButton("European", &eType, 0);
     ImGui::SameLine();
-    ImGui::RadioButton("Americaine", &eType, 1);
+    ImGui::RadioButton("American", &eType, 1);
     ExerciseType exerciseType = (eType == 1) ? AMERICAN : EUROPEAN;
     crr.setEType(exerciseType);
 
