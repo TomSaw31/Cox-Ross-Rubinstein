@@ -9,7 +9,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
-#include <iostream> // TODO REMOVE
+#include "Greeks.hpp"
 
 struct WindowState {
     int x = 100;
@@ -26,7 +26,9 @@ struct WindowState {
 
 WindowCRR::WindowCRR(CRR crr) {
     this->crr = crr;
+    this->greeks = Greeks();
 }
+
 
 static void updateWindowState(GLFWwindow* win, WindowState& st) {
     if (st.fullscreen || glfwGetWindowAttrib(win, GLFW_ICONIFIED))
@@ -115,80 +117,83 @@ void WindowCRR::drawUI() {
     ImGui::PushItemWidth(180.0f);
 
     double S = crr.getS0();
-    ImGui::InputDouble("Spot (S)", &S, 1.0, 10.0, "%.5f");
+    ImGui::InputDouble("Spot Price (S)", &S, 1.0, 10.0, "%.5f");
     crr.setS0(S);
 
     double K = crr.getK();
-    ImGui::InputDouble("Strike (K)", &K, 1.0, 10.0, "%.5f");
+    ImGui::InputDouble("Strike Price (K)", &K, 1.0, 10.0, "%.5f");
     crr.setK(K);
 
     double T = crr.getT();
-    ImGui::InputDouble("Expiration (ans)", &T, 0.25, 1.0, "%.5f");
+    ImGui::InputDouble("Expiration (T) (years)", &T, 0.25, 1.0, "%.5f");
     crr.setT(T);
 
     double r = crr.getR();
-    ImGui::InputDouble("Taux r", &r, 0.01, 0.05, "%.5f");
+    ImGui::InputDouble("Risk-Free Rate (r)", &r, 0.01, 0.05, "%.5f");
     crr.setR(r);
     
     double sigma = crr.getSigma();
-    ImGui::InputDouble("Volatilite sigma", &sigma, 0.01, 0.05, "%.5f");
+    ImGui::InputDouble("Volatility (σ)", &sigma, 0.01, 0.05, "%.5f");
     crr.setSigma(sigma);
 
     int N = crr.getN();
-    ImGui::InputInt("Nombre de pas N", &N, 10, 100);
+    ImGui::InputInt("Number of Steps (N)", &N, 1000, 100);
     crr.setN(N);
 
     ImGui::PopItemWidth();
 
-    crr.setN(std::clamp(crr.getN(), 1, 5000));
+    crr.setN(std::clamp(crr.getN(), 1, 10000));
 
     ImGui::Spacing();
-    if (ImGui::Button("Calculer", ImVec2(140, 30))) {
-        // TODO
-        std::cout << crr.crrOptionPrice() << std::endl;
+    if (ImGui::Button("Calculate", ImVec2(140, 30))) {
+        crr.crrOptionPrice();
+        res = crr.getResult();
+        dt = crr.getDt();
+        u = crr.getU();
+        d = crr.getD();
+        riskNeutral = crr.getRiskNeutral();
+        greeks.estimateGreeks(crr);
     }
 
-    ImGui::SameLine();
-    if (ImGui::Button("Reinitialiser", ImVec2(140, 30)))
-    {
-       // TODO REINITIALISER
-    }
+    // ImGui::SameLine();
+    // if (ImGui::Button("Reinitialiser", ImVec2(140, 30)))
+    // {
+    //    // TODO REINITIALISER
+    // }
 
     ImGui::SeparatorText("Results");
 
     if (crr.getComputed()) {
         if (ImGui::BeginTable("results", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg | ImGuiTableFlags_SizingFixedFit)) {
-            ImGui::TableSetupColumn("Grandeur", ImGuiTableColumnFlags_WidthFixed, 200.0f);
-            ImGui::TableSetupColumn("Valeur", ImGuiTableColumnFlags_WidthFixed, 160.0f);
+            ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, 200.0f);
+            ImGui::TableSetupColumn("Value", ImGuiTableColumnFlags_WidthFixed, 160.0f);
             ImGui::TableHeadersRow();
 
-            auto row = [](const char* label, double value)
-            {
+            auto row = [](const char* label, double value) {
                 ImGui::TableNextRow();
                 ImGui::TableNextColumn(); ImGui::TextUnformatted(label);
                 ImGui::TableNextColumn(); ImGui::Text("%.6f", value);
             };
-
-            row("Prix de l'option", crr.getResult());
-            row("Delta", crr.getDt());
-            row("Facteur de hausse u", crr.getU());
-            row("Facteur de baisse d", crr.getD());
-            row("Proba risque-neutre p", 67); //TODO
+            row("Option Price", res);
+            row("Up Factor", u);
+            row("Down Factor", d);
+            row("Risk-Neutral Probability", riskNeutral);
+            row("Delta", greeks.getDelta());
+            row("Gamma", greeks.getGamma());
+            row("Vega", greeks.getVega());
+            row("Rho", greeks.getRho());
+            row("Theta", greeks.getTheta());
 
             ImGui::EndTable();
         }
-    } else {
-        ImGui::TextDisabled("Clique sur \"Calculer\" pour lancer le calcul.");
     }
-
     ImGui::End();
 }
 
 void WindowCRR::render(double spot, double strike, double priceResult) {
     glfwInit();
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Cox-Ross-Rubinstein Model", nullptr, nullptr
-    );
+    GLFWwindow* window = glfwCreateWindow(800, 600, "Cox-Ross-Rubinstein Model", nullptr, nullptr);
 
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);

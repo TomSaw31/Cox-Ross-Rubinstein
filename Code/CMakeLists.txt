@@ -5,18 +5,14 @@ project(BinomialModel
     LANGUAGES CXX
 )
 
-# ==================================================
-# C++ configuration
-# ==================================================
 
+# C++ configuration
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# ==================================================
-# Dependencies
-# ==================================================
 
+# Dependencies
 include(FetchContent)
 
 # GLFW
@@ -28,10 +24,8 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(glfw)
 
-# ==================================================
-# ImGui
-# ==================================================
 
+# ImGui
 set(IMGUI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/imgui)
 
 set(IMGUI_SOURCES
@@ -45,40 +39,32 @@ set(IMGUI_SOURCES
     ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 )
 
-# ==================================================
-# Executable
-# ==================================================
 
+# Executable
 add_executable(BinomialModel
     src/main.cpp
     src/CRR.cpp
     src/WindowCRR.cpp
+    src/Greeks.cpp
 
     ${IMGUI_SOURCES}
 )
 
-# ==================================================
-# Include directories
-# ==================================================
 
+# Include directories
 target_include_directories(BinomialModel PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${IMGUI_DIR}
     ${IMGUI_DIR}/backends
 )
 
-# ==================================================
-# Libraries
-# ==================================================
 
+# Libraries
 target_link_libraries(BinomialModel PRIVATE
     glfw
 )
 
-# ==================================================
 # OpenGL
-# ==================================================
-
 if(WIN32)
     target_link_libraries(BinomialModel PRIVATE opengl32)
 elseif(UNIX)
