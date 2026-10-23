@@ -1,8 +1,7 @@
 #include <map>
 #include <string>
-#include "JsonParser.hpp"
 #include <fstream>
-#include <assert.h>
+#include "JsonParser.hpp"
 
 static void skipWs(const std::string& text, text_it& it) {
     while (it != text.end() && std::isspace(static_cast<unsigned char>(*it))) { ++it; }
@@ -10,7 +9,9 @@ static void skipWs(const std::string& text, text_it& it) {
 
 void JsonParser::readFile(const std::string& filepath, std::string& output) {
     std::ifstream file(filepath);
-    if (!file) throw std::runtime_error("Cannot open " + filepath);
+    if (!file) {
+        throw std::runtime_error("Cannot open " + filepath);
+    }
     std::string line;
 
     while (std::getline(file, line)) {
@@ -19,9 +20,10 @@ void JsonParser::readFile(const std::string& filepath, std::string& output) {
 }
 
 JsonValue JsonParser::parsePrimitive(const std::string& text, text_it start, text_it end) {
-    if (start == end)
-    throw std::runtime_error("Empty primitive at offset " +
-                             std::to_string(start - text.begin()));
+    
+    if (start == end)   
+        throw std::runtime_error("Empty primitive at offset " + std::to_string(start - text.begin()));
+
     std::string substr = text.substr(start - text.begin(), end - start);
     size_t float_point_index = substr.find(".");
 
@@ -35,7 +37,8 @@ JsonValue JsonParser::parsePrimitive(const std::string& text, text_it start, tex
 }
 
 JsonValue JsonParser::parseJsonHelper(const std::string& text, text_it& it) {
-    assert(*it == '{');
+    if (*it = '{')
+        std::runtime_error("File not starting with '{'");
     ++it;
 
     std::map<std::string, JsonValue>* json_map = new std::map<std::string, JsonValue>;
@@ -45,7 +48,8 @@ JsonValue JsonParser::parseJsonHelper(const std::string& text, text_it& it) {
         (*json_map)[key] = value;
 
         skipWs(text, it);
-        if (it == text.end()) throw std::runtime_error("Unexpected end of input");
+        if (it == text.end())
+            throw std::runtime_error("Unexpected end of input");
     } while (*it != '}');
     ++it;
     JsonValue val;
@@ -54,8 +58,8 @@ JsonValue JsonParser::parseJsonHelper(const std::string& text, text_it& it) {
 }
 
 std::pair<std::string, JsonValue> JsonParser::retrieveKeyValuePair(const std::string& text, text_it& it) {
-    assert(it != text.end());
-
+    if (it != text.end())
+        std::runtime_error("Key - Value pair invalid Json Format");
     skipWs(text, it);
 
     text_it curr_it;
@@ -77,12 +81,11 @@ std::pair<std::string, JsonValue> JsonParser::retrieveKeyValuePair(const std::st
 
     skipWs(text, it);
 
-    if (*it == '{') { value = parseJsonHelper(text, it); }
-    else {
+    if (*it == '{') { 
+        value = parseJsonHelper(text, it); 
+    } else {
         curr_it = it;
-
         while (isdigit(*it) || *it == '.') { ++it; }
-
         value = parsePrimitive(text, curr_it, it);
     }
     skipWs(text, it);
