@@ -1,0 +1,25 @@
+{
+    "inputs": {
+        "exercize_type": 0,
+        "expiration": 3.750000,
+        "option_type": 0,
+        "risk_free_rate": 0.050000,
+        "spot": 100.000000,
+        "steps": 1000,
+        "strike": 100.000000,
+        "volatility": 0.320000
+    },
+    "outputs": {
+        "down_factor": 0.980595,
+        "greeks": {
+            "delta": 0.729322,
+            "gamma": 0.005992,
+            "rho": -0.013130,
+            "theta": -0.013130,
+            "vega": 0.640288
+        },
+        "option_price": 31.769816,
+        "risk_neutral_probability": 0.499885,
+        "up_factor": 1.019789
+    }
+}

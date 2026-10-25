@@ -1,5 +1,7 @@
 #pragma once
 
+class CRR;
+
 class Greeks {
     private:
         double delta;
@@ -9,7 +11,7 @@ class Greeks {
         double rho;
 
     public:
-        void estimateGreeks(CRR crr);
+        void estimateGreeks(CRR& crr);
 
         double getDelta() const;
         double getGamma() const;

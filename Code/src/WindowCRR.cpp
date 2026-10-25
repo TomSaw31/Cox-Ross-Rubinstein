@@ -2,14 +2,17 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+#include "misc/cpp/imgui_stdlib.h"   
 
 #include <GLFW/glfw3.h>
 
 #include <algorithm>
 #include <cmath>
 #include <string>
+#include <memory>
 #include <vector>
 #include "Greeks.hpp"
+#include "JsonParser.hpp"
 
 struct WindowState {
     int x = 100;
@@ -24,9 +27,12 @@ struct WindowState {
     bool fullscreen = false;
 };
 
+WindowCRR::WindowCRR() {
+    this->crr = CRR{};
+}
+
 WindowCRR::WindowCRR(CRR crr) {
     this->crr = crr;
-    this->greeks = Greeks();
 }
 
 
@@ -126,6 +132,7 @@ void WindowCRR::drawUI() {
 
     double T = crr.getT();
     ImGui::InputDouble("Expiration (T) (years)", &T, 0.25, 1.0, "%.5f");
+    T = T > 0 ? T : 0;
     crr.setT(T);
 
     double r = crr.getR();
@@ -133,7 +140,8 @@ void WindowCRR::drawUI() {
     crr.setR(r);
     
     double sigma = crr.getSigma();
-    ImGui::InputDouble("Volatility (σ)", &sigma, 0.01, 0.05, "%.5f");
+    ImGui::InputDouble("Volatility (s)", &sigma, 0.01, 0.05, "%.5f");
+    sigma = sigma < 0 ? 0 : sigma;
     crr.setSigma(sigma);
 
     int N = crr.getN();
@@ -152,8 +160,9 @@ void WindowCRR::drawUI() {
         u = crr.getU();
         d = crr.getD();
         riskNeutral = crr.getRiskNeutral();
-        greeks.estimateGreeks(crr);
+        crr.greeks.estimateGreeks(crr);
     }
+
 
     // ImGui::SameLine();
     // if (ImGui::Button("Reinitialiser", ImVec2(140, 30)))
@@ -178,15 +187,29 @@ void WindowCRR::drawUI() {
             row("Up Factor", u);
             row("Down Factor", d);
             row("Risk-Neutral Probability", riskNeutral);
-            row("Delta", greeks.getDelta());
-            row("Gamma", greeks.getGamma());
-            row("Vega", greeks.getVega());
-            row("Rho", greeks.getRho());
-            row("Theta", greeks.getTheta());
+            row("Delta", crr.greeks.getDelta());
+            row("Gamma", crr.greeks.getGamma());
+            row("Vega", crr.greeks.getVega());
+            row("Rho", crr.greeks.getRho());
+            row("Theta", crr.greeks.getTheta());
 
             ImGui::EndTable();
         }
     }
+
+    ImGui::SeparatorText("Loading / Saving");
+
+    ImGui::SetNextItemWidth(250);
+    ImGui::InputText("File name", &filename);
+
+    if (ImGui::Button("Load", ImVec2(140, 30))) {
+        crr.loadModelJson(filename + ".json", true);
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Save", ImVec2(140, 30))) {
+        crr.saveModelJson(filename + ".json"); 
+    }
+
     ImGui::End();
 }
 

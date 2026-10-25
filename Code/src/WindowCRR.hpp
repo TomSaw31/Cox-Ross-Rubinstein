@@ -2,6 +2,7 @@
 
 #include "CRR.hpp"
 #include "Greeks.hpp"
+#include <string>
 
 class WindowCRR {
     private:
@@ -12,9 +13,10 @@ class WindowCRR {
         double u;
         double d;
         double riskNeutral;
-        Greeks greeks;
+        std::string filename = "../data/save";
 
     public:
+        WindowCRR();
         WindowCRR(CRR crr);
 
         void render(double spot, double strike, double priceResult);

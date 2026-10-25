@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <iostream>
 #include <vector>
+#include "Greeks.hpp"
 
 enum OptionType {CALL, PUT};
 enum ExerciseType {EUROPEAN, AMERICAN};
@@ -26,9 +27,13 @@ class CRR {
         double result;
         bool computed = false;
         double riskNeutral = 1;
+
         
 
     public:
+        CRR() {}
+        CRR(char * source, char * output);
+        Greeks greeks; 
         double crrOptionPrice();
         void updateModel();
         double getS0() const;
@@ -56,4 +61,7 @@ class CRR {
         void setComputed(bool computed);
         void setEType(ExerciseType e);
         void setOType(OptionType o);
+
+        void saveModelJson(const std::string& filepath);
+        void loadModelJson(const std::string& filepath, bool recompute = false);
 };

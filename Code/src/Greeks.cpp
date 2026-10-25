@@ -1,7 +1,8 @@
 #include "CRR.hpp"
 #include "Greeks.hpp"
+#include <iostream>
 
-void Greeks::estimateGreeks(CRR crr) {
+void Greeks::estimateGreeks(CRR& crr) {
     const double h = 0.05 * crr.getS0();
     const double hSigma = 1e-3;
     const double hR = 1e-3;
@@ -25,7 +26,7 @@ void Greeks::estimateGreeks(CRR crr) {
 
     delta = (Vup - Vdown) / (2.0 * h);
     gamma = (Vup - 2 * V + Vdown) / (h * h);
-
+    
     // VEGA
     crrU = crr;
     crrD = crr;
@@ -58,6 +59,12 @@ void Greeks::estimateGreeks(CRR crr) {
     Vdown = crrD.crrOptionPrice();
 
     theta = - (Vup - Vdown) / (2 * hT * 365.);
+
+    crr.greeks.setDelta(delta);
+    crr.greeks.setGamma(gamma);
+    crr.greeks.setVega(vega);
+    crr.greeks.setRho(rho);
+    crr.greeks.setTheta(theta);
 }
 
 double Greeks::getDelta() const {
